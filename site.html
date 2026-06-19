@@ -15,11 +15,15 @@
   body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",Roboto,sans-serif;
        background:var(--bg);color:var(--ink);line-height:1.6;-webkit-text-size-adjust:100%}
   .wrap{max-width:880px;margin:0 auto;padding:0 16px 64px}
-  header{background:linear-gradient(135deg,#1f6feb 0%,#143f94 100%);color:#fff;padding:34px 16px 30px;text-align:center}
-  header .tag{display:inline-block;font-size:12px;letter-spacing:.12em;font-weight:700;
-       background:rgba(255,255,255,.16);padding:5px 12px;border-radius:20px;margin-bottom:12px}
-  header h1{font-size:24px;font-weight:800;letter-spacing:-.02em}
-  header .addr{margin-top:8px;font-size:14px;opacity:.92}
+  header{background:linear-gradient(135deg,#1f6feb 0%,#0e2f78 100%);color:#fff;padding:52px 18px 44px;text-align:center;position:relative;overflow:hidden}
+  header:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+       background:radial-gradient(circle,rgba(89,231,180,.25),transparent 70%);pointer-events:none}
+  header .tag{display:inline-block;font-size:12px;letter-spacing:.14em;font-weight:700;
+       background:rgba(255,255,255,.16);padding:6px 14px;border-radius:20px;margin-bottom:18px}
+  header h1{font-size:38px;font-weight:900;letter-spacing:-.035em;line-height:1.22}
+  header h1 .hl{color:#59e7b4}
+  header .hsub{margin-top:16px;font-size:15.5px;font-weight:700;opacity:.96}
+  header .addr{margin-top:6px;font-size:13px;opacity:.82}
   /* key facts */
   .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:-22px}
   .fact{background:var(--card);border-radius:14px;padding:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
@@ -88,15 +92,16 @@
   @media(max-width:560px){
     .facts{grid-template-columns:1fr 1fr}
     .grid{grid-template-columns:repeat(2,1fr)}
-    header h1{font-size:21px}
+    header h1{font-size:30px}
   }
 </style>
 </head>
 <body>
 <header>
-  <div class="tag">회사이전 · 사무실 후보지</div>
-  <h1>용산구 동자동 30-8 · 2층</h1>
-  <div class="addr">서울특별시 용산구 한강대로102길 17 (동자동) · 전용 130평</div>
+  <div class="tag">회사이전 · 사무실 통합 후보지</div>
+  <h1>흩어진 사무실,<br><span class="hl">서울역에서 하나로</span></h1>
+  <div class="hsub">용산구 동자동 30-8 · 2층 · 전용 130평</div>
+  <div class="addr">서울특별시 용산구 한강대로102길 17 (동자동)</div>
 </header>
 
 <div class="wrap">
