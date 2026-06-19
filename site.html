@@ -63,6 +63,28 @@
   .lb .prev{left:4px}.lb .next{right:4px}
   .lb .cnt{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#fff;font-size:14px;opacity:.85}
   footer{text-align:center;color:var(--sub);font-size:12px;margin-top:40px;line-height:1.8}
+  /* comparison table */
+  .cmp{width:100%;border-collapse:collapse;background:var(--card);border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow);border:1px solid var(--line);font-size:13.5px}
+  .cmp th,.cmp td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  .cmp thead th{background:#eef3fb;font-size:12.5px;font-weight:800}
+  .cmp thead th.cand{color:var(--brand)}
+  .cmp td.dim{background:#f7f9fc;font-weight:700;color:var(--sub);white-space:nowrap}
+  .cmp tr:last-child td{border-bottom:0}
+  .cmp td.cand{background:#f5f9ff}
+  /* market cards */
+  .mkt{display:grid;gap:10px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);
+    border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .mcard .t{font-weight:800;font-size:14px;margin-bottom:3px}
+  .mcard .d{font-size:13.5px;color:#34404f}
+  .mcard.warn{border-left-color:#e8a13a}
+  /* verdict */
+  .verdict{background:linear-gradient(135deg,#0fb37a 0%,#0a8f63 100%);color:#fff;border-radius:16px;
+    padding:20px 18px;box-shadow:0 8px 24px rgba(15,179,122,.28)}
+  .verdict .vl{font-size:11.5px;font-weight:700;letter-spacing:.1em;opacity:.92;margin-bottom:9px}
+  .verdict .vt{font-size:16.5px;font-weight:800;line-height:1.6;letter-spacing:-.01em}
+  .verdict .vs{margin-top:11px;font-size:13px;opacity:.95;line-height:1.65;border-top:1px solid rgba(255,255,255,.25);padding-top:10px}
   @media(max-width:560px){
     .facts{grid-template-columns:1fr 1fr}
     .grid{grid-template-columns:repeat(2,1fr)}
@@ -106,6 +128,61 @@
        href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%9A%A9%EC%82%B0%EA%B5%AC%20%ED%95%9C%EA%B0%95%EB%8C%80%EB%A1%9C102%EA%B8%B8%2017">
       📍 네이버 지도에서 위치 보기
     </a>
+  </section>
+
+  <!-- LOCATION & MARKET -->
+  <section>
+    <h2>입지 비교 <span style="font-weight:600;color:var(--sub);font-size:13px">(현재 사무실 대비)</span></h2>
+    <table class="cmp">
+      <thead><tr>
+        <th>구분</th>
+        <th>현재 사무실<br><span style="font-weight:600;color:#5b6776">서울역 14번 출구</span></th>
+        <th class="cand">후보지<br><span style="font-weight:600">동자동 30-8 · 2층</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="dim">권역</td><td>서울역 동남측 동자동 생활권</td><td class="cand"><b>동일 생활권</b> · 동자동 (도보 5분 내외)</td></tr>
+        <tr><td class="dim">역 접근</td><td>서울역 14번 출구 인접</td><td class="cand">서울역 12번 출구 도보 약 4분</td></tr>
+        <tr><td class="dim">광역 교통</td><td colspan="2" style="background:#f5f9ff;text-align:center">서울역 공동 이용 (동일) — KTX·1·4호선·공항철도·경의중앙선·<b>GTX-A</b></td></tr>
+        <tr><td class="dim">공간 규모</td><td>현재 분산 운영</td><td class="cand"><b>전용 130평 단일 층</b> (통합 수용)</td></tr>
+        <tr><td class="dim">주차</td><td>기존 기준</td><td class="cand">2대 무료</td></tr>
+        <tr><td class="dim">고정비</td><td>기존 계약 기준</td><td class="cand">보증 7,200만 / 월 800만(VAT별도) + 관리 47.8만</td></tr>
+        <tr><td class="dim">고객·직원 동선</td><td>현 거래처·내방 동선</td><td class="cand">동일 권역 유지 → <b>동선 손실 없음</b></td></tr>
+      </tbody>
+    </table>
+    <div class="note">※ 현재 사무실의 면적·임대료는 기존 계약 기준이라 수치 비교는 생략. 핵심은 <b>두 위치가 같은 서울역 동자동 상권</b>이라는 점.</div>
+  </section>
+
+  <!-- MARKET ANALYSIS -->
+  <section>
+    <h2>상권 분석</h2>
+    <div class="mkt">
+      <div class="mcard">
+        <div class="t">① 서울역세권 — 광역 접근성 최상위</div>
+        <div class="d">KTX·지하철 1·4호선·공항철도·경의중앙선에 <b>GTX-A 서울역</b>(운정중앙~서울역 운행 중, 서울역~수서 구간 ’26.8월 예정)까지 더해져 전국·수도권 유입이 극대화되는 결절점.</div>
+      </div>
+      <div class="mcard">
+        <div class="t">② 해외송금 사업 적합도 높음</div>
+        <div class="d">서울역은 전국 외국인·다문화 인구 이동의 허브. 동자동·남대문·후암 일대 외국인 생활권과 인접해 <b>송금 고객 접근성과 브랜드 인지</b>를 그대로 유지.</div>
+      </div>
+      <div class="mcard">
+        <div class="t">③ 두터운 배후 상업권</div>
+        <div class="d">남대문시장 상업권과 명동 관광권이 인접해 업무·상주 수요가 풍부하고, 식음·편의 인프라가 충분.</div>
+      </div>
+      <div class="mcard warn">
+        <div class="t">④ 유의점</div>
+        <div class="d">동자동 일부는 노후·도시정비형 재개발(쪽방촌 정비) 구역이 혼재 — 장기 개발 호재이나 단기 가로환경 편차 있음. <b>2층 입지</b>라 워크인 리테일보다 <b>운영본부·백오피스 통합</b>에 적합.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDICT -->
+  <section>
+    <h2>한 줄 평가 <span style="font-weight:600;color:var(--sub);font-size:13px">(레밋 창고·핀·전 사무실 통합 관점)</span></h2>
+    <div class="verdict">
+      <div class="vl">모든 사무실 통합 · 한 줄 평가</div>
+      <div class="vt">“서울역 동일 생활권을 그대로 지키면서 전용 130평 단일 층에 현 사무실·레밋 창고·핀 사무실을 한곳으로 통합 — 접근성은 유지하고 분산 운영의 비효율은 제거하는 실용적 최적안.”</div>
+      <div class="vs">단, 월 고정비(임대 800만 + 관리 47.8만, VAT 별도)와 <b>무료 주차 2대</b> 한계는 통합 인원·차량 규모와 대조해 최종 점검 필요.</div>
+    </div>
   </section>
 
   <!-- GALLERY -->
