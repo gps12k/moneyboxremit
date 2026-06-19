@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인포그래픽 — 사무실 통합 후보지 (서울역 동자동)</title>
+<meta name="description" content="회사이전 사무실 통합 후보지 한눈에 보기 — 서울역 동자동 30-8, 전용 110평">
+<style>
+  :root{
+    --ink:#10203a; --sub:#5b6776; --line:#e6eaf0;
+    --blue:#1f6feb; --blue-d:#0e2f78; --mint:#0fb37a; --mint-l:#59e7b4;
+    --purple:#5a32e0; --amber:#e8a13a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",Roboto,sans-serif;
+    color:var(--ink);background:#eef1f6;line-height:1.55;-webkit-text-size-adjust:100%}
+  .info{max-width:720px;margin:0 auto;background:#fff;overflow:hidden;box-shadow:0 0 50px rgba(20,40,80,.08)}
+  .band{padding:34px 22px}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--blue)}
+  .band h2{font-size:21px;font-weight:900;letter-spacing:-.02em;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+  /* HERO */
+  .hero{background:linear-gradient(150deg,#1f6feb 0%,#0e2f78 100%);color:#fff;text-align:center;
+    padding:50px 22px 46px;position:relative;overflow:hidden}
+  .hero:after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;
+    background:radial-gradient(circle,rgba(89,231,180,.28),transparent 70%)}
+  .hero .tag{display:inline-block;font-size:11.5px;letter-spacing:.14em;font-weight:700;
+    background:rgba(255,255,255,.16);padding:6px 14px;border-radius:20px;margin-bottom:16px}
+  .hero h1{font-size:34px;font-weight:900;letter-spacing:-.035em;line-height:1.24}
+  .hero h1 .hl{color:var(--mint-l)}
+  .hero .loc{margin-top:16px;font-size:14.5px;font-weight:700;opacity:.95}
+  .hero .addr{margin-top:4px;font-size:12.5px;opacity:.8}
+  /* BIG STAT */
+  .bigstat{background:linear-gradient(135deg,#0fb37a 0%,#0a8f63 100%);color:#fff;text-align:center;padding:30px 22px}
+  .bigstat .lab{font-size:13px;font-weight:700;letter-spacing:.1em;opacity:.92}
+  .bigstat .num{font-size:62px;font-weight:900;line-height:1;letter-spacing:-.04em;margin:6px 0}
+  .bigstat .num small{font-size:24px;font-weight:800}
+  .bigstat .sq{font-size:14px;opacity:.92;font-weight:600}
+  /* COST TILES */
+  .tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .tile{border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;background:#fafbfd}
+  .tile .k{font-size:12px;color:var(--sub);font-weight:700;margin-bottom:5px}
+  .tile .v{font-size:24px;font-weight:900;letter-spacing:-.02em;color:var(--ink)}
+  .tile .v small{font-size:13px;font-weight:700;color:var(--sub)}
+  .tile.hi .v{color:var(--blue)}
+  /* LOCATION */
+  .loccard{background:#f5f9ff;border:1px solid #dbe7fb;border-radius:14px;padding:18px;display:flex;gap:14px;align-items:flex-start}
+  .loccard .pin{font-size:30px;line-height:1}
+  .loccard .ldesc b{color:var(--blue)}
+  .loccard .ldesc{font-size:14.5px}
+  .loccard .lsmall{font-size:12.5px;color:var(--sub);margin-top:5px}
+  /* TRANSIT */
+  .badges{display:flex;flex-wrap:wrap;gap:9px}
+  .badge{font-size:13px;font-weight:800;padding:9px 14px;border-radius:22px;background:#eef3fb;color:var(--blue-d);
+    border:1px solid #dbe7fb}
+  .badge.gtx{background:linear-gradient(135deg,#6a3df0,#3b2bd0);color:#fff;border:0}
+  /* CONSOLIDATION */
+  .merge{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .froms{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .from{background:#fff;border:1px dashed #c4ccd8;border-radius:12px;padding:13px 14px;text-align:center;min-width:104px}
+  .from .ic{font-size:22px}
+  .from .nm{font-size:12.5px;font-weight:800;margin-top:3px}
+  .from .sub{font-size:11px;color:var(--sub)}
+  .arrow{font-size:26px;color:var(--mint);font-weight:900}
+  .into{background:linear-gradient(135deg,#1f6feb,#0e2f78);color:#fff;border-radius:14px;padding:18px 22px;text-align:center;width:100%}
+  .into .ic{font-size:26px}
+  .into .nm{font-size:17px;font-weight:900;margin-top:4px;letter-spacing:-.02em}
+  .into .sub{font-size:12.5px;opacity:.9;margin-top:2px}
+  /* MARKET POINTS */
+  .pts{display:grid;gap:11px}
+  .pt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-left:4px solid var(--blue);
+    border-radius:12px;padding:13px 15px;background:#fff}
+  .pt.warn{border-left-color:var(--amber)}
+  .pt .n{font-size:18px;font-weight:900;color:var(--blue);line-height:1.4}
+  .pt.warn .n{color:var(--amber)}
+  .pt .t{font-size:14px;font-weight:800}
+  .pt .d{font-size:13px;color:#34404f}
+  /* VERDICT */
+  .verdict{background:linear-gradient(135deg,#0fb37a 0%,#0a8f63 100%);color:#fff;text-align:center}
+  .verdict .vl{font-size:11.5px;font-weight:800;letter-spacing:.12em;opacity:.92;margin-bottom:12px}
+  .verdict .vt{font-size:18px;font-weight:900;line-height:1.6;letter-spacing:-.01em}
+  .verdict .vs{margin-top:14px;font-size:12.5px;opacity:.95;line-height:1.6;
+    border-top:1px solid rgba(255,255,255,.28);padding-top:12px}
+  /* FOOTER */
+  .foot{background:#10203a;color:#9fb0c6;text-align:center;padding:26px 22px;font-size:12px;line-height:1.9}
+  .backbtn{display:inline-flex;align-items:center;gap:7px;margin-top:10px;background:#1f6feb;color:#fff;
+    font-weight:800;font-size:14px;padding:12px 22px;border-radius:24px;text-decoration:none}
+  @media(max-width:520px){
+    .hero h1{font-size:28px}
+    .bigstat .num{font-size:50px}
+    .tiles{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="info">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="tag">회사이전 · 사무실 통합 후보지</div>
+    <h1>흩어진 사무실,<br><span class="hl">서울역에서 하나로</span></h1>
+    <div class="loc">서울 용산구 동자동 30-8 · 2층</div>
+    <div class="addr">한강대로102길 17 · 서울역 12번 출구 도보 4분</div>
+  </div>
+
+  <!-- BIG STAT -->
+  <div class="bigstat">
+    <div class="lab">전용 면적</div>
+    <div class="num">110<small>평</small></div>
+    <div class="sq">약 363㎡ · 단일 층 통합 수용</div>
+  </div>
+
+  <!-- COST -->
+  <div class="band">
+    <div class="eyebrow">CONDITION</div>
+    <h2>📋 임대 조건</h2>
+    <div class="tiles">
+      <div class="tile hi"><div class="k">보증금</div><div class="v">7,200<small>만원</small></div></div>
+      <div class="tile hi"><div class="k">월세</div><div class="v">800<small>만원·VAT별도</small></div></div>
+      <div class="tile"><div class="k">관리비</div><div class="v">47.8<small>만원</small></div></div>
+      <div class="tile"><div class="k">주차</div><div class="v">2<small>대 무료</small></div></div>
+    </div>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="band" style="padding-top:8px">
+    <div class="eyebrow">LOCATION</div>
+    <h2>📍 입지</h2>
+    <div class="loccard">
+      <div class="pin">📍</div>
+      <div class="ldesc">
+        현 사무실(<b>서울역 14번 출구</b>)과 <b>동일 생활권</b> — 같은 동자동, 도보 5분 내외.
+        <div class="lsmall">이전이 아니라 같은 서울역 상권 내 이동 → 고객·직원 동선 손실 없음</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANSIT -->
+  <div class="band" style="padding-top:8px">
+    <div class="eyebrow">ACCESS</div>
+    <h2>🚄 서울역 광역 교통</h2>
+    <div class="badges">
+      <span class="badge">KTX</span>
+      <span class="badge">1호선</span>
+      <span class="badge">4호선</span>
+      <span class="badge">공항철도</span>
+      <span class="badge">경의·중앙선</span>
+      <span class="badge gtx">GTX-A</span>
+    </div>
+    <div class="lsmall" style="font-size:12px;color:var(--sub);margin-top:10px">
+      GTX-A 운정중앙~서울역 운행 중 · 서울역~수서 ’26.8월 개통 예정 → 전국·수도권 접근성 최상위
+    </div>
+  </div>
+
+  <!-- CONSOLIDATION -->
+  <div class="band" style="background:#f7f9fc">
+    <div class="eyebrow">INTEGRATION</div>
+    <h2>🧩 통합 구상</h2>
+    <div class="merge">
+      <div class="froms">
+        <div class="from"><div class="ic">🏢</div><div class="nm">현 사무실</div><div class="sub">서울역 14번</div></div>
+        <div class="from"><div class="ic">📦</div><div class="nm">레밋 창고</div><div class="sub">분산 운영</div></div>
+        <div class="from"><div class="ic">💳</div><div class="nm">핀 사무실</div><div class="sub">분산 운영</div></div>
+      </div>
+      <div class="arrow">▼</div>
+      <div class="into">
+        <div class="ic">🏛️</div>
+        <div class="nm">서울역 동자동 · 전용 110평</div>
+        <div class="sub">단일 층 통합 운영본부</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKET -->
+  <div class="band">
+    <div class="eyebrow">MARKET</div>
+    <h2>📈 상권 분석</h2>
+    <div class="pts">
+      <div class="pt"><div class="n">①</div><div><div class="t">서울역세권 — 접근성 최상위</div><div class="d">전국·수도권 유입 결절점, 5개 노선 + GTX-A.</div></div></div>
+      <div class="pt"><div class="n">②</div><div><div class="t">해외송금 사업 적합도 높음</div><div class="d">외국인·다문화 이동 허브, 동자동·남대문·후암 외국인 생활권 인접.</div></div></div>
+      <div class="pt"><div class="n">③</div><div><div class="t">두터운 배후 상업권</div><div class="d">남대문시장·명동 인접, 식음·편의 인프라 풍부.</div></div></div>
+      <div class="pt warn"><div class="n">⚠</div><div><div class="t">유의점</div><div class="d">동자동 일부 재정비 구역 혼재(장기 호재·단기 편차). 2층이라 운영본부·백오피스 통합에 적합.</div></div></div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="band verdict">
+    <div class="vl">레밋 창고 · 핀 · 전 사무실 통합 — 한 줄 평가</div>
+    <div class="vt">“서울역 동일 생활권을 그대로 지키면서 전용 110평 단일 층에 모든 사무실을 통합 — 접근성은 유지하고 분산 운영의 비효율은 제거하는 실용적 최적안.”</div>
+    <div class="vs">단, 월 고정비(임대 800만 + 관리 47.8만, VAT 별도)와 무료 주차 2대 한계는 통합 인원·차량 규모와 대조해 최종 점검 필요.</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="foot">
+    회사이전 사무실 통합 후보지 · 머니박스레밋<br>
+    내부 검토용 · 2026-06-19
+    <br><a class="backbtn" href="site.html">← 상세 페이지 · 사진 보기</a>
+  </div>
+
+</div>
+</body>
+</html>
