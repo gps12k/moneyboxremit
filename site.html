@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사무실 후보지 — 용산구 동자동 30-8</title>
+<meta name="description" content="회사이전 사무실 후보지 물건정보 — 서울 용산구 동자동 30-8 2층, 전용 130평">
+<style>
+  :root{
+    --bg:#f4f6f9; --card:#ffffff; --ink:#1a2330; --sub:#5b6776;
+    --line:#e6eaf0; --brand:#1f6feb; --brand-d:#1450b4; --accent:#0fb37a;
+    --shadow:0 4px 20px rgba(20,40,80,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",Roboto,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.6;-webkit-text-size-adjust:100%}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 64px}
+  header{background:linear-gradient(135deg,#1f6feb 0%,#143f94 100%);color:#fff;padding:34px 16px 30px;text-align:center}
+  header .tag{display:inline-block;font-size:12px;letter-spacing:.12em;font-weight:700;
+       background:rgba(255,255,255,.16);padding:5px 12px;border-radius:20px;margin-bottom:12px}
+  header h1{font-size:24px;font-weight:800;letter-spacing:-.02em}
+  header .addr{margin-top:8px;font-size:14px;opacity:.92}
+  /* key facts */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:-22px}
+  .fact{background:var(--card);border-radius:14px;padding:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .fact .k{font-size:12px;color:var(--sub);font-weight:600;margin-bottom:4px}
+  .fact .v{font-size:18px;font-weight:800;letter-spacing:-.02em}
+  .fact .v small{font-size:13px;font-weight:600;color:var(--sub)}
+  .fact.full{grid-column:1/-1}
+  .price .v{color:var(--brand)}
+  /* sections */
+  section{margin-top:28px}
+  h2{font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  h2:before{content:"";width:4px;height:18px;background:var(--brand);border-radius:3px;display:inline-block}
+  /* detail table */
+  .detail{background:var(--card);border-radius:14px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+  .detail .row{display:flex;border-bottom:1px solid var(--line);font-size:14.5px}
+  .detail .row:last-child{border-bottom:0}
+  .detail .row .label{flex:0 0 116px;background:#f7f9fc;padding:13px 14px;font-weight:700;color:var(--sub)}
+  .detail .row .value{padding:13px 14px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:8px;padding-left:2px}
+  /* map button */
+  .mapbtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+    background:var(--accent);color:#fff;font-weight:800;font-size:16px;padding:16px;border-radius:14px;
+    text-decoration:none;box-shadow:0 6px 18px rgba(15,179,122,.28);margin-top:14px}
+  .mapbtn:active{transform:translateY(1px)}
+  /* gallery */
+  .gtab{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .gtab button{border:1px solid var(--line);background:#fff;color:var(--sub);font-size:13px;font-weight:700;
+    padding:8px 14px;border-radius:20px;cursor:pointer}
+  .gtab button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;cursor:pointer;
+    background:#e9edf3;display:block;border:1px solid var(--line)}
+  .grid .plan img{aspect-ratio:auto}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(8,14,24,.94);display:none;align-items:center;justify-content:center;z-index:50}
+  .lb.show{display:flex}
+  .lb img{max-width:96vw;max-height:86vh;border-radius:8px}
+  .lb .x{position:absolute;top:14px;right:18px;color:#fff;font-size:34px;font-weight:300;cursor:pointer;line-height:1}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:42px;
+    padding:10px 18px;cursor:pointer;user-select:none;opacity:.85}
+  .lb .prev{left:4px}.lb .next{right:4px}
+  .lb .cnt{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#fff;font-size:14px;opacity:.85}
+  footer{text-align:center;color:var(--sub);font-size:12px;margin-top:40px;line-height:1.8}
+  @media(max-width:560px){
+    .facts{grid-template-columns:1fr 1fr}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    header h1{font-size:21px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">회사이전 · 사무실 후보지</div>
+  <h1>용산구 동자동 30-8 · 2층</h1>
+  <div class="addr">서울특별시 용산구 한강대로102길 17 (동자동) · 전용 130평</div>
+</header>
+
+<div class="wrap">
+  <!-- KEY FACTS -->
+  <div class="facts">
+    <div class="fact"><div class="k">전용면적</div><div class="v">130평 <small>(약 430㎡)</small></div></div>
+    <div class="fact"><div class="k">층</div><div class="v">2층</div></div>
+    <div class="fact price"><div class="k">보증금</div><div class="v">7,200<small> 만원</small></div></div>
+    <div class="fact price"><div class="k">월세</div><div class="v">800<small> 만원 (VAT별도)</small></div></div>
+    <div class="fact"><div class="k">관리비</div><div class="v">47.8<small> 만원</small></div></div>
+    <div class="fact"><div class="k">주차</div><div class="v">2대 <small>무료</small></div></div>
+  </div>
+
+  <!-- DETAIL -->
+  <section>
+    <h2>물건 정보</h2>
+    <div class="detail">
+      <div class="row"><div class="label">소재지</div><div class="value">서울특별시 용산구 동자동 30-8, 2층</div></div>
+      <div class="row"><div class="label">도로명</div><div class="value">서울특별시 용산구 한강대로102길 17</div></div>
+      <div class="row"><div class="label">전용면적</div><div class="value">130평 (약 430㎡)</div></div>
+      <div class="row"><div class="label">보증금</div><div class="value">7,200만원</div></div>
+      <div class="row"><div class="label">월세</div><div class="value">800만원 <span style="color:var(--sub);font-weight:600">(부가세 별도)</span></div></div>
+      <div class="row"><div class="label">관리비</div><div class="value">47만 8천원</div></div>
+      <div class="row"><div class="label">주차</div><div class="value">2대 무료</div></div>
+    </div>
+    <div class="note">※ 2026-06-19 오전 현장 방문 물건. 위 금액은 협의 전 제시 기준입니다.</div>
+
+    <a class="mapbtn" target="_blank" rel="noopener"
+       href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%9A%A9%EC%82%B0%EA%B5%AC%20%ED%95%9C%EA%B0%95%EB%8C%80%EB%A1%9C102%EA%B8%B8%2017">
+      📍 네이버 지도에서 위치 보기
+    </a>
+  </section>
+
+  <!-- GALLERY -->
+  <section>
+    <h2>현장 사진 <span style="font-weight:600;color:var(--sub);font-size:13px">(21장 · 탭하여 확대)</span></h2>
+    <div class="gtab">
+      <button data-f="all" class="on">전체</button>
+      <button data-f="in">내부공간</button>
+      <button data-f="ex">외관·주변</button>
+      <button data-f="etc">평면도·공용</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <footer>
+    회사이전 사무실 후보지 자료 · 머니박스레밋<br>
+    내부 검토용 · 최종 수정 2026-06-19
+  </footer>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <span class="x" id="lbx">&times;</span>
+  <span class="nav prev" id="lbp">&#10094;</span>
+  <img id="lbimg" src="" alt="">
+  <span class="nav next" id="lbn">&#10095;</span>
+  <div class="cnt" id="lbc"></div>
+</div>
+
+<script>
+// photo metadata: [file, category, caption]
+const photos = [
+  ["site-img/photo01.jpg","ex","건물 외관 · 거리"],
+  ["site-img/photo02.jpg","ex","건물 외관 · 거리"],
+  ["site-img/photo03.jpg","ex","건물 외관 · 코너"],
+  ["site-img/photo04.jpg","ex","주변 도로"],
+  ["site-img/photo05.jpg","ex","건물 측면 · 주차"],
+  ["site-img/photo06.jpg","ex","건물 측면 · 주차"],
+  ["site-img/photo09.jpg","etc","평면도"],
+  ["site-img/photo10.jpg","in","내부 공간"],
+  ["site-img/photo11.jpg","in","내부 공간"],
+  ["site-img/photo12.jpg","in","내부 공간 · 창측"],
+  ["site-img/photo13.jpg","in","내부 공간"],
+  ["site-img/photo14.jpg","in","내부 공간"],
+  ["site-img/photo15.jpg","in","내부 공간"],
+  ["site-img/photo16.jpg","in","내부 공간"],
+  ["site-img/photo17.jpg","in","내부 공간"],
+  ["site-img/photo18.jpg","in","내부 공간 · 창측"],
+  ["site-img/photo19.jpg","in","내부 공간"],
+  ["site-img/photo20.jpg","in","내부 공간 · 규모"],
+  ["site-img/photo21.jpg","in","내부 공간"],
+  ["site-img/photo07.jpg","etc","화장실"],
+  ["site-img/photo08.jpg","etc","복도 · 엘리베이터"]
+];
+const grid=document.getElementById('grid');
+let view=[]; // currently shown subset (array of indices into photos)
+
+function render(filter){
+  grid.innerHTML='';
+  view=[];
+  photos.forEach((p,i)=>{
+    if(filter!=='all' && p[1]!==filter) return;
+    view.push(i);
+    const img=document.createElement('img');
+    img.src=p[0]; img.loading='lazy'; img.alt=p[2];
+    img.addEventListener('click',()=>openLb(view.indexOf(i)));
+    grid.appendChild(img);
+  });
+}
+document.querySelectorAll('.gtab button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.gtab button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    render(b.dataset.f);
+  });
+});
+
+// lightbox
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbc=document.getElementById('lbc');
+let cur=0;
+function openLb(vi){cur=vi;showLb();lb.classList.add('show');}
+function showLb(){
+  const p=photos[view[cur]];
+  lbimg.src=p[0];
+  lbc.textContent=(cur+1)+' / '+view.length+'  ·  '+p[2];
+}
+function step(d){cur=(cur+d+view.length)%view.length;showLb();}
+document.getElementById('lbx').onclick=()=>lb.classList.remove('show');
+document.getElementById('lbn').onclick=e=>{e.stopPropagation();step(1);};
+document.getElementById('lbp').onclick=e=>{e.stopPropagation();step(-1);};
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('show');});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('show'))return;
+  if(e.key==='Escape')lb.classList.remove('show');
+  if(e.key==='ArrowRight')step(1);
+  if(e.key==='ArrowLeft')step(-1);
+});
+render('all');
+</script>
+</body>
+</html>
