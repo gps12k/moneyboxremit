@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>머니박스레밋 가맹점 QR</title>
+<meta name="description" content="머니박스레밋 지점·에이전시 QR코드 및 링크 모음">
+<style>
+  :root{--bg:#f4f6f9;--card:#fff;--ink:#16233a;--sub:#5b6776;--line:#e6eaf0;--brand:#1f6feb;--brand-d:#143f94;--agency:#7a3df0;--etc:#0fb37a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,#1f6feb,#143f94);color:#fff;padding:30px 16px 26px;text-align:center}
+  header h1{font-size:22px;font-weight:900;letter-spacing:-.02em}
+  header p{margin-top:6px;font-size:13px;opacity:.9}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 14px 60px}
+  .bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:14px 0 10px;margin-bottom:6px}
+  .search{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;font-size:15px;background:#fff;outline:none}
+  .search:focus{border-color:var(--brand)}
+  .tabs{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .tabs button{border:1px solid var(--line);background:#fff;color:var(--sub);font-size:13px;font-weight:700;padding:8px 14px;border-radius:20px;cursor:pointer}
+  .tabs button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .grouphead{display:flex;align-items:center;gap:8px;margin:22px 2px 12px;font-size:16px;font-weight:800}
+  .grouphead .cnt{font-size:12px;font-weight:700;color:var(--sub);background:#fff;border:1px solid var(--line);padding:2px 9px;border-radius:12px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;display:flex;flex-direction:column;gap:9px}
+  .qrbox{width:150px;height:150px;margin:2px auto 0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px;cursor:zoom-in}
+  .qrbox svg,.qrbox img{width:100%;height:100%;display:block;object-fit:contain}
+  .nm{font-weight:800;font-size:15px;letter-spacing:-.01em}
+  .badge{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:11px;color:#fff}
+  .b-지점{background:var(--brand)} .b-에이전시{background:var(--agency)} .b-기타{background:var(--etc)}
+  .note{font-size:11px;color:#c2410c;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:4px 7px}
+  .acts{display:flex;gap:7px;margin-top:auto}
+  .acts button,.acts a{flex:1;font-size:12.5px;font-weight:700;padding:9px 0;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;text-decoration:none;display:block}
+  .acts a.open{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .empty{text-align:center;color:var(--sub);padding:50px 0;font-size:14px}
+  footer{text-align:center;color:var(--sub);font-size:12px;margin-top:34px;line-height:1.8}
+  /* modal */
+  .lb{position:fixed;inset:0;background:rgba(8,14,24,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
+  .lb.show{display:flex}
+  .lb .box{background:#fff;border-radius:16px;padding:22px;max-width:360px;width:100%;text-align:center}
+  .lb .big{width:260px;height:260px;margin:0 auto 14px;max-width:100%}
+  .lb .big svg,.lb .big img{width:100%;height:100%}
+  .lb .lname{font-size:18px;font-weight:800;margin-bottom:4px}
+  .lb .llink{font-size:12px;color:var(--sub);word-break:break-all;margin-bottom:14px}
+  .lb .lacts{display:flex;gap:8px}
+  .lb .lacts button,.lb .lacts a{flex:1;padding:11px 0;border-radius:10px;font-weight:700;font-size:14px;border:1px solid var(--line);background:#fff;cursor:pointer;text-decoration:none;color:var(--ink)}
+  .lb .lacts a.open{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#16233a;color:#fff;font-size:13px;font-weight:700;padding:11px 20px;border-radius:24px;opacity:0;transition:.25s;z-index:60}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <h1>머니박스레밋 가맹점 QR</h1>
+  <p>지점 <b>39</b> · 에이전시 <b>1</b> · 전체 <b>41</b>건</p>
+</header>
+<div class="wrap">
+  <div class="bar">
+    <input class="search" id="q" placeholder="지점·에이전시 이름 검색…" autocomplete="off">
+    <div class="tabs" id="tabs">
+      <button data-f="all" class="on">전체</button>
+      <button data-f="지점">지점</button>
+      <button data-f="에이전시">에이전시</button>
+      <button data-f="기타">기타</button>
+    </div>
+  </div>
+  <div id="list"></div>
+  <footer>머니박스레밋 · 내부 가맹점 QR 관리 · 최종 업데이트 2026-06-19</footer>
+</div>
+
+<div class="lb" id="lb">
+  <div class="box">
+    <div class="big" id="lbbig"></div>
+    <div class="lname" id="lbname"></div>
+    <div class="llink" id="lblink"></div>
+    <div class="lacts">
+      <button id="lbcopy">링크 복사</button>
+      <a class="open" id="lbopen" target="_blank" rel="noopener">열기</a>
+      <button id="lbclose">닫기</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="qr/qrcode-generator.js"></script>
+<script>
+const DATA = [{"type": "지점", "name": "강남신사점", "link": "https://moneybox-remit.onelink.me/Gpxv/bvxjvlru?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "강남역지점", "link": "https://moneybox-remit.onelink.me/Gpxv/wnq7nqnj?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "광안리지점", "link": "https://moneybox-remit.onelink.me/Gpxv/gn0zjujr?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "광장시장점", "link": "https://moneybox-remit.onelink.me/Gpxv/i0uxgyye?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "광주지점", "link": "https://moneybox-remit.onelink.me/Gpxv/mbg9davx?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "김포", "link": "https://moneybox-remit.onelink.me/Gpxv/z6d7dovp?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "김해공항점", "link": "https://moneybox-remit.onelink.me/Gpxv/tph1ehac?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "남대문지점", "link": "https://moneybox-remit.onelink.me/Gpxv/td656s0k?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "남포지점", "link": "https://moneybox-remit.onelink.me/Gpxv/qkurnmux?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "대구지점", "link": "https://moneybox-remit.onelink.me/Gpxv/1az2tfx4?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "동대문지점", "link": "https://moneybox-remit.onelink.me/Gpxv/ewscb5ef?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "마포지점", "link": "https://moneybox-remit.onelink.me/Gpxv/x8g86py0?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "머니박스레밋", "link": "https://moneybox-remit.onelink.me/Gpxv/j7p18dn2?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "명동1호점", "link": "https://moneybox-remit.onelink.me/Gpxv/jhlewinv?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "명동2호점", "link": "https://moneybox-remit.onelink.me/Gpxv/wlv683l4?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "명동제일지점", "link": "https://moneybox-remit.onelink.me/Gpxv/41s4kyzl?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "부산역지점", "link": "https://moneybox-remit.onelink.me/Gpxv/bjd2ivwl?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "부평지점", "link": "https://moneybox-remit.onelink.me/Gpxv/t9q59nlf?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "서면지점", "link": "https://moneybox-remit.onelink.me/Gpxv/3nnl78rg?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "서울역지점", "link": "https://moneybox-remit.onelink.me/Gpxv/jonv8x34?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "성수지점", "link": "https://moneybox-remit.onelink.me/Gpxv/rwavlirq?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "송도지점", "link": "https://moneybox-remit.onelink.me/Gpxv/jkxrp1mo?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "수원지점", "link": "https://moneybox-remit.onelink.me/Gpxv/5zilbzku?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "안국지점", "link": "", "img": "안국지점.png", "note": "링크 미등록 — 확인 필요"}, {"type": "지점", "name": "여의도지점", "link": "https://moneybox-remit.onelink.me/Gpxv/y1pxifeq?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "용산드래곤시티점", "link": "https://moneybox-remit.onelink.me/Gpxv/jshcnxoo?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "운서역지점", "link": "https://moneybox-remit.onelink.me/Gpxv/nm741zew?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "울산삼산지점", "link": "https://moneybox-remit.onelink.me/Gpxv/gx114xrg?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "이태원지점", "link": "https://moneybox-remit.onelink.me/Gpxv/o7xuh9n7?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "인사동지점", "link": "https://moneybox-remit.onelink.me/Gpxv/4k4db47k?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "제주동문지점", "link": "https://moneybox-remit.onelink.me/Gpxv/gws9u8uh?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "제주지점", "link": "https://moneybox-remit.onelink.me/Gpxv/414nbp07?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "종로지점", "link": "https://moneybox-remit.onelink.me/Gpxv/0hcbun9a?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "창원지점", "link": "https://moneybox-remit.onelink.me/Gpxv/rxuxbifj?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "충무로지점", "link": "https://moneybox-remit.onelink.me/Gpxv/lcu5perv?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "평택지점", "link": "https://moneybox-remit.onelink.me/Gpxv/vhkco2fv?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "해운대", "link": "https://moneybox-remit.onelink.me/Gpxv/jtfq3w8g?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "홍대연남지점", "link": "https://moneybox-remit.onelink.me/Gpxv/09b2i42q?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "지점", "name": "홍대지점", "link": "https://moneybox-remit.onelink.me/Gpxv/zhxus0a3?deep_link_sub1=agent_qr", "img": "", "note": ""}, {"type": "에이전시", "name": "YNW", "link": "", "img": "YNW.png", "note": "에이전시 추정 — 분류/링크 확인 필요"}, {"type": "기타", "name": "앱 설치 QR", "link": "", "img": "설치QR.png", "note": "앱 설치용 공용 QR"}];
+const GROUPS = [["지점","🏬 지점"],["에이전시","🤝 에이전시"],["기타","📌 기타"]];
+
+// QR (SVG) cache
+const qrCache = {};
+function qrSVG(text, size){
+  const key = size+'|'+text;
+  if(qrCache[key]) return qrCache[key];
+  const qr = qrcode(0,'M'); qr.addData(text); qr.make();
+  const n = qr.getModuleCount(), cell = size/n;
+  let rects='';
+  for(let r=0;r<n;r++) for(let c=0;c<n;c++) if(qr.isDark(r,c))
+    rects+='<rect x="'+(c*cell).toFixed(2)+'" y="'+(r*cell).toFixed(2)+'" width="'+cell.toFixed(2)+'" height="'+cell.toFixed(2)+'"/>';
+  const svg='<svg viewBox="0 0 '+size+' '+size+'" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><rect width="'+size+'" height="'+size+'" fill="#fff"/><g fill="#000">'+rects+'</g></svg>';
+  qrCache[key]=svg; return svg;
+}
+function visual(item, size){
+  if(item.link) return qrSVG(item.link, size);
+  if(item.img)  return '<img src="qr/'+item.img+'" alt="'+item.name+'">';
+  return '<div style="color:#aaa;font-size:12px;padding-top:40%">QR 없음</div>';
+}
+
+let filter='all', kw='';
+const list=document.getElementById('list');
+function render(){
+  list.innerHTML='';
+  let shown=0;
+  for(const [gkey,glabel] of GROUPS){
+    if(filter!=='all' && filter!==gkey) continue;
+    const items=DATA.filter(d=>d.type===gkey && d.name.toLowerCase().includes(kw));
+    if(!items.length) continue;
+    shown+=items.length;
+    const h=document.createElement('div'); h.className='grouphead';
+    h.innerHTML=glabel+' <span class="cnt">'+items.length+'</span>';
+    list.appendChild(h);
+    const g=document.createElement('div'); g.className='grid';
+    items.forEach((d,i)=>{
+      const idx=DATA.indexOf(d);
+      const card=document.createElement('div'); card.className='card';
+      card.innerHTML =
+        '<div class="qrbox" data-i="'+idx+'">'+visual(d,150)+'</div>'+
+        '<div class="nm">'+d.name+'</div>'+
+        '<span class="badge b-'+d.type+'">'+d.type+'</span>'+
+        (d.note?'<div class="note">'+d.note+'</div>':'')+
+        '<div class="acts">'+
+          (d.link?'<button data-copy="'+idx+'">링크 복사</button><a class="open" href="'+d.link+'" target="_blank" rel="noopener">열기</a>'
+                 :'<button disabled style="opacity:.45">링크 없음</button>')+
+        '</div>';
+      g.appendChild(card);
+    });
+    list.appendChild(g);
+  }
+  if(!shown) list.innerHTML='<div class="empty">검색 결과가 없습니다.</div>';
+}
+
+// events
+document.getElementById('q').addEventListener('input',e=>{kw=e.target.value.trim().toLowerCase();render();});
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#tabs button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); filter=b.dataset.f; render();
+}));
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}
+function copy(text){navigator.clipboard?.writeText(text).then(()=>toast('링크 복사됨')).catch(()=>toast('복사 실패'));}
+
+// modal
+const lb=document.getElementById('lb');
+function openLb(i){
+  const d=DATA[i];
+  document.getElementById('lbbig').innerHTML=visual(d,260);
+  document.getElementById('lbname').textContent=d.name;
+  document.getElementById('lblink').textContent=d.link||(d.note||'링크 미등록');
+  const op=document.getElementById('lbopen'), cp=document.getElementById('lbcopy');
+  if(d.link){op.style.display='';op.href=d.link;cp.style.display='';cp.onclick=()=>copy(d.link);}
+  else{op.style.display='none';cp.style.display='none';}
+  lb.classList.add('show');
+}
+list.addEventListener('click',e=>{
+  const qb=e.target.closest('.qrbox'); if(qb){openLb(+qb.dataset.i);return;}
+  const cb=e.target.closest('[data-copy]'); if(cb){copy(DATA[+cb.dataset.copy].link);}
+});
+document.getElementById('lbclose').onclick=()=>lb.classList.remove('show');
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('show');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('show');});
+
+render();
+</script>
+</body>
+</html>
