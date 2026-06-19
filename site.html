@@ -27,7 +27,7 @@
   header .visit{display:inline-block;margin-top:16px;font-size:12.5px;font-weight:700;color:#fff;
     background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);padding:7px 14px;border-radius:22px}
   /* key facts */
-  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:-22px;position:relative;z-index:2}
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
   .fact{background:var(--card);border-radius:14px;padding:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
   .fact .k{font-size:12px;color:var(--sub);font-weight:600;margin-bottom:4px}
   .fact .v{font-size:18px;font-weight:800;letter-spacing:-.02em}
@@ -113,6 +113,28 @@
 </header>
 
 <div class="wrap">
+  <!-- GALLERY -->
+  <section>
+    <h2>현장 사진 <span style="font-weight:600;color:var(--sub);font-size:13px">(21장 · 탭하여 확대)</span></h2>
+    <div class="gtab">
+      <button data-f="all" class="on">전체</button>
+      <button data-f="in">내부공간</button>
+      <button data-f="ex">외관·주변</button>
+      <button data-f="etc">평면도·공용</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- VERDICT -->
+  <section>
+    <h2>한 줄 평가 <span style="font-weight:600;color:var(--sub);font-size:13px">(레밋 창고·핀·전 사무실 통합 관점)</span></h2>
+    <div class="verdict">
+      <div class="vl">모든 사무실 통합 · 한 줄 평가</div>
+      <div class="vt">“서울역 동일 생활권을 그대로 지키면서 전용 130평 단일 층에 현 사무실·레밋 창고·핀 사무실을 한곳으로 통합 — 접근성은 유지하고 분산 운영의 비효율은 제거하는 실용적 최적안.”</div>
+      <div class="vs">단, 월 고정비(임대 800만 + 관리 47.8만, VAT 별도)와 <b>주차(지상 2대 무료 + 지하 주차장)</b> 여건은 통합 인원·차량 규모와 대조해 최종 점검 필요.</div>
+    </div>
+  </section>
+
   <!-- KEY FACTS -->
   <div class="facts">
     <div class="fact"><div class="k">전용면적</div><div class="v">130평 <small>(약 430㎡)</small></div></div>
@@ -186,28 +208,6 @@
         <div class="d">동자동 일부는 노후·도시정비형 재개발(쪽방촌 정비) 구역이 혼재 — 장기 개발 호재이나 단기 가로환경 편차 있음. <b>2층 입지</b>라 워크인 리테일보다 <b>운영본부·백오피스 통합</b>에 적합.</div>
       </div>
     </div>
-  </section>
-
-  <!-- VERDICT -->
-  <section>
-    <h2>한 줄 평가 <span style="font-weight:600;color:var(--sub);font-size:13px">(레밋 창고·핀·전 사무실 통합 관점)</span></h2>
-    <div class="verdict">
-      <div class="vl">모든 사무실 통합 · 한 줄 평가</div>
-      <div class="vt">“서울역 동일 생활권을 그대로 지키면서 전용 130평 단일 층에 현 사무실·레밋 창고·핀 사무실을 한곳으로 통합 — 접근성은 유지하고 분산 운영의 비효율은 제거하는 실용적 최적안.”</div>
-      <div class="vs">단, 월 고정비(임대 800만 + 관리 47.8만, VAT 별도)와 <b>주차(지상 2대 무료 + 지하 주차장)</b> 여건은 통합 인원·차량 규모와 대조해 최종 점검 필요.</div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section>
-    <h2>현장 사진 <span style="font-weight:600;color:var(--sub);font-size:13px">(21장 · 탭하여 확대)</span></h2>
-    <div class="gtab">
-      <button data-f="all" class="on">전체</button>
-      <button data-f="in">내부공간</button>
-      <button data-f="ex">외관·주변</button>
-      <button data-f="etc">평면도·공용</button>
-    </div>
-    <div class="grid" id="grid"></div>
   </section>
 
   <!-- INFOGRAPHIC CTA -->
