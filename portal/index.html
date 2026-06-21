@@ -27,6 +27,7 @@
         <a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a>
       </nav>
       <div class="actions">
+        <button id="bgmBtn" class="bgm-hdr" type="button" aria-label="배경음악 켜기/끄기" aria-pressed="true"><span class="bgm-ico">&#9834;</span></button>
         <button class="lang" type="button" data-lang-toggle aria-label="Switch language">EN</button>
         <button class="menu-btn" type="button" data-menu-open aria-label="메뉴 열기" aria-expanded="false">&#9776;</button>
       </div>
@@ -179,22 +180,22 @@
   </footer>
 
   <script src="assets/js/main.js" defer></script>
-  <!-- 배경음악 (브랜드 징글) -->
-  <audio id="bgm" src="assets/audio/jingle.mp3" loop preload="auto"></audio>
-  <button id="bgmBtn" class="bgm-btn" type="button" aria-label="배경음악 켜기/끄기" aria-pressed="false"><span class="bgm-ico">&#9834;</span></button>
+  <!-- 배경음악 (머니박스레밋송) -->
+  <audio id="bgm" src="assets/audio/song.mp3" loop preload="auto"></audio>
   <script>
   (function(){
     var a=document.getElementById('bgm'),btn=document.getElementById('bgmBtn');
-    if(!a||!btn)return;var ico=btn.querySelector('.bgm-ico'),KEY='mbr-bgm',started=false;
-    a.volume=0.45;
+    if(!a||!btn)return;var KEY='mbr-bgm',started=false;
+    a.volume=0.45;a.loop=true;
     function pref(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
     function save(v){try{localStorage.setItem(KEY,v);}catch(e){}}
-    function ui(p){btn.classList.toggle('is-playing',p);ico.innerHTML=p?'&#10074;&#10074;':'&#9834;';btn.setAttribute('aria-pressed',String(p));}
-    function play(){a.play().then(function(){ui(true);}).catch(function(){ui(false);});}
-    function pause(){a.pause();ui(false);}
-    ui(false);
-    btn.addEventListener('click',function(e){e.stopPropagation();if(a.paused){play();save('on');}else{pause();save('off');}});
-    function first(){if(started)return;started=true;if(pref()!=='off')play();['click','keydown','touchstart'].forEach(function(ev){document.removeEventListener(ev,first);});}
+    var off=pref()==='off';
+    function render(){btn.classList.toggle('is-off',off);btn.classList.toggle('is-playing',!off&&!a.paused);btn.setAttribute('aria-pressed',String(!off));}
+    function play(){a.play().then(render).catch(render);}
+    function pause(){a.pause();render();}
+    a.addEventListener('play',render);a.addEventListener('pause',render);render();
+    btn.addEventListener('click',function(e){e.stopPropagation();off=!off;save(off?'off':'on');if(off)pause();else play();render();});
+    function first(){if(started)return;started=true;if(!off)play();['click','keydown','touchstart'].forEach(function(ev){document.removeEventListener(ev,first);});}
     ['click','keydown','touchstart'].forEach(function(ev){document.addEventListener(ev,first,{passive:true});});
   })();
   </script>
