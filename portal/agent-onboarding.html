@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지점·에이전시 온보딩 — 머니박스레밋</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/symbol.svg" />
+  <link rel="alternate icon" type="image/png" href="assets/img/app-icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/app-icon.png" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 6px}
+    .flow .pill{background:#eef3ff;color:var(--brand,#1a6dff);border-radius:999px;padding:7px 13px;font-size:13px;font-weight:700;white-space:nowrap}
+    .flow .arr{color:#9aa6bd;font-weight:800}
+    .ob{counter-reset:ob;display:grid;gap:14px;margin-top:10px}
+    .ob-item{position:relative;background:#fff;border:1px solid var(--line,#e8edf5);border-radius:16px;padding:18px 18px 18px 64px;box-shadow:0 2px 10px rgba(20,40,80,.05)}
+    .ob-item:before{counter-increment:ob;content:counter(ob);position:absolute;left:16px;top:18px;width:34px;height:34px;border-radius:50%;background:var(--brand,#1a6dff);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+    .ob-item h3{margin:0 0 6px;font-size:17px;color:var(--ink,#16213a)}
+    .ob-item ul{margin:6px 0 0;padding-left:18px;color:var(--ink-soft,#5b6781);font-size:14px}
+    .ob-item li{margin:3px 0}
+    .ob-item .dur{position:absolute;right:16px;top:18px;font-size:12px;color:#9aa6bd;background:#f3f6fb;border-radius:8px;padding:3px 9px}
+    .rule{background:#fff5f5;border:1px solid #f3c0c0;border-radius:16px;padding:18px;margin:8px 0}
+    .rule h3{margin:0 0 10px;color:#d3343a;font-size:16px}
+    .rule table{width:100%;border-collapse:collapse;font-size:14px}
+    .rule th,.rule td{border:1px solid #f0d2d2;padding:8px 10px;text-align:left}
+    .rule th{background:#fdeaea;color:#b3282e}
+    .ok{color:#0b8a3e;font-weight:700}.no{color:#d3343a;font-weight:700}
+    .docs{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:8px}
+    .doc{background:#fff;border:1px solid var(--line,#e8edf5);border-radius:12px;padding:12px 14px;font-size:13px;font-weight:600;color:var(--ink,#16213a)}
+    .doc small{display:block;font-weight:400;color:var(--ink-soft,#5b6781);margin-top:2px}
+    .warn{background:#fff7e6;border-left:4px solid #f5b301;border-radius:0 12px 12px 0;padding:14px 16px;font-size:13px;color:#7a5b00;margin-top:14px}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header__in">
+      <a class="brand" href="index.html" aria-label="머니박스레밋 홈"><img src="assets/img/horizontal-remit.svg" alt="MoneyBox Remit" /></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+        <a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a>
+        <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></a>
+        <a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank</span></a>
+        <a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a>
+      </nav>
+      <div class="actions">
+        <button class="lang" type="button" data-lang-toggle aria-label="Switch language">EN</button>
+        <button class="menu-btn" type="button" data-menu-open aria-label="메뉴 열기" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </header>
+  <div class="mnav" data-mnav data-menu-close>
+    <div class="mnav__panel">
+      <button class="mnav__close" type="button" data-menu-close aria-label="메뉴 닫기">&times;</button>
+      <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+      <a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>App Download</span></a>
+      <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches &amp; Agents</span></a>
+      <a href="agent-onboarding.html"><span data-lang-ko>에이전시 온보딩</span><span data-lang-en>Agent Onboarding</span></a>
+      <a href="agent-access.html"><span data-lang-ko>포털 접속방법</span><span data-lang-en>Portal Access</span></a>
+      <a href="bank-info.html"><span data-lang-ko>은행 당발·타발 비교</span><span data-lang-en>Bank Comparison</span></a>
+      <a href="notice.html"><span data-lang-ko>공지사항·FAQ</span><span data-lang-en>Notice &amp; FAQ</span></a>
+    </div>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero__in">
+      <nav class="breadcrumb"><a href="index.html"><span data-lang-ko>홈</span><span data-lang-en>Home</span></a> / <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></a> / <span data-lang-ko>에이전시 온보딩</span><span data-lang-en>Agent Onboarding</span></nav>
+      <h1><span data-lang-ko>지점·에이전시 온보딩</span><span data-lang-en>Branch &amp; Agent Onboarding</span></h1>
+      <p><span data-lang-ko>신규 지점·에이전시를 모집부터 운영까지 진행하는 표준 절차입니다.</span><span data-lang-en>The standard process from recruiting to operating a new branch/agent.</span></p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section section--tight">
+      <div class="wrap" style="max-width:880px">
+
+        <!-- 절대 원칙 -->
+        <div class="rule">
+          <h3>⚠️ <span data-lang-ko>절대 원칙 — 위반 시 책임은 본사에 귀속</span><span data-lang-en>Hard rules — liability stays with HQ</span></h3>
+          <table>
+            <tr><th><span data-lang-ko>항목</span><span data-lang-en>Item</span></th><th><span data-lang-ko>위탁</span><span data-lang-en>Delegation</span></th></tr>
+            <tr><td><span data-lang-ko>고객 소개·모집·마케팅</span><span data-lang-en>Customer intro·marketing</span></td><td class="ok">✅ <span data-lang-ko>가능</span><span data-lang-en>OK</span></td></tr>
+            <tr><td><span data-lang-ko>고객확인(KYC/CDD) 대행</span><span data-lang-en>KYC/CDD on behalf</span></td><td class="no">❌ <span data-lang-ko>불가</span><span data-lang-en>Not allowed</span></td></tr>
+            <tr><td><span data-lang-ko>고객 자금 직접 수령·보관·전달</span><span data-lang-en>Handling customer funds</span></td><td class="no">❌ <span data-lang-ko>절대 금지</span><span data-lang-en>Prohibited</span></td></tr>
+          </table>
+          <p style="margin:10px 0 0;font-size:13px;color:#8a3a3a"><span data-lang-ko>에이전트는 <b>“데려오기”만</b>, 신원확인·자금은 본사가 직접 처리합니다.</span><span data-lang-en>Agents only refer customers; HQ handles KYC and funds.</span></p>
+        </div>
+
+        <!-- 7단계 플로우 -->
+        <h2 style="margin-top:28px"><span data-lang-ko>온보딩 7단계</span><span data-lang-en>7-Step Onboarding</span></h2>
+        <div class="flow">
+          <span class="pill" data-lang-ko>모집</span><span class="pill" data-lang-en style="display:none">Recruit</span><span class="arr">→</span>
+          <span class="pill" data-lang-ko>신청</span><span class="pill" data-lang-en style="display:none">Apply</span><span class="arr">→</span>
+          <span class="pill" data-lang-ko>실사</span><span class="pill" data-lang-en style="display:none">Due diligence</span><span class="arr">→</span>
+          <span class="pill" data-lang-ko>계약</span><span class="pill" data-lang-en style="display:none">Contract</span><span class="arr">→</span>
+          <span class="pill" data-lang-ko>세팅</span><span class="pill" data-lang-en style="display:none">Setup</span><span class="arr">→</span>
+          <span class="pill" data-lang-ko>교육</span><span class="pill" data-lang-en style="display:none">Training</span><span class="arr">→</span>
+          <span class="pill" data-lang-ko>런칭</span><span class="pill" data-lang-en style="display:none">Launch</span>
+        </div>
+
+        <div class="ob">
+          <div class="ob-item reveal"><span class="dur" data-lang-ko>상시</span><span class="dur" data-lang-en style="display:none">Ongoing</span><h3><span data-lang-ko>모집·발굴</span><span data-lang-en>Recruit</span></h3><ul><li><span data-lang-ko>외국인 밀집지·커뮤니티 거점 후보 발굴(직접방문·추천)</span><span data-lang-en>Find candidates near foreigner hubs.</span></li></ul></div>
+          <div class="ob-item reveal"><span class="dur">1~2d</span><h3><span data-lang-ko>신청 접수</span><span data-lang-en>Application</span></h3><ul><li><span data-lang-ko>신청서·사업자등록증·대표 신분증·사업장 증빙 수령</span><span data-lang-en>Receive application + business license + ID + premises proof.</span></li></ul></div>
+          <div class="ob-item reveal"><span class="dur">1~2w</span><h3><span data-lang-ko>실사(심사) — 가장 중요</span><span data-lang-en>Due Diligence (key)</span></h3><ul><li><span data-lang-ko>KYB: 사업자·대표 진위, 사업장 실재 확인</span><span data-lang-en>KYB: verify business, owner, premises.</span></li><li><span data-lang-ko>평판·범죄·제재·자금세탁 연루 스크리닝</span><span data-lang-en>Reputation·sanction·AML screening.</span></li><li><span data-lang-ko>AML 리스크 평가 → 승인/조건부/거절</span><span data-lang-en>AML risk → approve/conditional/reject.</span></li></ul></div>
+          <div class="ob-item reveal"><span class="dur">3~5d</span><h3><span data-lang-ko>계약 체결</span><span data-lang-en>Contract</span></h3><ul><li><span data-lang-ko>본계약 + 협정서(수수료·프로모션)</span><span data-lang-en>Main contract + fee/promo agreement.</span></li><li><span data-lang-ko>필수: 모집만 위탁·KYC금지·자금수령금지·책임귀속·금지행위 서약</span><span data-lang-en>Mandatory clauses incl. prohibited-acts pledge.</span></li></ul></div>
+          <div class="ob-item reveal"><span class="dur">2~3d</span><h3><span data-lang-ko>시스템·세팅</span><span data-lang-en>Setup</span></h3><ul><li><span data-lang-ko>에이전시 계정(권한제한) + <b>전용 추천코드/QR</b>(성과추적)</span><span data-lang-en>Agent account + dedicated referral code/QR.</span></li><li><span data-lang-ko>정산계좌 등록(본사 명의 원칙) + 홍보 키트</span><span data-lang-en>Settlement setup + promo kit.</span></li></ul></div>
+          <div class="ob-item reveal"><span class="dur">1d</span><h3><span data-lang-ko>교육</span><span data-lang-en>Training</span></h3><ul><li><span data-lang-ko>송금 상품·앱 안내범위, <b>금지행위</b>, AML, 전산·정산, 다국어 응대</span><span data-lang-en>Product, prohibited acts, AML, system, multilingual.</span></li><li><span data-lang-ko>교육 이수확인서 서명</span><span data-lang-en>Sign training confirmation.</span></li></ul></div>
+          <div class="ob-item reveal"><span class="dur">2~4w</span><h3><span data-lang-ko>런칭·초기지원</span><span data-lang-en>Launch</span></h3><ul><li><span data-lang-ko>오픈 후 밀착지원, 월별 실적·정산 모니터링</span><span data-lang-en>Go-live support, monthly settlement.</span></li></ul></div>
+        </div>
+
+        <!-- 제출 서류 -->
+        <h2 style="margin-top:28px"><span data-lang-ko>제출 서류 (신청 시)</span><span data-lang-en>Documents to Submit</span></h2>
+        <div class="docs">
+          <div class="doc"><span data-lang-ko>에이전시 신청서</span><span data-lang-en>Application form</span><small data-lang-ko>인적·사업장·고객군</small><small data-lang-en style="display:none">Profile·premises</small></div>
+          <div class="doc"><span data-lang-ko>사업자등록증</span><span data-lang-en>Business license</span></div>
+          <div class="doc"><span data-lang-ko>대표자 신분증</span><span data-lang-en>Owner ID</span></div>
+          <div class="doc"><span data-lang-ko>사업장 임대차/위치 증빙</span><span data-lang-en>Premises proof</span></div>
+          <div class="doc"><span data-lang-ko>금지행위 서약서</span><span data-lang-en>Prohibited-acts pledge</span></div>
+        </div>
+
+        <div class="warn"><span data-lang-ko>※ 본 화면은 운영 절차 안내(초안)입니다. 계약·서약 등 법적 효력 문서와 정확한 양식·요율은 <b>본사 준법·법무 확정본</b>을 따르세요.</span><span data-lang-en>※ Process overview (draft). Follow HQ legal-approved contracts and forms.</span></div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn--solid" href="agent-access.html"><span data-lang-ko>포털 접속방법 →</span><span data-lang-en>Portal access →</span></a>
+          <a class="btn" href="branches.html"><span data-lang-ko>지점·에이전트 홈</span><span data-lang-en>Branches home</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div><a class="brand" href="index.html"><img src="assets/img/horizontal-remit.svg" alt="MoneyBox Remit" /></a><p style="margin-top:12px;font-size:14px;color:var(--ink-soft);max-width:260px"><span data-lang-ko>세계로 보내는 가장 쉬운 방법.</span><span data-lang-en>The easiest way to send money home.</span></p></div>
+      <div><h4><span data-lang-ko>서비스</span><span data-lang-en>Service</span></h4><a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a><a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a><a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank Info</span></a></div>
+      <div><h4><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></h4><a href="agent-onboarding.html"><span data-lang-ko>에이전시 온보딩</span><span data-lang-en>Onboarding</span></a><a href="agent-access.html"><span data-lang-ko>포털 접속방법</span><span data-lang-en>Portal Access</span></a><a href="https://moneyboxremit.github.io/remit/QR.html" target="_blank" rel="noopener"><span data-lang-ko>QR 다운로드</span><span data-lang-en>QR Download</span></a></div>
+      <div><h4><span data-lang-ko>안내</span><span data-lang-en>Info</span></h4><a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a><a href="https://moneyboxremit.github.io/remit/brand/" target="_blank" rel="noopener"><span data-lang-ko>브랜드</span><span data-lang-en>Brand</span></a></div>
+    </div>
+    <div class="wrap footer__bottom"><span>© 2026 MoneyBox Remit. All rights reserved.</span><span data-lang-ko>주식회사 머니박스레밋 · 소액해외송금</span><span data-lang-en>MoneyBox Remit Inc. · Overseas Remittance</span></div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
