@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>앱 다운로드 안내 (지점용) — 머니박스레밋</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/symbol.svg" />
+  <link rel="alternate icon" type="image/png" href="assets/img/app-icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/app-icon.png" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .dl-steps{counter-reset:step;display:grid;gap:14px;margin-top:8px}
+    .dl-step{position:relative;background:#fff;border:1px solid var(--line,#e8edf5);border-radius:16px;padding:18px 18px 18px 60px;box-shadow:0 2px 10px rgba(20,40,80,.05)}
+    .dl-step:before{counter-increment:step;content:counter(step);position:absolute;left:16px;top:16px;width:30px;height:30px;border-radius:50%;background:var(--brand,#1a6dff);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
+    .dl-step h4{margin:0 0 4px;font-size:16px;color:var(--ink,#16213a)}
+    .dl-step p{margin:0;font-size:14px;color:var(--ink-soft,#5b6781)}
+    .store-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+    .store-btn{flex:1;min-width:200px;display:flex;align-items:center;gap:12px;background:#0f1830;color:#fff;border-radius:14px;padding:12px 16px;text-decoration:none}
+    .store-btn.android{background:#0b8a3e}
+    .store-btn .st-ic{font-size:26px}
+    .store-btn small{display:block;opacity:.8;font-size:11px}
+    .store-btn b{font-size:16px}
+    .qr-box{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+    .qr-card{flex:1;min-width:220px;text-align:center;background:#fff;border:1px solid var(--line,#e8edf5);border-radius:16px;padding:18px}
+    .qr-card .qr-ph{width:150px;height:150px;margin:8px auto;border:2px dashed #cdd6e6;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#9aa6bd;font-size:13px;text-align:center}
+    .tip{background:#eafaf7;border-left:4px solid var(--accent,#16d6c5);border-radius:0 12px 12px 0;padding:14px 16px;font-size:14px;margin-top:10px}
+    .warn{background:#fff7e6;border-left:4px solid #f5b301;border-radius:0 12px 12px 0;padding:14px 16px;font-size:13px;color:#7a5b00;margin-top:10px}
+    .seg{display:flex;gap:8px;margin:10px 0 4px}
+    .seg button{flex:1;padding:10px;border:1px solid var(--line,#e8edf5);background:#fff;border-radius:12px;font-weight:700;cursor:pointer;color:var(--ink-soft,#5b6781)}
+    .seg button.on{background:var(--brand,#1a6dff);color:#fff;border-color:var(--brand,#1a6dff)}
+    .os-block{display:none}.os-block.on{display:block}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap header__in">
+      <a class="brand" href="index.html" aria-label="머니박스레밋 홈"><img src="assets/img/horizontal-remit.svg" alt="MoneyBox Remit" /></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 설명서</span><span data-lang-en>Guide</span></a>
+        <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></a>
+        <a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank</span></a>
+        <a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a>
+      </nav>
+      <div class="actions">
+        <button class="lang" type="button" data-lang-toggle aria-label="Switch language">EN</button>
+        <button class="menu-btn" type="button" data-menu-open aria-label="메뉴 열기" aria-expanded="false">&#9776;</button>
+      </div>
+    </div>
+  </header>
+  <div class="mnav" data-mnav data-menu-close>
+    <div class="mnav__panel">
+      <button class="mnav__close" type="button" data-menu-close aria-label="메뉴 닫기">&times;</button>
+      <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+      <a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>App Download</span></a>
+      <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 회원가입·방법 설명서</span><span data-lang-en>Sign-up &amp; Send Guide</span></a>
+      <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches &amp; Agents</span></a>
+      <a href="https://moneyboxremit.github.io/remit/QR.html" target="_blank" rel="noopener"><span data-lang-ko>QR 안내·다운로드</span><span data-lang-en>QR Codes</span></a>
+      <a href="bank-info.html"><span data-lang-ko>은행 당발·타발 비교</span><span data-lang-en>Bank Comparison</span></a>
+      <a href="https://moneyboxremit.github.io/remit/brand/" target="_blank" rel="noopener"><span data-lang-ko>디자인·브랜드</span><span data-lang-en>Brand Guide</span></a>
+      <a href="notice.html"><span data-lang-ko>공지사항·FAQ</span><span data-lang-en>Notice &amp; FAQ</span></a>
+    </div>
+  </div>
+
+  <section class="page-hero">
+    <div class="page-hero__in">
+      <nav class="breadcrumb"><a href="index.html"><span data-lang-ko>홈</span><span data-lang-en>Home</span></a> / <span data-lang-ko>앱 다운로드</span><span data-lang-en>App Download</span></nav>
+      <h1><span data-lang-ko>앱 다운로드 안내</span><span data-lang-en>How to Download the App</span></h1>
+      <p><span data-lang-ko>지점에서 고객님께 앱 설치를 도와드릴 때 이 페이지를 함께 보세요. 휴대폰 종류만 고르면 됩니다.</span><span data-lang-en>Use this page to help customers install the app at the branch. Just pick the phone type.</span></p>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="wrap" style="max-width:760px">
+
+        <!-- 빠른 다운로드 -->
+        <div class="store-row">
+          <a class="store-btn ios" href="https://apps.apple.com/kr/app/wowpass/id1626691440" target="_blank" rel="noopener">
+            <span class="st-ic"></span><span><small data-lang-ko>아이폰 · App Store</small><small data-lang-en>iPhone · App Store</small><b>App Store</b></span>
+          </a>
+          <a class="store-btn android" href="https://play.google.com/store/apps/details?id=com.moneyboxremit.moneybox_remit" target="_blank" rel="noopener">
+            <span class="st-ic">▶</span><span><small data-lang-ko>안드로이드 · Play 스토어</small><small data-lang-en>Android · Play Store</small><b>Google Play</b></span>
+          </a>
+        </div>
+        <div class="warn"><span data-lang-ko>※ 위 스토어 링크/앱 ID는 <b>실제 우리 앱 주소로 확인·교체 필요</b>(임시값). 정확한 링크 확정 후 반영하세요.</span><span data-lang-en>※ Store links/app IDs are placeholders — replace with the official app URLs.</span></div>
+
+        <!-- OS 선택 -->
+        <div class="seg" role="tablist">
+          <button class="on" data-os="ios" type="button">📱 <span data-lang-ko>아이폰(iOS)</span><span data-lang-en>iPhone (iOS)</span></button>
+          <button data-os="and" type="button">🤖 <span data-lang-ko>안드로이드</span><span data-lang-en>Android</span></button>
+        </div>
+
+        <!-- iOS -->
+        <div class="os-block on" data-osblock="ios">
+          <div class="dl-steps">
+            <div class="dl-step"><h4><span data-lang-ko>App Store 열기</span><span data-lang-en>Open App Store</span></h4><p><span data-lang-ko>고객님 아이폰에서 파란색 'App Store' 아이콘을 누르세요.</span><span data-lang-en>Tap the blue 'App Store' icon on the iPhone.</span></p></div>
+            <div class="dl-step"><h4><span data-lang-ko>검색</span><span data-lang-en>Search</span></h4><p><span data-lang-ko>아래 돋보기(검색)에서 <b>‘머니박스레밋’</b> 또는 <b>‘MoneyBox Remit’</b>을 검색합니다.</span><span data-lang-en>Search <b>‘MoneyBox Remit’</b> in the Search tab.</span></p></div>
+            <div class="dl-step"><h4><span data-lang-ko>받기(설치)</span><span data-lang-en>Get (Install)</span></h4><p><span data-lang-ko>‘받기’를 누르고 Face ID/암호로 설치를 확인합니다.</span><span data-lang-en>Tap ‘Get’ and confirm with Face ID/passcode.</span></p></div>
+            <div class="dl-step"><h4><span data-lang-ko>열기 → 가입</span><span data-lang-en>Open → Sign up</span></h4><p><span data-lang-ko>설치 후 ‘열기’ → 회원가입을 시작합니다. (가입 방법은 송금 설명서 참고)</span><span data-lang-en>Open and start sign-up. (See the Send Guide.)</span></p></div>
+          </div>
+        </div>
+
+        <!-- Android -->
+        <div class="os-block" data-osblock="and">
+          <div class="dl-steps">
+            <div class="dl-step"><h4><span data-lang-ko>Play 스토어 열기</span><span data-lang-en>Open Play Store</span></h4><p><span data-lang-ko>고객님 폰에서 'Play 스토어'(삼각형 아이콘)를 누르세요.</span><span data-lang-en>Tap the 'Play Store' (triangle icon).</span></p></div>
+            <div class="dl-step"><h4><span data-lang-ko>검색</span><span data-lang-en>Search</span></h4><p><span data-lang-ko>위 검색창에 <b>‘머니박스레밋’</b> 또는 <b>‘MoneyBox Remit’</b>을 입력합니다.</span><span data-lang-en>Type <b>‘MoneyBox Remit’</b> in the search bar.</span></p></div>
+            <div class="dl-step"><h4><span data-lang-ko>설치</span><span data-lang-en>Install</span></h4><p><span data-lang-ko>‘설치’를 누릅니다. (구글 계정 로그인 필요할 수 있음)</span><span data-lang-en>Tap ‘Install’. (Google account may be required.)</span></p></div>
+            <div class="dl-step"><h4><span data-lang-ko>열기 → 가입</span><span data-lang-en>Open → Sign up</span></h4><p><span data-lang-ko>설치 후 ‘열기’ → 회원가입을 시작합니다. (가입 방법은 송금 설명서 참고)</span><span data-lang-en>Open and start sign-up. (See the Send Guide.)</span></p></div>
+          </div>
+        </div>
+
+        <!-- QR -->
+        <h2 style="margin-top:32px"><span data-lang-ko>QR로 빠르게</span><span data-lang-en>Quick QR</span></h2>
+        <p style="font-size:14px;color:var(--ink-soft,#5b6781)"><span data-lang-ko>고객님 카메라로 아래 QR을 비추면 스토어로 바로 이동합니다.</span><span data-lang-en>Point the camera at the QR to open the store.</span></p>
+        <div class="qr-box">
+          <div class="qr-card"><b>iPhone (App Store)</b><div class="qr-ph"><span data-lang-ko>QR 이미지<br>삽입 예정</span><span data-lang-en>QR image<br>to be added</span></div></div>
+          <div class="qr-card"><b>Android (Play)</b><div class="qr-ph"><span data-lang-ko>QR 이미지<br>삽입 예정</span><span data-lang-en>QR image<br>to be added</span></div></div>
+        </div>
+        <div class="warn"><span data-lang-ko>※ QR 이미지는 스토어 링크 확정 후 생성해 교체하세요(가맹점QR 빌드 스크립트 활용 가능).</span><span data-lang-en>※ Generate QR after final store links.</span></div>
+
+        <!-- 지점 직원 팁 -->
+        <h2 style="margin-top:32px"><span data-lang-ko>지점 직원 안내 팁</span><span data-lang-en>Tips for Branch Staff</span></h2>
+        <div class="tip"><span data-lang-ko>① 고객 폰이 <b>아이폰인지 안드로이드인지</b> 먼저 확인하세요(위 버튼으로 선택). ② 검색이 어려우면 <b>QR</b>을 비추게 하세요. ③ 설치 후 <b>회원가입(휴대폰·계좌·신분증 인증)</b>까지 도와드리면 첫 송금이 빨라집니다. ④ 외국인 고객은 <b>모국어 설명서·여권 준비</b>를 안내하세요.</span><span data-lang-en>① Check iPhone vs Android. ② Use QR if search is hard. ③ Help finish sign-up (phone·account·ID). ④ For foreigners, guide passport &amp; native-language guide.</span></div>
+
+        <div style="margin-top:18px">
+          <a class="card__go" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>가입·송금 방법 설명서 보기</span><span data-lang-en>Open Sign-up &amp; Send Guide</span> <span class="arr">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div><a class="brand" href="index.html"><img src="assets/img/horizontal-remit.svg" alt="MoneyBox Remit" /></a><p style="margin-top:12px;font-size:14px;color:var(--ink-soft);max-width:260px"><span data-lang-ko>세계로 보내는 가장 쉬운 방법.</span><span data-lang-en>The easiest way to send money home.</span></p></div>
+      <div><h4><span data-lang-ko>서비스</span><span data-lang-en>Service</span></h4><a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a><a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>App Download</span></a><a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank Info</span></a></div>
+      <div><h4><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></h4><a href="agent-access.html"><span data-lang-ko>포털 접속방법</span><span data-lang-en>Portal Access</span></a><a href="https://moneyboxremit.github.io/remit/QR.html" target="_blank" rel="noopener"><span data-lang-ko>QR 다운로드</span><span data-lang-en>QR Download</span></a></div>
+      <div><h4><span data-lang-ko>안내</span><span data-lang-en>Info</span></h4><a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a><a href="https://moneyboxremit.github.io/remit/brand/" target="_blank" rel="noopener"><span data-lang-ko>브랜드</span><span data-lang-en>Brand</span></a></div>
+    </div>
+    <div class="wrap footer__bottom"><span>© 2026 MoneyBox Remit. All rights reserved.</span><span data-lang-ko>주식회사 머니박스레밋 · 소액해외송금</span><span data-lang-en>MoneyBox Remit Inc. · Overseas Remittance</span></div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+    // OS 토글
+    document.querySelectorAll('.seg button').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.seg button').forEach(function(x){x.classList.remove('on')});
+        b.classList.add('on');
+        var os=b.getAttribute('data-os');
+        document.querySelectorAll('.os-block').forEach(function(blk){
+          blk.classList.toggle('on', blk.getAttribute('data-osblock')===os);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
