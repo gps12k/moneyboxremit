@@ -142,6 +142,21 @@
   /* mobile menu toggle */
   .mtoggle{display:none}
 
+  /* ===== Site footer (포털과 통일) ===== */
+  .site-foot{background:var(--panel);border-top:1px solid var(--line);margin-top:48px}
+  .site-foot .fwrap{max-width:var(--maxw);margin:0 auto;padding:56px 24px 28px;
+    display:grid;gap:32px;grid-template-columns:1.6fr 1fr 1fr 1fr}
+  .site-foot .fbrand img{height:27px;margin-bottom:12px}
+  .site-foot .ftag{font-size:14px;color:var(--ink-soft);max-width:260px;margin:0}
+  .site-foot h4{font-size:13px;font-weight:800;margin:0 0 12px;color:var(--ink)}
+  .site-foot a{display:block;color:var(--ink-soft);font-size:14px;font-weight:600;padding:4px 0}
+  .site-foot a:hover{color:var(--brand)}
+  .site-foot .fbot{max-width:var(--maxw);margin:0 auto;padding:20px 24px 40px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:13px;color:var(--ink-soft)}
+  @media(max-width:920px){.site-foot .fwrap{grid-template-columns:1fr 1fr;padding:40px 22px 24px}
+    .site-foot .fbot{padding:18px 22px 36px}}
+  @media(max-width:560px){.site-foot .fwrap{grid-template-columns:1fr}}
+
   @media(max-width:920px){
     .shell{display:block;padding:0}
     aside{position:fixed;left:0;top:0;z-index:50;background:var(--bg);transform:translateX(-100%);
@@ -494,6 +509,36 @@
 
   </main>
 </div>
+
+<!-- ===== Site footer ===== -->
+<footer class="site-foot">
+  <div class="fwrap">
+    <div>
+      <div class="fbrand"><img src="assets/horizontal-remit.png" alt="MONEYBOX Remit" /></div>
+      <p class="ftag">세계로 보내는 가장 쉬운 방법.</p>
+    </div>
+    <div>
+      <h4>서비스</h4>
+      <a href="../portal/company.html">회사소개</a>
+      <a href="../">송금 설명서</a>
+      <a href="../portal/bank-info.html">은행 비교</a>
+    </div>
+    <div>
+      <h4>지점·에이전트</h4>
+      <a href="../portal/agent-access.html">포털 접속방법</a>
+      <a href="../QR.html">QR 다운로드</a>
+    </div>
+    <div>
+      <h4>안내</h4>
+      <a href="../portal/notice.html">공지·FAQ</a>
+      <a href="index.html">브랜드 가이드</a>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 MoneyBox Remit. All rights reserved.</span>
+    <span>주식회사 머니박스레밋 · 소액해외송금</span>
+  </div>
+</footer>
 
 <script>
   // ----- mobile sidebar -----
