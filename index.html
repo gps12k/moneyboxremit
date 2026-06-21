@@ -282,11 +282,18 @@
 .scm-nav{display:flex;gap:24px;align-items:center}
 .scm-nav a{font-weight:700;font-size:14px;color:var(--ink-soft);text-decoration:none;white-space:nowrap}
 .scm-nav a:hover,.scm-nav a.cur{color:var(--brand)}
-.scm-mtoggle,.scm-burger{display:none}
+.scm-mtoggle{display:none}
+.scm-burger{display:none;position:fixed;top:21px;right:16px;width:26px;height:18px;cursor:pointer;z-index:210}
+.scm-burger span,.scm-burger::before,.scm-burger::after{content:"";position:absolute;left:0;right:0;height:2.5px;background:var(--ink);border-radius:2px;transition:.25s}
+.scm-burger::before{top:0}.scm-burger span{top:50%;transform:translateY(-50%)}.scm-burger::after{bottom:0}
+.scm-mtoggle:checked ~ .scm-burger span{opacity:0}
+.scm-mtoggle:checked ~ .scm-burger::before{top:50%;transform:translateY(-50%) rotate(45deg)}
+.scm-mtoggle:checked ~ .scm-burger::after{bottom:auto;top:50%;transform:translateY(-50%) rotate(-45deg)}
 @media(max-width:819px){
-  .scm-nav{gap:16px;overflow-x:auto;flex:1;min-width:0;justify-content:flex-end;padding-left:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .scm-nav::-webkit-scrollbar{display:none}
-  .scm-nav a{white-space:nowrap;font-size:13px}
+  .scm-burger{display:block}
+  .scm-nav{position:fixed;top:60px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 14px 28px rgba(20,30,60,.12);padding:6px 0;display:none}
+  .scm-nav a{padding:13px 22px;font-size:15px}
+  .scm-mtoggle:checked ~ .scm-nav{display:flex}
 }
 /* 사이트 스타일 푸터 */
 .scm-foot{background:#f4f8ff;border-top:1px solid var(--line);padding:48px 20px 28px}
@@ -304,6 +311,8 @@
 <body>
 <nav class="scm-bar"><div class="scm-in">
   <a class="scm-brand" href="portal/index.html" aria-label="머니박스레밋 홈"><img src="brand/assets/horizontal-remit.svg" alt="MoneyBox Remit"></a>
+  <input type="checkbox" id="scm-mtoggle" class="scm-mtoggle">
+  <label for="scm-mtoggle" class="scm-burger" aria-label="메뉴 열기/닫기"><span></span></label>
   <div class="scm-nav">
     <a href="portal/company.html">회사소개</a>
     <a href="#" class="cur">송금 설명서</a>
