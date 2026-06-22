@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>머니박스레밋 — 세계 어디든, 간편하고 안전한 해외송금 (v2)</title>
+  <meta name="description" content="세계 어디든, 간편하고 안전한 해외송금. 머니박스레밋 — 라이선스 기반 소액해외송금." />
+  <link rel="icon" type="image/svg+xml" href="assets/img/symbol.svg" />
+  <link rel="apple-touch-icon" href="assets/img/app-icon.png" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root{
+      --brand:#1a6dff; --brand-d:#0b4ed1; --mint:#16d6c5; --navy:#0a1730; --navy-2:#0f2347;
+      --ink:#101828; --soft:#5b6678; --line:#e7ebf2; --bg:#ffffff; --bg-2:#f6f9fd;
+      --radius:18px; --shadow:0 10px 30px rgba(16,32,74,.08); --shadow-lg:0 24px 60px rgba(10,23,48,.18);
+      --maxw:1140px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+    /* lang toggle */
+    [data-lang-en]{display:none}
+    body.en [data-lang-ko]{display:none}
+    body.en [data-lang-en]{display:inline}
+
+    /* ===== Header ===== */
+    .hdr{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+    .hdr__in{display:flex;align-items:center;justify-content:space-between;height:66px}
+    .logo img{height:26px;display:block}
+    .nav{display:flex;gap:26px}
+    .nav a{font-size:15px;font-weight:600;color:#33405a;position:relative;padding:4px 0}
+    .nav a:hover{color:var(--brand)}
+    .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--brand);transition:right .25s}
+    .nav a:hover::after{right:0}
+    .hdr__act{display:flex;align-items:center;gap:10px}
+    .lang{border:1px solid var(--line);background:#fff;border-radius:10px;height:38px;padding:0 13px;font-weight:700;font-size:13px;color:#33405a;cursor:pointer}
+    .lang:hover{border-color:var(--brand);color:var(--brand)}
+    .btn{display:inline-flex;align-items:center;gap:7px;border-radius:12px;font-weight:700;font-size:15px;padding:0 20px;height:46px;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;border:none;white-space:nowrap}
+    .btn--sm{height:38px;font-size:14px;padding:0 16px}
+    .btn--primary{background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;box-shadow:0 8px 20px rgba(26,109,255,.32)}
+    .btn--primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(26,109,255,.42)}
+    .btn--ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .btn--ghost:hover{border-color:var(--brand);color:var(--brand)}
+    .btn--light{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.28)}
+    .btn--light:hover{background:rgba(255,255,255,.2)}
+    .menu-btn{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;width:42px;height:40px;font-size:18px;cursor:pointer}
+
+    /* ===== Hero ===== */
+    .hero{position:relative;overflow:hidden;background:radial-gradient(1200px 600px at 12% -10%,#15336e 0,transparent 60%),radial-gradient(900px 500px at 100% 0,#0e8d83 0,transparent 55%),linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff}
+    .hero::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 39h40M39 0v40' stroke='%23ffffff0a' stroke-width='1'/%3E%3C/svg%3E");opacity:.5;pointer-events:none}
+    .hero__in{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center;padding:74px 0 86px}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;color:#dbe7ff}
+    .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(22,214,197,.25)}
+    .hero h1{font-size:50px;line-height:1.12;letter-spacing:-1.4px;font-weight:900;margin:18px 0 16px}
+    .hero h1 .hl{background:linear-gradient(120deg,#7ab0ff,var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero__sub{font-size:18px;color:#c4d0e6;max-width:520px}
+    .hero__cta{display:flex;gap:12px;margin:28px 0 26px;flex-wrap:wrap}
+    .trust{display:flex;gap:22px;flex-wrap:wrap}
+    .trust .t{display:flex;flex-direction:column}
+    .trust .t b{font-size:22px;font-weight:900}
+    .trust .t span{font-size:12.5px;color:#9fb0cc}
+    .trust .sep{width:1px;background:rgba(255,255,255,.16)}
+    /* phone mock */
+    .mock{justify-self:center;position:relative}
+    .phone{width:280px;height:560px;border-radius:42px;background:linear-gradient(#0c1c3a,#13294f);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-lg);padding:16px;position:relative}
+    .phone::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#0a1730;border-radius:0 0 14px 14px}
+    .scr{height:100%;border-radius:30px;background:linear-gradient(160deg,#f7faff,#eef4ff);padding:22px 18px;display:flex;flex-direction:column;gap:14px;color:var(--ink)}
+    .scr .top{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;color:var(--brand)}
+    .scr .amt{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+    .scr .amt .lbl{font-size:11px;color:var(--soft)}
+    .scr .amt .v{font-size:26px;font-weight:900;letter-spacing:-.5px}
+    .scr .row{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px}
+    .scr .row .f{display:flex;align-items:center;gap:8px;font-weight:700}
+    .scr .muted{font-size:12px;color:var(--soft)}
+    .scr .pay{margin-top:auto;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;border-radius:14px;text-align:center;padding:13px;font-weight:800}
+    .ping{position:absolute;border-radius:16px;background:#fff;color:var(--ink);box-shadow:var(--shadow-lg);padding:10px 13px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px}
+    .ping .ic{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#e7f7f4}
+    .ping--1{top:64px;left:-44px;animation:float1 5s ease-in-out infinite}
+    .ping--2{bottom:96px;right:-40px;animation:float1 6s ease-in-out infinite .6s}
+    @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+    /* ===== flag marquee ===== */
+    .strip{background:var(--bg-2);border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden}
+    .strip__row{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite;font-size:15px;font-weight:600;color:#41506b}
+    .strip:hover .strip__row{animation-play-state:paused}
+    .strip__row span{display:inline-flex;align-items:center;gap:8px}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* ===== sections ===== */
+    .sec{padding:80px 0}
+    .sec--alt{background:var(--bg-2)}
+    .shead{max-width:640px;margin:0 auto 44px;text-align:center}
+    .shead .ey{color:var(--brand);font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+    .shead h2{font-size:34px;font-weight:900;letter-spacing:-1px;margin:10px 0 8px}
+    .shead p{color:var(--soft);font-size:16px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column;min-height:188px}
+    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#cfe0ff}
+    .card .ic{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;background:linear-gradient(135deg,#eaf1ff,#def6f3)}
+    .card h3{font-size:18px;font-weight:800;margin-bottom:7px}
+    .card p{color:var(--soft);font-size:14.5px;flex:1}
+    .card .go{margin-top:14px;color:var(--brand);font-weight:800;font-size:14px}
+    .card:hover .go .arr{margin-left:6px}
+    .card .arr{transition:margin .18s}
+
+    .feat{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .feat__item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+    .feat__item .ic{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--mint));display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin-bottom:14px}
+    .feat__item h3{font-size:18px;font-weight:800;margin-bottom:6px}
+    .feat__item p{color:var(--soft);font-size:14.5px}
+
+    /* stat band */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:center}
+    .stats .s{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+    .stats .s b{display:block;font-size:34px;font-weight:900;background:linear-gradient(120deg,var(--brand),var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .stats .s span{color:var(--soft);font-size:14px;font-weight:600}
+
+    /* CTA */
+    .cta{position:relative;overflow:hidden;border-radius:28px;background:radial-gradient(700px 300px at 0 0,#1c4aa8 0,transparent 60%),linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;padding:54px 40px;text-align:center}
+    .cta h2{font-size:30px;font-weight:900;letter-spacing:-.6px;margin-bottom:10px}
+    .cta p{color:#c4d0e6;margin-bottom:24px}
+
+    /* footer */
+    .ft{background:#0a1326;color:#aab6cd;padding:54px 0 26px}
+    .ft__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+    .ft img{height:24px;margin-bottom:14px}
+    .ft h4{color:#fff;font-size:14px;margin-bottom:12px}
+    .ft a{display:block;color:#aab6cd;font-size:14px;padding:5px 0}
+    .ft a:hover{color:#fff}
+    .ft__tag{font-size:14px;max-width:260px;color:#8d9bb5}
+    .ft__call{color:var(--mint);font-weight:800}
+    .ft__bot{border-top:1px solid rgba(255,255,255,.1);margin-top:30px;padding-top:18px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:#7a89a5}
+    .vbadge{position:fixed;right:14px;bottom:14px;z-index:60;background:#101828;color:#fff;border-radius:999px;font-size:12px;font-weight:700;padding:8px 14px;box-shadow:var(--shadow-lg);opacity:.9}
+
+    /* mobile nav */
+    .mnav{position:fixed;inset:0;z-index:70;background:rgba(8,16,32,.5);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:.2s}
+    .mnav.open{opacity:1;visibility:visible}
+    .mnav__p{position:absolute;top:0;right:0;width:78%;max-width:320px;height:100%;background:#fff;padding:24px;display:flex;flex-direction:column;gap:4px;transform:translateX(100%);transition:.25s}
+    .mnav.open .mnav__p{transform:none}
+    .mnav__p a{padding:13px 8px;border-radius:10px;font-weight:700;color:#33405a}
+    .mnav__p a:hover{background:var(--bg-2)}
+    .mnav__x{align-self:flex-end;border:none;background:none;font-size:26px;cursor:pointer;color:#33405a;margin-bottom:6px}
+
+    @media(max-width:920px){
+      .hero__in{grid-template-columns:1fr;gap:34px;padding:54px 0 64px}
+      .hero h1{font-size:38px}
+      .mock{order:-1}
+      .nav,.hdr__act .btn{display:none}
+      .menu-btn{display:block}
+      .cards,.feat,.stats{grid-template-columns:1fr}
+      .ft__grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:520px){.hero h1{font-size:32px}.shead h2{font-size:26px}.ft__grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="hdr">
+    <div class="wrap hdr__in">
+      <a class="logo" href="v2.html" aria-label="머니박스레밋"><img src="assets/img/horizontal-remit.svg" alt="MoneyBox Remit" /></a>
+      <nav class="nav">
+        <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 설명서</span><span data-lang-en>Guide</span></a>
+        <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></a>
+        <a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank</span></a>
+        <a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a>
+      </nav>
+      <div class="hdr__act">
+        <button class="lang" type="button" id="langBtn">EN</button>
+        <a class="btn btn--primary btn--sm" href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="메뉴">&#9776;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <div class="mnav" id="mnav">
+    <div class="mnav__p">
+      <button class="mnav__x" id="mnavX" aria-label="닫기">&times;</button>
+      <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+      <a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a>
+      <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 설명서</span><span data-lang-en>Guide</span></a>
+      <a href="branches.html"><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></a>
+      <a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank</span></a>
+      <a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero__in">
+      <div>
+        <span class="eyebrow"><span class="dot"></span><span data-lang-ko>라이선스 기반 소액해외송금</span><span data-lang-en>Licensed remittance</span></span>
+        <h1>
+          <span data-lang-ko>세계 어디든,<br /><span class="hl">간편하고 안전한</span><br />해외송금</span>
+          <span data-lang-en>Send money <span class="hl">anywhere</span>,<br />simply &amp; safely</span>
+        </h1>
+        <p class="hero__sub"><span data-lang-ko>보내는 순간부터 도착까지 — 빠르고 안전하게, 모국어로 함께합니다.</span><span data-lang-en>From send to arrival — fast, safe, and in your language.</span></p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 시작하기</span><span data-lang-en>Start sending</span> →</a>
+          <a class="btn btn--light" href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Get the app</span></a>
+        </div>
+        <div class="trust">
+          <div class="t"><b>32<span style="font-size:14px">개국</span></b><span data-lang-ko>송금 가능 국가</span><span data-lang-en>countries</span></div>
+          <div class="sep"></div>
+          <div class="t"><b>10분~1시간*</b><span data-lang-ko>보통 도착 시간</span><span data-lang-en>typical arrival*</span></div>
+          <div class="sep"></div>
+          <div class="t"><b>🛡️ 등록</b><span data-lang-ko>기재부 소액해외송금업</span><span data-lang-en>licensed operator</span></div>
+        </div>
+      </div>
+
+      <div class="mock">
+        <div class="phone">
+          <div class="scr">
+            <div class="top"><span>MoneyBox</span><span>⋯</span></div>
+            <div class="amt"><div class="lbl"><span data-lang-ko>보내는 금액</span><span data-lang-en>You send</span></div><div class="v">₩ 500,000</div></div>
+            <div class="row"><div class="f">🇻🇳 <span data-lang-ko>베트남</span><span data-lang-en>Vietnam</span></div><span class="muted">VND</span></div>
+            <div class="row"><span data-lang-ko>수수료</span><span data-lang-en>Fee</span><span class="muted" data-lang-ko>정액 · 정직환율</span><span class="muted" data-lang-en>flat · honest FX</span></div>
+            <div class="row"><span data-lang-ko>도착 예정</span><span data-lang-en>Arrives</span><span class="muted">~ 30 min</span></div>
+            <div class="pay"><span data-lang-ko>보내기</span><span data-lang-en>Send</span> →</div>
+          </div>
+        </div>
+        <div class="ping ping--1"><span class="ic">⚡</span><span data-lang-ko>빠른 도착</span><span data-lang-en>Fast</span></div>
+        <div class="ping ping--2"><span class="ic">🌏</span><span data-lang-ko>모국어 지원</span><span data-lang-en>Your language</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flag marquee -->
+  <div class="strip" aria-hidden="true">
+    <div class="strip__row">
+      <span>🇻🇳 베트남</span><span>🇳🇵 네팔</span><span>🇲🇲 미얀마</span><span>🇹🇭 태국</span><span>🇵🇭 필리핀</span><span>🇺🇿 우즈베키스탄</span><span>🇱🇰 스리랑카</span><span>🇮🇩 인도네시아</span><span>🇨🇳 중국</span><span>🇯🇵 일본</span><span>🇮🇳 인도</span><span>🇧🇩 방글라데시</span>
+      <span>🇻🇳 베트남</span><span>🇳🇵 네팔</span><span>🇲🇲 미얀마</span><span>🇹🇭 태국</span><span>🇵🇭 필리핀</span><span>🇺🇿 우즈베키스탄</span><span>🇱🇰 스리랑카</span><span>🇮🇩 인도네시아</span><span>🇨🇳 중국</span><span>🇯🇵 일본</span><span>🇮🇳 인도</span><span>🇧🇩 방글라데시</span>
+    </div>
+  </div>
+
+  <!-- Menu cards -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="shead">
+        <span class="ey"><span data-lang-ko>메뉴</span><span data-lang-en>Menu</span></span>
+        <h2><span data-lang-ko>무엇을 도와드릴까요?</span><span data-lang-en>What can we help with?</span></h2>
+        <p><span data-lang-ko>필요한 곳으로 바로 이동하세요.</span><span data-lang-en>Jump straight to what you need.</span></p>
+      </div>
+      <div class="cards">
+        <a class="card" href="company.html">
+          <div class="ic">🏢</div>
+          <h3><span data-lang-ko>회사·서비스 소개</span><span data-lang-en>Company &amp; Service</span></h3>
+          <p><span data-lang-ko>머니박스레밋은 어떤 회사이고 해외송금은 어떻게 운영되나요.</span><span data-lang-en>Who we are and how it works.</span></p>
+          <span class="go"><span data-lang-ko>자세히</span><span data-lang-en>Learn more</span> <span class="arr">→</span></span>
+        </a>
+        <a class="card" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener">
+          <div class="ic">📘</div>
+          <h3><span data-lang-ko>회원가입·송금방법</span><span data-lang-en>Sign-up &amp; Send</span></h3>
+          <p><span data-lang-ko>앱 가입부터 송금까지 단계별 설명서 (다국어·32개국).</span><span data-lang-en>Step-by-step guide (32 countries).</span></p>
+          <span class="go"><span data-lang-ko>설명서 열기</span><span data-lang-en>Open guide</span> <span class="arr">↗</span></span>
+        </a>
+        <a class="card" href="download.html">
+          <div class="ic">📱</div>
+          <h3><span data-lang-ko>앱 다운로드</span><span data-lang-en>App Download</span></h3>
+          <p><span data-lang-ko>iOS·안드로이드 설치 안내. 지점에서 고객 설치 지원용.</span><span data-lang-en>iOS &amp; Android install guide.</span></p>
+          <span class="go"><span data-lang-ko>설치 안내</span><span data-lang-en>How to install</span> <span class="arr">→</span></span>
+        </a>
+        <a class="card" href="branches.html">
+          <div class="ic">📍</div>
+          <h3><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches &amp; Agents</span></h3>
+          <p><span data-lang-ko>에이전시 온보딩, 포털 접속법, 지점 정보.</span><span data-lang-en>Onboarding, portal access, info.</span></p>
+          <span class="go"><span data-lang-ko>바로가기</span><span data-lang-en>Go</span> <span class="arr">→</span></span>
+        </a>
+        <a class="card" href="bank-info.html">
+          <div class="ic">🏦</div>
+          <h3><span data-lang-ko>은행 당발·타발 비교</span><span data-lang-en>Bank Comparison</span></h3>
+          <p><span data-lang-ko>보내기·받기 수수료 구조를 머니박스레밋과 비교.</span><span data-lang-en>Outward/inward fees vs MoneyBox.</span></p>
+          <span class="go"><span data-lang-ko>비교 보기</span><span data-lang-en>Compare</span> <span class="arr">→</span></span>
+        </a>
+        <a class="card" href="notice.html">
+          <div class="ic">📢</div>
+          <h3><span data-lang-ko>공지사항·FAQ</span><span data-lang-en>Notice &amp; FAQ</span></h3>
+          <p><span data-lang-ko>서비스 공지와 자주 묻는 질문.</span><span data-lang-en>Notices and FAQ.</span></p>
+          <span class="go"><span data-lang-ko>보러가기</span><span data-lang-en>View</span> <span class="arr">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="sec sec--alt">
+    <div class="wrap">
+      <div class="shead">
+        <span class="ey"><span data-lang-ko>왜 레밋</span><span data-lang-en>Why us</span></span>
+        <h2><span data-lang-ko>왜 머니박스레밋일까요</span><span data-lang-en>Why MoneyBox Remit</span></h2>
+      </div>
+      <div class="feat">
+        <div class="feat__item"><div class="ic">📉</div><h3><span data-lang-ko>소액일수록 유리</span><span data-lang-en>Best for small amounts</span></h3><p><span data-lang-ko>건당 정액 구조라 은행 대비 소액 송금이 더 가벼워요.</span><span data-lang-en>Flat pricing keeps small transfers lighter than banks.</span></p></div>
+        <div class="feat__item"><div class="ic">🛡️</div><h3><span data-lang-ko>도착까지 관리</span><span data-lang-en>Managed to delivery</span></h3><p><span data-lang-ko>보내는 순간부터 도착까지 책임지고 관리합니다.</span><span data-lang-en>We manage it from send to arrival.</span></p></div>
+        <div class="feat__item"><div class="ic">🌏</div><h3><span data-lang-ko>다국어·친근</span><span data-lang-en>Multilingual</span></h3><p><span data-lang-ko>여러 나라로, 쉬운 안내로 누구나 안전하게.</span><span data-lang-en>Many countries, easy for everyone.</span></p></div>
+      </div>
+      <div style="height:18px"></div>
+      <div class="stats">
+        <div class="s"><b>32</b><span data-lang-ko>송금 가능 국가</span><span data-lang-en>countries supported</span></div>
+        <div class="s"><b>10분~1시간*</b><span data-lang-ko>보통 도착 시간</span><span data-lang-en>typical arrival*</span></div>
+        <div class="s"><b>4개<span style="font-size:16px">국어</span></b><span data-lang-ko>다국어 안내</span><span data-lang-en>languages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <h2><span data-lang-ko>지금 바로 송금해 보세요</span><span data-lang-en>Send money today</span></h2>
+        <p><span data-lang-ko>앱 가입부터 송금까지, 단계별 설명서로 5분이면 시작할 수 있어요.</span><span data-lang-en>From sign-up to sending — start in 5 minutes.</span></p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a class="btn btn--primary" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 설명서 보기</span><span data-lang-en>View guide</span> →</a>
+          <a class="btn btn--light" href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Get the app</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <div>
+        <img src="assets/img/horizontal-remit.svg" alt="MoneyBox Remit" />
+        <p class="ft__tag"><span data-lang-ko>세계 어디든, 간편하고 안전한 해외송금.</span><span data-lang-en>Send money anywhere, simply and safely.</span></p>
+        <p style="margin-top:10px;font-size:14px"><span data-lang-ko>고객센터</span><span data-lang-en>Contact</span> <a href="tel:02-771-0000" class="ft__call" style="display:inline">02-771-0000</a></p>
+      </div>
+      <div>
+        <h4><span data-lang-ko>서비스</span><span data-lang-en>Service</span></h4>
+        <a href="company.html"><span data-lang-ko>회사소개</span><span data-lang-en>About</span></a>
+        <a href="download.html"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금 설명서</span><span data-lang-en>Send Guide</span></a>
+        <a href="bank-info.html"><span data-lang-ko>은행 비교</span><span data-lang-en>Bank Info</span></a>
+      </div>
+      <div>
+        <h4><span data-lang-ko>지점·에이전트</span><span data-lang-en>Branches</span></h4>
+        <a href="agent-onboarding.html"><span data-lang-ko>에이전시 온보딩</span><span data-lang-en>Onboarding</span></a>
+        <a href="agent-access.html"><span data-lang-ko>포털 접속방법</span><span data-lang-en>Portal Access</span></a>
+      </div>
+      <div>
+        <h4><span data-lang-ko>안내</span><span data-lang-en>Info</span></h4>
+        <a href="notice.html"><span data-lang-ko>공지·FAQ</span><span data-lang-en>Notice</span></a>
+      </div>
+    </div>
+    <div class="wrap ft__bot">
+      <span>© 2026 MoneyBox Remit. All rights reserved.</span>
+      <span data-lang-ko>주식회사 머니박스레밋 · 소액해외송금 · *도착시간은 국가·시간대에 따라 다를 수 있어요</span>
+      <span data-lang-en>MoneyBox Remit Inc. · *arrival time may vary</span>
+    </div>
+  </footer>
+
+  <span class="vbadge">🎨 디자인 v2 (검토용)</span>
+
+  <script>
+    // language toggle
+    var lb=document.getElementById('langBtn');
+    lb.addEventListener('click',function(){
+      var en=document.body.classList.toggle('en');
+      lb.textContent=en?'한국어':'EN';
+    });
+    // mobile nav
+    var mn=document.getElementById('mnav');
+    document.getElementById('menuBtn').addEventListener('click',function(){mn.classList.add('open')});
+    document.getElementById('mnavX').addEventListener('click',function(){mn.classList.remove('open')});
+    mn.addEventListener('click',function(e){if(e.target===mn)mn.classList.remove('open')});
+    mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mn.classList.remove('open')})});
+  </script>
+</body>
+</html>
