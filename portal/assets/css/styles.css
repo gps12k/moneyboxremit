@@ -195,3 +195,11 @@ main strong{color:var(--brand)}
 .term{border-bottom:1px dotted currentColor;cursor:help;text-underline-offset:2px;white-space:nowrap}
 .term-note{margin:8px 0 18px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:10px;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
 .term-note b{color:var(--ink)}
+
+/* 송금 가능 국가 칩 (32개국) */
+.cc-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.cc{background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:var(--r-pill);font-weight:700;font-size:14px;color:var(--ink);white-space:nowrap}
+.cc--main{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.cc--primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.cc-legend{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:14px 0 0;font-size:12.5px;color:var(--ink-soft)}
+.cc-legend i{display:inline-block;width:13px;height:13px;border-radius:4px;vertical-align:-2px;margin-right:5px}
