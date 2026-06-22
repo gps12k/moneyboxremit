@@ -190,3 +190,8 @@ main strong{color:var(--brand)}
 .bgm-hdr.is-playing::before{content:"";position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--mint);animation:bgmPulse 1.6s ease-out infinite}
 @keyframes bgmPulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
 @media (prefers-reduced-motion:reduce){.bgm-hdr.is-playing::before{animation:none}}
+
+/* 용어 설명(corridor 등) — 점선 밑줄 + 도움말 커서(길게 눌러 설명 표시) */
+.term{border-bottom:1px dotted currentColor;cursor:help;text-underline-offset:2px;white-space:nowrap}
+.term-note{margin:8px 0 18px;padding:12px 14px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:10px;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+.term-note b{color:var(--ink)}
