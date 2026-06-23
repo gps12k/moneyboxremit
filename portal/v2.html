@@ -65,29 +65,8 @@
     .trust .sep{width:1px;background:rgba(255,255,255,.16)}
     /* phone mock */
     .mock{justify-self:center;position:relative}
-    .phone{width:280px;height:560px;border-radius:42px;background:linear-gradient(#0c1c3a,#13294f);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-lg);padding:16px;position:relative}
-    .phone::before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:110px;height:22px;background:#0a1730;border-radius:0 0 14px 14px}
-    .scr{height:100%;border-radius:30px;background:linear-gradient(160deg,#f7faff,#eef4ff);padding:22px 18px;display:flex;flex-direction:column;gap:14px;color:var(--ink)}
-    .scr .top{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:14px;color:var(--brand)}
-    .scr .amt{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
-    .scr .amt .lbl{font-size:11px;color:var(--soft)}
-    .scr .amt .v{font-size:26px;font-weight:900;letter-spacing:-.5px}
-    .scr .row{display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px}
-    .scr .row .f{display:flex;align-items:center;gap:8px;font-weight:700}
-    .scr .muted{font-size:12px;color:var(--soft)}
-    .scr .pay{margin-top:auto;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;border-radius:14px;text-align:center;padding:13px;font-weight:800}
-    .ping{position:absolute;border-radius:16px;background:#fff;color:var(--ink);box-shadow:var(--shadow-lg);padding:10px 13px;font-size:12.5px;font-weight:700;display:flex;align-items:center;gap:8px}
-    .ping .ic{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#e7f7f4}
-    .ping--1{top:64px;left:-44px;animation:float1 5s ease-in-out infinite}
-    .ping--2{bottom:96px;right:-40px;animation:float1 6s ease-in-out infinite .6s}
-    @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-
-    /* ===== flag marquee ===== */
-    .strip{background:var(--bg-2);border-bottom:1px solid var(--line);padding:16px 0;overflow:hidden}
-    .strip__row{display:flex;gap:40px;white-space:nowrap;width:max-content;animation:scroll 26s linear infinite;font-size:15px;font-weight:600;color:#41506b}
-    .strip:hover .strip__row{animation-play-state:paused}
-    .strip__row span{display:inline-flex;align-items:center;gap:8px}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .phone{width:280px;height:560px;border-radius:42px;background:linear-gradient(#0c1c3a,#13294f);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow-lg);padding:14px;position:relative}
+    .scr-img{width:100%;height:100%;object-fit:cover;border-radius:30px;display:block}
 
     /* ===== sections ===== */
     .sec{padding:80px 0}
@@ -216,28 +195,11 @@
 
       <div class="mock">
         <div class="phone">
-          <div class="scr">
-            <div class="top"><span>MoneyBox</span><span>⋯</span></div>
-            <div class="amt"><div class="lbl"><span data-lang-ko>보내는 금액</span><span data-lang-en>You send</span></div><div class="v">₩ 500,000</div></div>
-            <div class="row"><div class="f">🇻🇳 <span data-lang-ko>베트남</span><span data-lang-en>Vietnam</span></div><span class="muted">VND</span></div>
-            <div class="row"><span data-lang-ko>수수료</span><span data-lang-en>Fee</span><span class="muted" data-lang-ko>정액 · 정직환율</span><span class="muted" data-lang-en>flat · honest FX</span></div>
-            <div class="row"><span data-lang-ko>도착 예정</span><span data-lang-en>Arrives</span><span class="muted">~ 30 min</span></div>
-            <div class="pay"><span data-lang-ko>보내기</span><span data-lang-en>Send</span> →</div>
-          </div>
+          <img class="scr-img" src="assets/img/app-screen.png" alt="MoneyBox Remit 앱 송금 화면" />
         </div>
-        <div class="ping ping--1"><span class="ic">⚡</span><span data-lang-ko>빠른 도착</span><span data-lang-en>Fast</span></div>
-        <div class="ping ping--2"><span class="ic">🌏</span><span data-lang-ko>모국어 지원</span><span data-lang-en>Your language</span></div>
       </div>
     </div>
   </section>
-
-  <!-- Flag marquee -->
-  <div class="strip" aria-hidden="true">
-    <div class="strip__row">
-      <span>🇻🇳 베트남</span><span>🇳🇵 네팔</span><span>🇲🇲 미얀마</span><span>🇹🇭 태국</span><span>🇵🇭 필리핀</span><span>🇺🇿 우즈베키스탄</span><span>🇱🇰 스리랑카</span><span>🇮🇩 인도네시아</span><span>🇨🇳 중국</span><span>🇯🇵 일본</span><span>🇮🇳 인도</span><span>🇧🇩 방글라데시</span>
-      <span>🇻🇳 베트남</span><span>🇳🇵 네팔</span><span>🇲🇲 미얀마</span><span>🇹🇭 태국</span><span>🇵🇭 필리핀</span><span>🇺🇿 우즈베키스탄</span><span>🇱🇰 스리랑카</span><span>🇮🇩 인도네시아</span><span>🇨🇳 중국</span><span>🇯🇵 일본</span><span>🇮🇳 인도</span><span>🇧🇩 방글라데시</span>
-    </div>
-  </div>
 
   <!-- Menu cards -->
   <section class="sec">
