@@ -60,6 +60,28 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;cursor:pointer;
     background:#e9edf3;display:block;border:1px solid var(--line)}
+  /* plan / zone-map view */
+  .planview{display:none;gap:12px;align-items:start;
+    grid-template-columns:1fr 1.35fr 1fr;
+    grid-template-areas:"core core core" "office plan window" "pantry meeting lounge"}
+  .planview.show{display:grid}
+  .pv-plan{grid-area:plan;text-align:center}
+  .pv-plan img{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow);cursor:pointer;background:#fff}
+  .pv-cap{font-size:12px;color:var(--sub);font-weight:700;margin-top:8px}
+  .pv-zone{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:11px 12px;box-shadow:var(--shadow)}
+  .pv-zone.z-core{grid-area:core}.pv-zone.z-office{grid-area:office}.pv-zone.z-window{grid-area:window}
+  .pv-zone.z-pantry{grid-area:pantry}.pv-zone.z-meeting{grid-area:meeting}.pv-zone.z-lounge{grid-area:lounge}
+  .pv-zone .zt{font-weight:800;font-size:12.5px;margin-bottom:8px;color:var(--brand-d);
+    display:flex;align-items:center;gap:5px;line-height:1.35}
+  .pv-thumbs{display:flex;flex-wrap:wrap;gap:6px}
+  .pv-thumbs img{width:62px;height:47px;object-fit:cover;border-radius:7px;cursor:pointer;
+    border:1px solid var(--line);background:#e9edf3}
+  @media(max-width:640px){
+    .planview{grid-template-columns:1fr;
+      grid-template-areas:"plan" "core" "office" "window" "meeting" "lounge" "pantry"}
+    .pv-thumbs img{width:calc(25% - 5px);height:52px}
+  }
   /* lightbox */
   .lb{position:fixed;inset:0;background:rgba(8,14,24,.94);display:none;align-items:center;justify-content:center;z-index:50}
   .lb.show{display:flex}
@@ -119,9 +141,11 @@
       <button data-f="in">사무공간</button>
       <button data-f="lounge">라운지·창측</button>
       <button data-f="etc">공용·평면</button>
+      <button data-f="map">배치도</button>
     </div>
     <div class="grid" id="grid"></div>
-    <div class="note">※ 건물·외관 사진은 건축 준공 자료(촬영: 남궁선). 내부 사진은 2026-06-24 현장 촬영.</div>
+    <div class="planview" id="planview"></div>
+    <div class="note">※ 건물·외관 사진은 건축 준공 자료(촬영: 남궁선). 내부 사진은 2026-06-24 현장 촬영. ‘배치도’는 7층 피난안내도 기준 위치별 사진 안내(개략).</div>
   </section>
 
   <!-- MAP -->
@@ -308,11 +332,55 @@ function render(filter){
     grid.appendChild(img);
   });
 }
+// zone map (배치도) — 7층 피난안내도 기준 위치별 사진
+const planview=document.getElementById('planview');
+const zones=[
+  {a:'core',  t:'⬆ 코어 · 출입구 / 엘리베이터 / 화장실 / 계단',
+   f:['site2-img/photo01.jpg','site2-img/p2_21.jpg','site2-img/photo14.jpg','site2-img/photo15.jpg','site2-img/p2_09.jpg','site2-img/p2_17.jpg','site2-img/photo07.jpg']},
+  {a:'office', t:'⬅ 사무공간',
+   f:['site2-img/photo02.jpg','site2-img/photo05.jpg','site2-img/photo08.jpg','site2-img/p2_07.jpg','site2-img/p2_04.jpg','site2-img/p2_10.jpg']},
+  {a:'window', t:'➡ 창측 사무공간',
+   f:['site2-img/photo03.jpg','site2-img/p2_06.jpg','site2-img/p2_11.jpg','site2-img/p2_19.jpg','site2-img/photo09.jpg','site2-img/p2_14.jpg']},
+  {a:'meeting',t:'⬇ 회의실',
+   f:['site2-img/photo04.jpg','site2-img/p2_02.jpg','site2-img/p2_15.jpg','site2-img/p2_05.jpg','site2-img/p2_01.jpg']},
+  {a:'lounge', t:'🛋 라운지 · 발코니',
+   f:['site2-img/photo10.jpg','site2-img/photo11.jpg','site2-img/photo13.jpg','site2-img/p2_16.jpg','site2-img/p2_13.jpg']},
+  {a:'pantry', t:'☕ 탕비실',
+   f:['site2-img/p2_18.jpg','site2-img/photo06.jpg','site2-img/photo12.jpg']}
+];
+function buildPlan(){
+  if(planview.dataset.built) return;
+  let h='<div class="pv-plan"><img src="site2-img/plan.jpg" alt="7층 평면도">'
+       +'<div class="pv-cap">SKY1004 7층 피난안내도 · 위치별 사진 배치</div></div>';
+  zones.forEach(z=>{
+    h+='<div class="pv-zone z-'+z.a+'"><div class="zt">'+z.t+'</div><div class="pv-thumbs">'
+      +z.f.map(f=>'<img src="'+f+'" loading="lazy">').join('')+'</div></div>';
+  });
+  planview.innerHTML=h; planview.dataset.built='1';
+  planview.querySelectorAll('img').forEach(img=>{
+    img.addEventListener('click',()=>openByFile(img.getAttribute('src')));
+  });
+}
+function openByFile(file){
+  const idx=photos.findIndex(p=>p[0]===file);
+  if(idx<0) return;
+  view=photos.map((_,i)=>i);
+  cur=idx; showLb(); lb.classList.add('show');
+}
+
 document.querySelectorAll('.gtab button').forEach(b=>{
   b.addEventListener('click',()=>{
     document.querySelectorAll('.gtab button').forEach(x=>x.classList.remove('on'));
     b.classList.add('on');
-    render(b.dataset.f);
+    if(b.dataset.f==='map'){
+      grid.style.display='none';
+      buildPlan();
+      planview.classList.add('show');
+    }else{
+      planview.classList.remove('show');
+      grid.style.display='';
+      render(b.dataset.f);
+    }
   });
 });
 
