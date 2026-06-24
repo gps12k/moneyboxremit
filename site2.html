@@ -112,7 +112,7 @@
 <div class="wrap">
   <!-- GALLERY -->
   <section>
-    <h2>현장 사진 <span style="font-weight:600;color:var(--sub);font-size:13px">(23장 · 탭하여 확대)</span></h2>
+    <h2>현장 사진 <span style="font-weight:600;color:var(--sub);font-size:13px">(45장 · 탭하여 확대)</span></h2>
     <div class="gtab">
       <button data-f="all" class="on">전체</button>
       <button data-f="ex">건물·외관</button>
@@ -243,6 +243,7 @@
 <script>
 // photo metadata: [file, category, caption]
 const photos = [
+  // 건물·외관 (준공 전문사진)
   ["site2-img/ext1.jpg","ex","SKY1004 빌딩 전경"],
   ["site2-img/ext2.jpg","ex","글라스 커튼월 입면"],
   ["site2-img/ext6.jpg","ex","1층 진입부 · 필로티"],
@@ -250,21 +251,46 @@ const photos = [
   ["site2-img/ext7.jpg","ex","발코니 · 도심 전망"],
   ["site2-img/ext4.jpg","ex","옥상 정원 · 도심 야경"],
   ["site2-img/ext3.jpg","ex","도심 스카이라인 전망"],
-  ["site2-img/photo01.jpg","etc","출입구 · 유리도어"],
+  // 사무공간
   ["site2-img/photo02.jpg","in","사무공간 입구 · 파티션"],
   ["site2-img/photo05.jpg","in","넓은 사무공간"],
   ["site2-img/photo03.jpg","in","사무공간 · 창측"],
   ["site2-img/photo04.jpg","in","회의 · 업무 공간"],
   ["site2-img/photo08.jpg","in","사무공간 · 책상 배열"],
   ["site2-img/photo09.jpg","in","유리 파티션 공간"],
+  ["site2-img/p2_01.jpg","in","사무공간 · 회의 코너"],
+  ["site2-img/p2_02.jpg","in","회의실"],
+  ["site2-img/p2_04.jpg","in","유리 파티션 사무실"],
+  ["site2-img/p2_05.jpg","in","회의 테이블"],
+  ["site2-img/p2_06.jpg","in","창측 사무공간"],
+  ["site2-img/p2_07.jpg","in","파티션 사무공간"],
+  ["site2-img/p2_10.jpg","in","복합기 · 업무 코너"],
+  ["site2-img/p2_11.jpg","in","업무 공간 · 창측"],
+  ["site2-img/p2_12.jpg","in","업무 공간"],
+  ["site2-img/p2_14.jpg","in","유리 파티션 공간"],
+  ["site2-img/p2_15.jpg","in","회의실 · 사물함"],
+  ["site2-img/p2_19.jpg","in","창측 사무공간"],
+  ["site2-img/p2_20.jpg","in","업무 공간"],
+  // 라운지·창측
   ["site2-img/photo10.jpg","lounge","라운지 · 소파"],
   ["site2-img/photo11.jpg","lounge","라운지 · 통유리"],
   ["site2-img/photo13.jpg","lounge","창측 전망"],
+  ["site2-img/p2_13.jpg","lounge","발코니 · 테라스"],
+  ["site2-img/p2_16.jpg","lounge","라운지 · 소파"],
+  // 공용·평면
+  ["site2-img/photo01.jpg","etc","출입구 · 유리도어"],
   ["site2-img/photo06.jpg","etc","탕비실 · 카운터"],
   ["site2-img/photo12.jpg","etc","탕비실 · 정수기"],
+  ["site2-img/p2_18.jpg","etc","탕비실 · 주방"],
+  ["site2-img/p2_03.jpg","etc","수납 · 자료 공간"],
+  ["site2-img/p2_17.jpg","etc","수납 · 계단"],
   ["site2-img/photo07.jpg","etc","복도 · 출입"],
+  ["site2-img/p2_08.jpg","etc","복도"],
+  ["site2-img/p2_09.jpg","etc","화장실"],
+  ["site2-img/p2_21.jpg","etc","안내 카운터 · 엘리베이터"],
   ["site2-img/photo14.jpg","etc","엘리베이터"],
   ["site2-img/photo15.jpg","etc","엘리베이터 홀"],
+  ["site2-img/p2_22.jpg","etc","엘리베이터 홀"],
   ["site2-img/plan.jpg","etc","평면도 (7층 피난안내도)"]
 ];
 const grid=document.getElementById('grid');
