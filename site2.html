@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사무실 후보지 ② — SKY1004 빌딩 7층</title>
+<meta name="description" content="회사이전 사무실 후보지 임대조건 안내 — 서울 중구 만리동 SKY1004 빌딩 7층, 임대 64.5평(실 47평) · 충정로·서울역 더블 역세권">
+<style>
+  :root{
+    --bg:#f4f6f9; --card:#ffffff; --ink:#1a2330; --sub:#5b6776;
+    --line:#e6eaf0; --brand:#1f6feb; --brand-d:#1450b4; --accent:#0fb37a;
+    --shadow:0 4px 20px rgba(20,40,80,.07);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",Roboto,sans-serif;
+       background:var(--bg);color:var(--ink);line-height:1.6;-webkit-text-size-adjust:100%}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px 64px}
+  header{background:linear-gradient(135deg,#1f6feb 0%,#0e2f78 100%);color:#fff;padding:52px 18px 44px;text-align:center;position:relative;overflow:hidden}
+  header:after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+       background:radial-gradient(circle,rgba(89,231,180,.25),transparent 70%);pointer-events:none}
+  header:before{content:"";position:absolute;left:-50px;bottom:-70px;width:200px;height:200px;
+       background:radial-gradient(circle,rgba(120,170,255,.30),transparent 70%);pointer-events:none}
+  header .tag{display:inline-block;font-size:12px;letter-spacing:.14em;font-weight:700;
+       background:rgba(255,255,255,.16);padding:6px 14px;border-radius:20px;margin-bottom:18px}
+  header h1{font-size:38px;font-weight:900;letter-spacing:-.035em;line-height:1.22}
+  header h1 .hl{color:#59e7b4}
+  header .hsub{margin-top:16px;font-size:15.5px;font-weight:700;opacity:.96}
+  header .addr{margin-top:6px;font-size:13px;opacity:.82}
+  header .visit{display:inline-block;margin-top:16px;font-size:12.5px;font-weight:700;color:#fff;
+    background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.32);padding:7px 14px;border-radius:22px}
+  /* key facts */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:28px}
+  .fact{background:var(--card);border-radius:14px;padding:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .fact .k{font-size:12px;color:var(--sub);font-weight:600;margin-bottom:4px}
+  .fact .v{font-size:18px;font-weight:800;letter-spacing:-.02em}
+  .fact .v small{font-size:13px;font-weight:600;color:var(--sub)}
+  .fact.full{grid-column:1/-1}
+  .price .v{color:var(--brand)}
+  /* sections */
+  section{margin-top:28px}
+  h2{font-size:17px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  h2:before{content:"";width:4px;height:18px;background:var(--brand);border-radius:3px;display:inline-block}
+  /* detail table */
+  .detail{background:var(--card);border-radius:14px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+  .detail .row{display:flex;border-bottom:1px solid var(--line);font-size:14.5px}
+  .detail .row:last-child{border-bottom:0}
+  .detail .row .label{flex:0 0 116px;background:#f7f9fc;padding:13px 14px;font-weight:700;color:var(--sub)}
+  .detail .row .value{padding:13px 14px;font-weight:600}
+  .note{font-size:12.5px;color:var(--sub);margin-top:8px;padding-left:2px}
+  /* map button */
+  .mapbtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;
+    background:var(--accent);color:#fff;font-weight:800;font-size:16px;padding:16px;border-radius:14px;
+    text-decoration:none;box-shadow:0 6px 18px rgba(15,179,122,.28);margin-top:14px}
+  .mapbtn:active{transform:translateY(1px)}
+  /* gallery */
+  .gtab{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .gtab button{border:1px solid var(--line);background:#fff;color:var(--sub);font-size:13px;font-weight:700;
+    padding:8px 14px;border-radius:20px;cursor:pointer}
+  .gtab button.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .grid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;cursor:pointer;
+    background:#e9edf3;display:block;border:1px solid var(--line)}
+  /* lightbox */
+  .lb{position:fixed;inset:0;background:rgba(8,14,24,.94);display:none;align-items:center;justify-content:center;z-index:50}
+  .lb.show{display:flex}
+  .lb img{max-width:96vw;max-height:86vh;border-radius:8px}
+  .lb .x{position:absolute;top:14px;right:18px;color:#fff;font-size:34px;font-weight:300;cursor:pointer;line-height:1}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:42px;
+    padding:10px 18px;cursor:pointer;user-select:none;opacity:.85}
+  .lb .prev{left:4px}.lb .next{right:4px}
+  .lb .cnt{position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#fff;font-size:14px;opacity:.85}
+  footer{text-align:center;color:var(--sub);font-size:12px;margin-top:40px;line-height:1.8}
+  footer a{color:var(--brand);font-weight:700;text-decoration:none}
+  /* facility cards */
+  .mkt{display:grid;gap:10px}
+  .mcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand);
+    border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .mcard .t{font-weight:800;font-size:14px;margin-bottom:3px}
+  .mcard .d{font-size:13.5px;color:#34404f}
+  .mcard.warn{border-left-color:#e8a13a}
+  .mcard.green{border-left-color:var(--accent)}
+  /* transit chips */
+  .tr{display:grid;gap:10px}
+  .trow{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .trow .ic{font-size:22px;flex:0 0 30px;text-align:center}
+  .trow .tt{font-weight:800;font-size:14.5px}
+  .trow .ts{font-size:13px;color:var(--sub);margin-top:1px}
+  .trow .dist{margin-left:auto;font-weight:800;color:var(--brand);font-size:14px;white-space:nowrap}
+  /* verdict */
+  .verdict{background:linear-gradient(135deg,#ff9d2e 0%,#ee7a0c 100%);color:#fff;border-radius:16px;
+    padding:20px 18px;box-shadow:0 8px 24px rgba(238,122,12,.30)}
+  .verdict .vl{font-size:11.5px;font-weight:700;letter-spacing:.1em;opacity:.92;margin-bottom:9px}
+  .verdict .vt{font-size:16.5px;font-weight:800;line-height:1.6;letter-spacing:-.01em}
+  .verdict .vs{margin-top:11px;font-size:13px;opacity:.95;line-height:1.65;border-top:1px solid rgba(255,255,255,.25);padding-top:10px}
+  @media(max-width:560px){
+    .facts{grid-template-columns:1fr 1fr}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    header h1{font-size:30px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="tag">회사이전 후보지 ② · 임대조건 안내</div>
+  <h1>역세권 한가운데<br><span class="hl">깔끔한 7층 사무실</span></h1>
+  <div class="hsub">SKY1004 빌딩 · 7층 · 임대 64.5평 (실 47평)</div>
+  <div class="addr">서울특별시 중구 만리동 · 충정로·서울역 더블 역세권</div>
+  <div class="visit">🏢 신광부동산 임대조건 안내 자료</div>
+</header>
+
+<div class="wrap">
+  <!-- GALLERY -->
+  <section>
+    <h2>현장 사진 <span style="font-weight:600;color:var(--sub);font-size:13px">(16장 · 탭하여 확대)</span></h2>
+    <div class="gtab">
+      <button data-f="all" class="on">전체</button>
+      <button data-f="in">사무공간</button>
+      <button data-f="lounge">라운지·창측</button>
+      <button data-f="etc">공용·평면</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- MAP -->
+  <section>
+    <a class="mapbtn" target="_blank" rel="noopener"
+       href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EC%A4%91%EA%B5%AC%20%EC%A4%91%EB%A6%BC%EB%8F%99%20%EC%8A%A4%EC%B9%B4%EC%9D%B41004%EB%B9%8C%EB%94%A9">
+      📍 네이버 지도에서 위치 보기
+    </a>
+  </section>
+
+  <!-- VERDICT -->
+  <section>
+    <h2>한 줄 평가 <span style="font-weight:600;color:var(--sub);font-size:13px">(입지·컨디션 중심)</span></h2>
+    <div class="verdict">
+      <div class="vl">★ 가장 큰 장점 — 더블 역세권 입지</div>
+      <div class="vt">“2·5호선 충정로역과 1·경의중앙·공항철도 서울역을 모두 도보권에 둔 보기 드문 더블 역세권. 보증 5천/월 480만으로 면적 대비 고정비 부담이 가볍고, 이건창호·시스템에어컨까지 갖춘 깨끗한 컨디션이라 바로 입주 가능.”</div>
+      <div class="vs">실면적 47평으로 단일 부서·운영 거점에 알맞은 규모. 다만 <b>주차는 방문주차만 가능</b>해, 상주 차량이 많을 경우 인근 주차 대안을 함께 검토해야 함.</div>
+    </div>
+  </section>
+
+  <!-- KEY FACTS -->
+  <div class="facts">
+    <div class="fact"><div class="k">임대면적</div><div class="v">64.5평 <small>(실 47평)</small></div></div>
+    <div class="fact"><div class="k">층</div><div class="v">7층 <small>/ 지상 15층</small></div></div>
+    <div class="fact price"><div class="k">보증금</div><div class="v">5,000<small> 만원</small></div></div>
+    <div class="fact price"><div class="k">월세</div><div class="v">480<small> 만원 (VAT별도)</small></div></div>
+    <div class="fact"><div class="k">기본관리비</div><div class="v">92<small> 만원 (VAT별도)</small></div></div>
+    <div class="fact"><div class="k">주차</div><div class="v">방문주차 <small>만 가능</small></div></div>
+  </div>
+
+  <!-- DETAIL -->
+  <section>
+    <h2>임대 조건</h2>
+    <div class="detail">
+      <div class="row"><div class="label">소재지</div><div class="value">서울특별시 중구 만리동 · SKY1004 빌딩 7층</div></div>
+      <div class="row"><div class="label">규모</div><div class="value">지하 3층 / 지상 15층 중 <b>7층</b></div></div>
+      <div class="row"><div class="label">임대면적</div><div class="value">64.5평 <span style="color:var(--sub);font-weight:600">(전용 실면적 약 47평)</span></div></div>
+      <div class="row"><div class="label">보증금</div><div class="value">5,000만원</div></div>
+      <div class="row"><div class="label">월세</div><div class="value">480만원 <span style="color:var(--sub);font-weight:600">(부가세 별도)</span></div></div>
+      <div class="row"><div class="label">기본관리비</div><div class="value">92만원 <span style="color:var(--sub);font-weight:600">(부가세 별도)</span></div></div>
+      <div class="row"><div class="label">변동관리비</div><div class="value">전기·수도·가스 — <b>사용량에 따라 별도 부과</b></div></div>
+      <div class="row"><div class="label">주차</div><div class="value">방문주차만 가능</div></div>
+    </div>
+    <div class="note">※ 2026-06-24 신광부동산 제공 임대조건 안내 기준. 금액은 협의 전 제시 기준입니다.</div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section>
+    <h2>시설 안내</h2>
+    <div class="mkt">
+      <div class="mcard green">
+        <div class="t">❄️ 냉방 — 천정형 시스템에어컨 3대</div>
+        <div class="d">여름철 냉방용 <b>천정형 에어컨 3대</b> 설치. 별도 실외기·벽걸이 추가 없이 바로 가동 가능.</div>
+      </div>
+      <div class="mcard green">
+        <div class="t">🔥 난방 — 개별 보일러 3대</div>
+        <div class="d">겨울철 난방용 <b>보일러 3대</b> 구비. 중앙난방 의존 없이 층 단위 개별 운영.</div>
+      </div>
+      <div class="mcard">
+        <div class="t">🪟 창호 — 이건창호 시공</div>
+        <div class="d"><b>이건창호</b>로 시공되어 외부 <b>소음을 최소화</b>. 대로변 입지임에도 업무 집중도를 확보.</div>
+      </div>
+      <div class="mcard warn">
+        <div class="t">🅿️ 유의점 — 주차</div>
+        <div class="d">건물 주차는 <b>방문주차만 가능</b>. 상주 차량이 많을 경우 인근 공영·민영 주차장 대안 검토 필요.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSIT -->
+  <section>
+    <h2>교통 <span style="font-weight:600;color:var(--sub);font-size:13px">(더블 역세권)</span></h2>
+    <div class="tr">
+      <div class="trow">
+        <div class="ic">🚇</div>
+        <div><div class="tt">충정로역 <span style="color:var(--sub);font-weight:700;font-size:12.5px">2호선 · 5호선</span></div>
+          <div class="ts">서대문·여의도·왕십리 방면 환승 거점</div></div>
+        <div class="dist">480m</div>
+      </div>
+      <div class="trow">
+        <div class="ic">🚄</div>
+        <div><div class="tt">서울역 <span style="color:var(--sub);font-weight:700;font-size:12.5px">1호선 · 경의중앙선 · 공항철도</span></div>
+          <div class="ts">KTX·공항철도까지 도보권 — 전국·인천공항 접근</div></div>
+        <div class="dist">450m</div>
+      </div>
+      <div class="trow">
+        <div class="ic">🚌</div>
+        <div><div class="tt">대로변 버스정류장</div>
+          <div class="ts">건물 앞 대로변 정류장 — 간선·지선 버스</div></div>
+        <div class="dist">도보 3분</div>
+      </div>
+    </div>
+    <div class="note">※ 거리는 신광부동산 안내 기준. 충정로·서울역을 동시에 도보권에 둔 보기 드문 입지입니다.</div>
+  </section>
+
+  <!-- CROSS LINK -->
+  <section>
+    <a class="mapbtn" style="background:linear-gradient(135deg,#6a3df0 0%,#3b2bd0 100%);box-shadow:0 8px 22px rgba(74,45,200,.32)" href="site.html">
+      🏢 다른 후보지 보기 — 동자동 30-8 · 2층 (전용 130평)
+    </a>
+  </section>
+
+  <footer>
+    회사이전 사무실 후보지 ② 자료 · 머니박스레밋<br>
+    임대 안내: 신광부동산 · 관리실 02-365-1188<br>
+    내부 검토용 · 최종 수정 2026-06-24
+  </footer>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <span class="x" id="lbx">&times;</span>
+  <span class="nav prev" id="lbp">&#10094;</span>
+  <img id="lbimg" src="" alt="">
+  <span class="nav next" id="lbn">&#10095;</span>
+  <div class="cnt" id="lbc"></div>
+</div>
+
+<script>
+// photo metadata: [file, category, caption]
+const photos = [
+  ["site2-img/photo01.jpg","etc","출입구 · 유리도어"],
+  ["site2-img/photo02.jpg","in","사무공간 입구 · 파티션"],
+  ["site2-img/photo05.jpg","in","넓은 사무공간"],
+  ["site2-img/photo03.jpg","in","사무공간 · 창측"],
+  ["site2-img/photo04.jpg","in","회의 · 업무 공간"],
+  ["site2-img/photo08.jpg","in","사무공간 · 책상 배열"],
+  ["site2-img/photo09.jpg","in","유리 파티션 공간"],
+  ["site2-img/photo10.jpg","lounge","라운지 · 소파"],
+  ["site2-img/photo11.jpg","lounge","라운지 · 통유리"],
+  ["site2-img/photo13.jpg","lounge","창측 전망"],
+  ["site2-img/photo06.jpg","etc","탕비실 · 카운터"],
+  ["site2-img/photo12.jpg","etc","탕비실 · 정수기"],
+  ["site2-img/photo07.jpg","etc","복도 · 출입"],
+  ["site2-img/photo14.jpg","etc","엘리베이터"],
+  ["site2-img/photo15.jpg","etc","엘리베이터 홀"],
+  ["site2-img/plan.jpg","etc","평면도 (7층 피난안내도)"]
+];
+const grid=document.getElementById('grid');
+let view=[];
+
+function render(filter){
+  grid.innerHTML='';
+  view=[];
+  photos.forEach((p,i)=>{
+    if(filter!=='all' && p[1]!==filter) return;
+    view.push(i);
+    const img=document.createElement('img');
+    img.src=p[0]; img.loading='lazy'; img.alt=p[2];
+    img.addEventListener('click',()=>openLb(view.indexOf(i)));
+    grid.appendChild(img);
+  });
+}
+document.querySelectorAll('.gtab button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.gtab button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    render(b.dataset.f);
+  });
+});
+
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbc=document.getElementById('lbc');
+let cur=0;
+function openLb(vi){cur=vi;showLb();lb.classList.add('show');}
+function showLb(){
+  const p=photos[view[cur]];
+  lbimg.src=p[0];
+  lbc.textContent=(cur+1)+' / '+view.length+'  ·  '+p[2];
+}
+function step(d){cur=(cur+d+view.length)%view.length;showLb();}
+document.getElementById('lbx').onclick=()=>lb.classList.remove('show');
+document.getElementById('lbn').onclick=e=>{e.stopPropagation();step(1);};
+document.getElementById('lbp').onclick=e=>{e.stopPropagation();step(-1);};
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('show');});
+document.addEventListener('keydown',e=>{
+  if(!lb.classList.contains('show'))return;
+  if(e.key==='Escape')lb.classList.remove('show');
+  if(e.key==='ArrowRight')step(1);
+  if(e.key==='ArrowLeft')step(-1);
+});
+render('all');
+</script>
+</body>
+</html>
