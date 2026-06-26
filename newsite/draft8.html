@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MoneyBox Remit · 외국인 생활 포털</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{
+  --brand:#1a6dff; --brand-d:#0b4ed1; --mint:#16d6c5; --navy:#0a1730; --navy-2:#0f2347;
+  --ink:#101828; --soft:#5b6678; --line:#e7ebf2; --bg:#ffffff; --bg-2:#f6f9fd;
+  --radius:18px; --shadow:0 10px 30px rgba(16,32,74,.08); --shadow-lg:0 24px 60px rgba(10,23,48,.2);
+  --maxw:1160px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:#fff;background:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none}
+body.en [data-lang-ko]{display:none}
+body.en [data-lang-en]{display:inline}
+
+/* ===== background glows ===== */
+body{position:relative;overflow-x:hidden}
+.glow{position:absolute;border-radius:50%;filter:blur(110px);z-index:0;pointer-events:none}
+.glow.g1{width:560px;height:560px;background:rgba(26,109,255,.32);top:-160px;right:-120px}
+.glow.g2{width:520px;height:520px;background:rgba(22,214,197,.20);top:520px;left:-180px}
+.glow.g3{width:480px;height:480px;background:rgba(26,109,255,.16);top:1500px;right:-160px}
+
+/* ===== header ===== */
+header.site{position:sticky;top:0;z-index:70;background:rgba(10,23,48,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav .logo img{height:25px;display:block}
+.nav nav{display:flex;align-items:center;gap:26px}
+.nav nav a{color:#c4d0e6;font-size:14.5px;font-weight:600;transition:color .15s}
+.nav nav a:hover{color:#fff}
+.lang{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);color:#fff;font:inherit;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .15s}
+.lang:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.4)}
+.nav .right{display:flex;align-items:center;gap:14px}
+.menu-links{display:flex;align-items:center;gap:26px}
+
+/* ===== hero ===== */
+.hero{position:relative;z-index:1;padding:74px 0 30px;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--mint);background:rgba(22,214,197,.10);border:1px solid rgba(22,214,197,.30);padding:7px 16px;border-radius:999px;margin-bottom:24px}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 10px var(--mint)}
+.hero h1{font-size:clamp(34px,5.4vw,60px);font-weight:800;line-height:1.14;letter-spacing:-.02em}
+.grad{background:linear-gradient(100deg,var(--brand) 10%,var(--mint) 90%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.sub{margin:22px auto 0;max-width:600px;font-size:clamp(16px,2.2vw,19px);color:#c4d0e6}
+.cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+.store{display:inline-flex;align-items:center;gap:11px;background:#fff;color:#0a1730;padding:12px 22px;border-radius:14px;font-weight:700;box-shadow:0 12px 34px rgba(0,0,0,.35);transition:transform .15s}
+.store:hover{transform:translateY(-2px)}
+.store svg{width:24px;height:24px;flex:none}
+.store .st{display:flex;flex-direction:column;line-height:1.15;text-align:left}
+.store .st small{font-size:10.5px;color:#5b6678;font-weight:600}
+.store .st b{font-size:16px}
+.store.dark{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:none}
+.store.dark .st small{color:#9fb0cc}
+.trust{margin-top:22px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap;color:#8ea0bf;font-size:13.5px;font-weight:600}
+.trust b{color:#fff}
+
+/* ===== phone showcase ===== */
+.showcase{position:relative;z-index:1;padding:48px 0 20px;overflow:hidden}
+.phones{display:flex;gap:26px;justify-content:center;align-items:flex-end;flex-wrap:nowrap}
+.phone{position:relative;width:228px;flex:none;border-radius:42px;padding:11px;background:linear-gradient(160deg,#1b2c52,#0c1832);box-shadow:0 30px 70px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .35s}
+.phone:nth-child(odd){transform:translateY(28px)}
+.phone:hover{transform:translateY(0) scale(1.02)}
+.phone .screen{position:relative;border-radius:32px;overflow:hidden;background:#0a1424;height:474px;display:flex;flex-direction:column}
+.notch{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:88px;height:20px;background:#05101f;border-radius:0 0 14px 14px;z-index:5}
+.scr-top{padding:34px 16px 14px;display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#8ea0bf;font-weight:600}
+.scr-body{flex:1;padding:6px 16px 16px;display:flex;flex-direction:column}
+.scr-hero{border-radius:18px;padding:16px;color:#fff;background:linear-gradient(140deg,var(--brand),var(--brand-d))}
+.scr-icon{font-size:24px}
+.scr-label{font-size:12px;opacity:.85;margin-top:8px;font-weight:600}
+.scr-big{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-top:2px}
+.scr-mut{font-size:11px;opacity:.78;margin-top:3px}
+.scr-mint{background:linear-gradient(140deg,var(--mint),#0bb5a6)!important;color:#04221f!important}
+.scr-mint .scr-mut,.scr-mint .scr-label{opacity:.85}
+.rows{margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.row{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:10px 12px}
+.row .ri{display:flex;align-items:center;gap:9px}
+.row .ri .em{font-size:16px}
+.row .ri .tt{display:flex;flex-direction:column}
+.row .ri .tt b{font-size:12px;color:#e6edf9;font-weight:700}
+.row .ri .tt span{font-size:10px;color:#8ea0bf}
+.row .rv{font-size:12px;font-weight:800;color:var(--mint)}
+.row .rv.blue{color:#6ea6ff}
+.scr-btn{margin-top:auto;text-align:center;background:#fff;color:#0a1730;border-radius:12px;padding:11px;font-size:12.5px;font-weight:800}
+.scr-tab{display:flex;justify-content:space-around;padding:10px 0 4px;border-top:1px solid rgba(255,255,255,.07);margin-top:12px;font-size:16px;opacity:.5}
+.scr-tab .on{opacity:1}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.chip{font-size:10.5px;font-weight:700;color:#cdd9ee;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);padding:6px 10px;border-radius:999px}
+.step{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:10px 12px;margin-top:9px}
+.step .n{width:20px;height:20px;border-radius:50%;background:linear-gradient(140deg,var(--brand),var(--mint));font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;color:#03132b}
+.step .tx b{font-size:12px;color:#e6edf9;display:block}
+.step .tx span{font-size:10px;color:#8ea0bf}
+
+/* ===== section base ===== */
+section{position:relative;z-index:1}
+.shead{text-align:center;max-width:640px;margin:0 auto 46px}
+.shead .tag{font-size:13px;font-weight:800;letter-spacing:.04em;color:var(--mint);text-transform:uppercase}
+.shead h2{font-size:clamp(27px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin-top:12px;line-height:1.18}
+.shead p{margin-top:14px;color:#c4d0e6;font-size:16px}
+
+/* ===== feature highlight ===== */
+.feat{padding:90px 0 70px}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fcard{position:relative;background:linear-gradient(165deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:28px 24px;overflow:hidden;transition:transform .2s,border-color .2s}
+.fcard:hover{transform:translateY(-5px);border-color:rgba(22,214,197,.45)}
+.fcard .ic{width:52px;height:52px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:25px;background:linear-gradient(140deg,rgba(26,109,255,.25),rgba(22,214,197,.18));border:1px solid rgba(255,255,255,.12);margin-bottom:18px}
+.fcard h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.fcard .en-h{font-size:12.5px;color:#8ea0bf;font-weight:600;margin-top:3px}
+.fcard p{margin-top:12px;color:#c4d0e6;font-size:14.5px}
+.fcard .go{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:13.5px;font-weight:800;color:var(--mint)}
+.fcard .go svg{width:15px;height:15px;transition:transform .15s}
+.fcard:hover .go svg{transform:translateX(4px)}
+.fcard.span2{grid-column:span 2;display:flex;align-items:center;gap:28px}
+.fcard.span2 .body{flex:1}
+.badge{display:inline-block;font-size:11px;font-weight:800;color:#04221f;background:var(--mint);padding:4px 10px;border-radius:999px;margin-bottom:12px}
+
+/* ===== stats strip ===== */
+.stats{padding:18px 0 6px}
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.scard{text-align:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:28px 16px}
+.scard .num{font-size:34px;font-weight:800;letter-spacing:-.02em;background:linear-gradient(100deg,#6ea6ff,var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.scard .lb{margin-top:6px;color:#9fb0cc;font-size:13.5px;font-weight:600}
+
+/* ===== how it works ===== */
+.how{padding:90px 0 60px}
+.hgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.hstep{position:relative;padding:30px 24px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px}
+.hstep .hn{font-size:14px;font-weight:800;color:var(--mint)}
+.hstep h4{font-size:18px;font-weight:800;margin-top:10px}
+.hstep p{margin-top:8px;color:#c4d0e6;font-size:14px}
+
+/* ===== download CTA ===== */
+.dl{padding:30px 0 100px}
+.dlbox{position:relative;overflow:hidden;border-radius:30px;padding:64px 40px;text-align:center;background:linear-gradient(135deg,var(--navy-2),#0a1d3f);border:1px solid rgba(255,255,255,.10)}
+.dlbox .gl{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(100px);background:rgba(26,109,255,.4);top:-160px;left:50%;transform:translateX(-50%);z-index:0}
+.dlbox > *{position:relative;z-index:1}
+.dlbox h2{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.18}
+.dlbox p{margin:16px auto 0;max-width:520px;color:#c4d0e6;font-size:16px}
+.dlbox .cta-row{margin-top:30px}
+.qr{margin-top:26px;display:inline-flex;align-items:center;gap:14px;color:#9fb0cc;font-size:13px;font-weight:600}
+.qrbox{width:64px;height:64px;border-radius:12px;background:#fff;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);gap:2px;padding:8px}
+.qrbox i{background:#0a1730;border-radius:1px}
+.qrbox i.o{background:transparent}
+
+/* ===== footer ===== */
+footer{background:#070f1f;border-top:1px solid rgba(255,255,255,.07);padding:56px 0 30px}
+.fgridx{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+footer .logo img{height:25px;margin-bottom:16px}
+footer .tagline{color:#8ea0bf;font-size:14px;max-width:300px}
+footer .call{margin-top:18px;font-size:14px;color:#9fb0cc;font-weight:600}
+footer .call b{color:var(--mint);font-size:20px;letter-spacing:.01em}
+footer h5{font-size:13px;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:.02em}
+footer ul{list-style:none}
+footer ul li{margin-bottom:10px}
+footer ul li a{color:#8ea0bf;font-size:14px;transition:color .15s}
+footer ul li a:hover{color:var(--mint)}
+.fbot{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#6c7c98;font-size:13px}
+
+/* ===== ribbon ===== */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(10,23,48,.92);border:1px solid rgba(22,214,197,.35);backdrop-filter:blur(8px);color:#cdd9ee;font-size:12.5px;font-weight:600;padding:9px 15px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.ribbon a{color:var(--mint);font-weight:700}
+
+/* ===== responsive ===== */
+@media (max-width:960px){
+  .menu-links{display:none}
+  .phones{flex-wrap:wrap;gap:20px}
+  .phone{width:210px}
+  .phone:nth-child(odd){transform:none}
+  .phone:nth-child(n+3){display:none}
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  .fcard.span2{grid-column:span 2}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .hgrid{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .hero{padding:54px 0 20px}
+  .phones{flex-direction:column;align-items:center}
+  .phone{width:240px}
+  .phone:nth-child(n+2){display:none}
+  .fgrid{grid-template-columns:1fr}
+  .fcard.span2{flex-direction:column;align-items:flex-start}
+  .sgrid{grid-template-columns:repeat(2,1fr)}
+  .dlbox{padding:48px 22px}
+  .fgridx{grid-template-columns:1fr;gap:28px}
+}
+</style>
+</head>
+<body>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="glow g3"></div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="#"><img src="assets/logo-dark.svg" alt="MoneyBox Remit" /></a>
+    <div class="right">
+      <nav class="menu-links">
+        <a href="#features"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></a>
+        <a href="#how"><span data-lang-ko>이용방법</span><span data-lang-en>How it works</span></a>
+        <a href="#download"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a>
+      </nav>
+      <button class="lang" type="button" data-lang-toggle>EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="pill"><span class="dot"></span><span data-lang-ko>외국인 생활 올인원 앱</span><span data-lang-en>All-in-one app for life in Korea</span></span>
+    <h1>
+      <span data-lang-ko>한국 생활,<br><span class="grad">앱 하나로 다 돼요</span></span>
+      <span data-lang-en>Life in Korea,<br><span class="grad">all in one app</span></span>
+    </h1>
+    <p class="sub">
+      <span data-lang-ko>송금부터 환전, 비자 행정, 유심, 보험까지. 머니박스레밋 한 곳에서 손쉽게 해결해요.</span>
+      <span data-lang-en>Remittance, exchange, visa admin, SIM and insurance. Get it all done in one place with MoneyBox Remit.</span>
+    </p>
+    <div class="cta-row">
+      <a class="store" href="#download">
+        <svg viewBox="0 0 24 24" fill="#0a1730"><path d="M16.4 12.9c0-2 1.6-3 1.7-3.1-.9-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .6 1 1.4 2.1 2.4 2 1-.04 1.3-.6 2.5-.6s1.5.6 2.5.6c1 0 1.7-1 2.3-2 .7-1.1 1-2.2 1-2.3-.02-.01-2-.8-2-3zM14.6 6.6c.5-.6.9-1.5.8-2.4-.8 0-1.7.5-2.2 1.1-.5.5-.9 1.4-.8 2.3.8.06 1.7-.4 2.2-1z"/></svg>
+        <span class="st"><small data-lang-ko>다운로드 ·</small><small data-lang-en>Download on the</small><b>App Store</b></span>
+      </a>
+      <a class="store dark" href="#download">
+        <svg viewBox="0 0 24 24"><path fill="#16d6c5" d="M3.6 2.3 13 11.7l2.6-2.6L5.1 1.9c-.5-.3-1.1-.3-1.5.4z"/><path fill="#6ea6ff" d="M3 2.7c-.2.3-.3.6-.3 1v16.6c0 .4.1.7.3 1L12.3 12 3 2.7z"/><path fill="#fff" d="M16.6 9.8 13.6 12l3 3 3.4-2c.7-.4.7-1.6 0-2L16.6 9.8z"/><path fill="#16d6c5" d="M13 12.3l-9.4 9.4c.4.7 1 .7 1.5.4l10.5-6.1L13 12.3z"/></svg>
+        <span class="st"><small data-lang-ko>다운로드 ·</small><small data-lang-en>GET IT ON</small><b>Google Play</b></span>
+      </a>
+    </div>
+    <div class="trust">
+      <span><b>32</b> <span data-lang-ko>개국 송금</span><span data-lang-en> countries</span></span>
+      <span><b>4.9★</b> <span data-lang-ko>이용자 평점</span><span data-lang-en> user rating</span></span>
+      <span><span data-lang-ko>라이선스 기반</span><span data-lang-en>Licensed </span> <b>&nbsp;소액해외송금</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- PHONE SHOWCASE -->
+<section class="showcase">
+  <div class="wrap">
+    <div class="phones">
+
+      <!-- 1. 송금 -->
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="scr-top"><span>9:41</span><span>5G ●●●</span></div>
+          <div class="scr-body">
+            <div class="scr-hero">
+              <div class="scr-icon">💸</div>
+              <div class="scr-label"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></div>
+              <div class="scr-big">₩ 1,000,000</div>
+              <div class="scr-mut"><span data-lang-ko>예상 도착 약 10분 · 수수료 5,000원</span><span data-lang-en>~10 min · fee ₩5,000</span></div>
+            </div>
+            <div class="rows">
+              <div class="row"><div class="ri"><span class="em">🇻🇳</span><div class="tt"><b>Vietnam</b><span data-lang-ko>받는 금액</span><span data-lang-en>Receive</span></div></div><span class="rv">19.2M ₫</span></div>
+              <div class="row"><div class="ri"><span class="em">🇺🇿</span><div class="tt"><b>Uzbekistan</b><span data-lang-ko>받는 금액</span><span data-lang-en>Receive</span></div></div><span class="rv">9.1M so'm</span></div>
+            </div>
+            <div class="scr-btn"><span data-lang-ko>지금 송금하기</span><span data-lang-en>Send now</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 환전 -->
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="scr-top"><span>9:41</span><span>5G ●●●</span></div>
+          <div class="scr-body">
+            <div class="scr-hero scr-mint">
+              <div class="scr-icon">💱</div>
+              <div class="scr-label"><span data-lang-ko>실시간 환율</span><span data-lang-en>Live rate</span></div>
+              <div class="scr-big">1,386.5</div>
+              <div class="scr-mut">USD / KRW &nbsp;▲ 0.18%</div>
+            </div>
+            <div class="rows">
+              <div class="row"><div class="ri"><span class="em">🇺🇸</span><div class="tt"><b>USD</b><span>달러</span></div></div><span class="rv blue">1,386.5</span></div>
+              <div class="row"><div class="ri"><span class="em">🇪🇺</span><div class="tt"><b>EUR</b><span>유로</span></div></div><span class="rv blue">1,492.0</span></div>
+              <div class="row"><div class="ri"><span class="em">🇯🇵</span><div class="tt"><b>JPY 100</b><span>엔</span></div></div><span class="rv blue">912.4</span></div>
+            </div>
+            <div class="scr-btn"><span data-lang-ko>환전 신청</span><span data-lang-en>Exchange</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 행정 -->
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="scr-top"><span>9:41</span><span>5G ●●●</span></div>
+          <div class="scr-body">
+            <div class="scr-hero">
+              <div class="scr-icon">📋</div>
+              <div class="scr-label"><span data-lang-ko>비자·행정</span><span data-lang-en>Visa &amp; Admin</span></div>
+              <div class="scr-big"><span data-lang-ko>체류 연장</span><span data-lang-en>Stay ext.</span></div>
+              <div class="scr-mut"><span data-lang-ko>행정사가 대신 준비해드려요</span><span data-lang-en>Handled by a licensed agent</span></div>
+            </div>
+            <div class="step"><div class="n">1</div><div class="tx"><b data-lang-ko>서류 업로드</b><b data-lang-en>Upload docs</b><span data-lang-ko>사진만 찍어 올리면 끝</span><span data-lang-en>Just snap &amp; upload</span></div></div>
+            <div class="step"><div class="n">2</div><div class="tx"><b data-lang-ko>행정사 검토</b><b data-lang-en>Agent review</b><span data-lang-ko>전문가가 꼼꼼히 확인</span><span data-lang-en>Checked by experts</span></div></div>
+            <div class="step"><div class="n">3</div><div class="tx"><b data-lang-ko>신청 완료</b><b data-lang-en>Submitted</b><span data-lang-ko>결과는 알림으로</span><span data-lang-en>Get notified</span></div></div>
+            <div class="scr-btn" style="margin-top:13px"><span data-lang-ko>상담 신청</span><span data-lang-en>Get help</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 유심 -->
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="scr-top"><span>9:41</span><span>5G ●●●</span></div>
+          <div class="scr-body">
+            <div class="scr-hero scr-mint">
+              <div class="scr-icon">📱</div>
+              <div class="scr-label"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></div>
+              <div class="scr-big">₩ 19,800<span style="font-size:13px;font-weight:600">/mo</span></div>
+              <div class="scr-mut"><span data-lang-ko>데이터 무제한 · 통화 100분</span><span data-lang-en>Unlimited data · 100 min</span></div>
+            </div>
+            <div class="chips">
+              <span class="chip" data-lang-ko>당일 개통</span><span class="chip" data-lang-en>Same-day</span>
+              <span class="chip" data-lang-ko>여권만으로</span><span class="chip" data-lang-en>Passport only</span>
+              <span class="chip" data-lang-ko>알뜰 요금제</span><span class="chip" data-lang-en>Budget plan</span>
+              <span class="chip" data-lang-ko>eSIM 지원</span><span class="chip" data-lang-en>eSIM ready</span>
+            </div>
+            <div class="scr-tab"><span class="on">🏠</span><span>📶</span><span>💬</span><span>👤</span></div>
+            <div class="scr-btn" style="margin-top:9px"><span data-lang-ko>요금제 보기</span><span data-lang-en>See plans</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 보험 -->
+      <div class="phone">
+        <div class="screen">
+          <div class="notch"></div>
+          <div class="scr-top"><span>9:41</span><span>5G ●●●</span></div>
+          <div class="scr-body">
+            <div class="scr-hero">
+              <div class="scr-icon">🛡️</div>
+              <div class="scr-label"><span data-lang-ko>외국인 보험</span><span data-lang-en>Insurance</span></div>
+              <div class="scr-big"><span data-lang-ko>가입 완료</span><span data-lang-en>Covered</span></div>
+              <div class="scr-mut"><span data-lang-ko>병원비 걱정 없이 안심하고 생활해요</span><span data-lang-en>Stay protected, worry-free</span></div>
+            </div>
+            <div class="rows">
+              <div class="row"><div class="ri"><span class="em">🏥</span><div class="tt"><b data-lang-ko>건강보험</b><b data-lang-en>Health</b><span data-lang-ko>입원·통원</span><span data-lang-en>In/out patient</span></div></div><span class="rv">ON</span></div>
+              <div class="row"><div class="ri"><span class="em">✈️</span><div class="tt"><b data-lang-ko>여행보험</b><b data-lang-en>Travel</b><span data-lang-ko>해외 일정</span><span data-lang-en>Trips</span></div></div><span class="rv">ON</span></div>
+              <div class="row"><div class="ri"><span class="em">🏠</span><div class="tt"><b data-lang-ko>체류보험</b><b data-lang-en>Stay</b><span data-lang-ko>장기 거주</span><span data-lang-en>Long-term</span></div></div><span class="rv">ON</span></div>
+            </div>
+            <div class="scr-btn"><span data-lang-ko>보험 알아보기</span><span data-lang-en>Explore plans</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="sgrid">
+      <div class="scard"><div class="num">32</div><div class="lb"><span data-lang-ko>송금 가능 국가</span><span data-lang-en>Countries</span></div></div>
+      <div class="scard"><div class="num">~10<span style="font-size:16px">min</span></div><div class="lb"><span data-lang-ko>평균 송금 시간</span><span data-lang-en>Avg. transfer</span></div></div>
+      <div class="scard"><div class="num">5</div><div class="lb"><span data-lang-ko>생활 통합 서비스</span><span data-lang-en>Life services</span></div></div>
+      <div class="scard"><div class="num">4.9★</div><div class="lb"><span data-lang-ko>앱 이용자 평점</span><span data-lang-en>User rating</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="feat" id="features">
+  <div class="wrap">
+    <div class="shead">
+      <div class="tag">Services</div>
+      <h2><span data-lang-ko>필요한 건 다 들어있어요</span><span data-lang-en>Everything you need, in one app</span></h2>
+      <p><span data-lang-ko>외국인의 한국 생활에 꼭 필요한 5가지 서비스를 한 앱에서 제공해요.</span><span data-lang-en>Five essential services for life in Korea, together in one place.</span></p>
+    </div>
+    <div class="fgrid">
+
+      <!-- 송금 span2 -->
+      <a class="fcard span2" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener">
+        <div class="ic">💸</div>
+        <div class="body">
+          <span class="badge"><span data-lang-ko>대표 서비스</span><span data-lang-en>Flagship</span></span>
+          <h3><span data-lang-ko>해외송금</span><span data-lang-en>Overseas Remittance</span></h3>
+          <div class="en-h" data-lang-ko>Overseas Remittance</div>
+          <p><span data-lang-ko>라이선스 기반 소액해외송금이에요. 32개국으로 빠르게, 소액일수록 더 유리한 수수료로 보내드려요.</span><span data-lang-en>Licensed micro-remittance to 32 countries. Fast, and the smaller the amount, the better the rate.</span></p>
+          <span class="go"><span data-lang-ko>송금 매뉴얼 보기</span><span data-lang-en>View remit guide</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+      <!-- 환전 -->
+      <a class="fcard" href="#">
+        <div class="ic">💱</div>
+        <h3><span data-lang-ko>환전</span><span data-lang-en>Currency Exchange</span></h3>
+        <div class="en-h" data-lang-ko>Currency Exchange</div>
+        <p><span data-lang-ko>실시간 환율로 투명한 수수료. 숨은 비용 없이 환전해요.</span><span data-lang-en>Real-time rates and transparent fees. No hidden costs.</span></p>
+        <span class="go"><span data-lang-ko>자세히</span><span data-lang-en>Learn more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <!-- 행정 -->
+      <a class="fcard" href="#">
+        <div class="ic">📋</div>
+        <h3><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Administrative</span></h3>
+        <div class="en-h" data-lang-ko>Administrative (Visa)</div>
+        <p><span data-lang-ko>비자·체류·외국인등록 행정을 전문 행정사가 대행해드려요.</span><span data-lang-en>Visa, stay and registration handled by licensed agents.</span></p>
+        <span class="go"><span data-lang-ko>자세히</span><span data-lang-en>Learn more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <!-- 유심 -->
+      <a class="fcard" href="#">
+        <div class="ic">📱</div>
+        <h3><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></h3>
+        <div class="en-h" data-lang-ko>SIM &amp; Mobile</div>
+        <p><span data-lang-ko>개통 지원과 알뜰 요금제. 여권만으로 당일 개통해요.</span><span data-lang-en>Activation support and budget plans. Same-day with passport.</span></p>
+        <span class="go"><span data-lang-ko>자세히</span><span data-lang-en>Learn more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+
+      <!-- 보험 span2 -->
+      <a class="fcard span2" href="#">
+        <div class="ic">🛡️</div>
+        <div class="body">
+          <h3><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></h3>
+          <div class="en-h" data-lang-ko>Insurance</div>
+          <p><span data-lang-ko>건강·여행·체류 보험까지. 병원비 걱정 없이 안심하고 한국 생활을 즐겨요.</span><span data-lang-en>Health, travel and stay insurance. Enjoy life in Korea without worrying about medical bills.</span></p>
+          <span class="go"><span data-lang-ko>보험 알아보기</span><span data-lang-en>Explore plans</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="shead">
+      <div class="tag">How it works</div>
+      <h2><span data-lang-ko>3단계면 충분해요</span><span data-lang-en>Just three steps</span></h2>
+      <p><span data-lang-ko>앱을 깔고, 한 번만 인증하면 모든 서비스를 바로 쓸 수 있어요.</span><span data-lang-en>Install, verify once, and use every service right away.</span></p>
+    </div>
+    <div class="hgrid">
+      <div class="hstep">
+        <div class="hn">STEP 01</div>
+        <h4><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download the app</span></h4>
+        <p><span data-lang-ko>App Store 또는 Google Play에서 머니박스레밋을 받아요.</span><span data-lang-en>Get MoneyBox Remit on the App Store or Google Play.</span></p>
+      </div>
+      <div class="hstep">
+        <div class="hn">STEP 02</div>
+        <h4><span data-lang-ko>한 번 본인 인증</span><span data-lang-en>Verify once</span></h4>
+        <p><span data-lang-ko>여권·외국인등록증으로 간편하게 인증하면 끝이에요.</span><span data-lang-en>Verify easily with your passport or ARC.</span></p>
+      </div>
+      <div class="hstep">
+        <div class="hn">STEP 03</div>
+        <h4><span data-lang-ko>바로 이용</span><span data-lang-en>Start using</span></h4>
+        <p><span data-lang-ko>송금·환전·행정·유심·보험을 자유롭게 이용해요.</span><span data-lang-en>Send, exchange, file admin, get a SIM and insurance.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<section class="dl" id="download">
+  <div class="wrap">
+    <div class="dlbox">
+      <div class="gl"></div>
+      <h2><span data-lang-ko>지금 앱을 받아보세요</span><span data-lang-en>Download the app today</span></h2>
+      <p><span data-lang-ko>한국 생활에 필요한 모든 것, 머니박스레밋 앱 하나면 충분해요.</span><span data-lang-en>Everything you need for life in Korea, in one MoneyBox Remit app.</span></p>
+      <div class="cta-row">
+        <a class="store" href="#">
+          <svg viewBox="0 0 24 24" fill="#0a1730"><path d="M16.4 12.9c0-2 1.6-3 1.7-3.1-.9-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7-.6 0-1.6-.7-2.6-.7-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .6 1 1.4 2.1 2.4 2 1-.04 1.3-.6 2.5-.6s1.5.6 2.5.6c1 0 1.7-1 2.3-2 .7-1.1 1-2.2 1-2.3-.02-.01-2-.8-2-3zM14.6 6.6c.5-.6.9-1.5.8-2.4-.8 0-1.7.5-2.2 1.1-.5.5-.9 1.4-.8 2.3.8.06 1.7-.4 2.2-1z"/></svg>
+          <span class="st"><small data-lang-ko>다운로드 ·</small><small data-lang-en>Download on the</small><b>App Store</b></span>
+        </a>
+        <a class="store dark" href="#">
+          <svg viewBox="0 0 24 24"><path fill="#16d6c5" d="M3.6 2.3 13 11.7l2.6-2.6L5.1 1.9c-.5-.3-1.1-.3-1.5.4z"/><path fill="#6ea6ff" d="M3 2.7c-.2.3-.3.6-.3 1v16.6c0 .4.1.7.3 1L12.3 12 3 2.7z"/><path fill="#fff" d="M16.6 9.8 13.6 12l3 3 3.4-2c.7-.4.7-1.6 0-2L16.6 9.8z"/><path fill="#16d6c5" d="M13 12.3l-9.4 9.4c.4.7 1 .7 1.5.4l10.5-6.1L13 12.3z"/></svg>
+          <span class="st"><small data-lang-ko>다운로드 ·</small><small data-lang-en>GET IT ON</small><b>Google Play</b></span>
+        </a>
+      </div>
+      <div class="qr">
+        <div class="qrbox">
+          <i></i><i></i><i></i><i class="o"></i><i></i>
+          <i></i><i class="o"></i><i></i><i class="o"></i><i></i>
+          <i></i><i></i><i class="o"></i><i></i><i class="o"></i>
+          <i class="o"></i><i></i><i></i><i></i><i class="o"></i>
+          <i></i><i class="o"></i><i></i><i class="o"></i><i></i>
+        </div>
+        <span><span data-lang-ko>QR로 바로 설치하기</span><span data-lang-en>Scan to install</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fgridx">
+      <div>
+        <div class="logo"><img src="assets/logo-dark.svg" alt="MoneyBox Remit" /></div>
+        <p class="tagline"><span data-lang-ko>외국인의 한국 생활을 더 쉽게. 송금·환전·행정·유심·보험을 한 앱에서.</span><span data-lang-en>Making life in Korea easier — remittance, exchange, admin, SIM and insurance in one app.</span></p>
+        <div class="call"><span data-lang-ko>고객센터</span><span data-lang-en>Support</span> <b>02-771-0000</b></div>
+      </div>
+      <div>
+        <h5><span data-lang-ko>서비스</span><span data-lang-en>Services</span></h5>
+        <ul>
+          <li><a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a></li>
+          <li><a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a></li>
+          <li><a href="#"><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Administrative</span></a></li>
+          <li><a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a></li>
+          <li><a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h5><span data-lang-ko>바로가기</span><span data-lang-en>Quick links</span></h5>
+        <ul>
+          <li><a href="#features"><span data-lang-ko>서비스 소개</span><span data-lang-en>Services</span></a></li>
+          <li><a href="#how"><span data-lang-ko>이용방법</span><span data-lang-en>How it works</span></a></li>
+          <li><a href="#download"><span data-lang-ko>앱 다운로드</span><span data-lang-en>Download</span></a></li>
+          <li><a href="#"><span data-lang-ko>고객센터</span><span data-lang-en>Support</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 MoneyBox Remit. All rights reserved.</span>
+      <span><span data-lang-ko>라이선스 기반 소액해외송금 서비스</span><span data-lang-en>Licensed micro-remittance service</span></span>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 8 · 앱 쇼케이스 다크</span><span data-lang-en>Draft 8 · App Showcase</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var en=document.body.classList.toggle('en');
+    document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});
+    document.documentElement.lang=en?'en':'ko';
+  });
+});
+</script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>머니박스레밋 — 외국인 포털 개편 초안 (3안)</title>
-<meta name="description" content="moneyboxremit.com 외국인 생활 포털 개편 시안 3종. 송금·환전·행정사·유심·보험." />
+<title>머니박스레밋 — 외국인 포털 개편 초안 (9안)</title>
+<meta name="description" content="moneyboxremit.com 외국인 생활 포털 개편 시안 9종. 송금·환전·행정사·유심·보험." />
 <link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -13,85 +13,154 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);background:var(--bg-2);line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-.top{color:#fff;padding:60px 0 70px;text-align:center;background:radial-gradient(900px 460px at 12% 0,#15336e 0,transparent 60%),radial-gradient(760px 420px at 92% 10%,#0e8d83 0,transparent 55%),linear-gradient(160deg,var(--navy),var(--navy-2))}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+.top{color:#fff;padding:60px 0 76px;text-align:center;background:radial-gradient(900px 460px at 12% 0,#15336e 0,transparent 60%),radial-gradient(760px 420px at 92% 10%,#0e8d83 0,transparent 55%),linear-gradient(160deg,var(--navy),var(--navy-2))}
 .top img{height:28px;margin-bottom:22px}
 .top .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700;color:#dbe7ff;margin-bottom:18px}
 .top .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--mint)}
 .top h1{font-size:38px;font-weight:900;letter-spacing:-1.2px;line-height:1.2}
 .top h1 .hl{background:linear-gradient(120deg,var(--mint),#7fe8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.top p{color:#c4d0e6;font-size:17px;margin-top:14px;max-width:560px;margin-left:auto;margin-right:auto}
+.top p{color:#c4d0e6;font-size:17px;margin-top:14px;max-width:580px;margin-left:auto;margin-right:auto}
 .svctags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px}
 .svctags span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 13px;font-size:13px;font-weight:700;color:#eaf1ff}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-36px;position:relative;z-index:2;padding-bottom:60px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:-44px;position:relative;z-index:2;padding-bottom:30px}
 .card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.thumb{height:172px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:#fff}
+.thumb{height:158px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:#fff}
 .t1{background:radial-gradient(420px 220px at 80% 10%,#0e8d83 0,transparent 55%),linear-gradient(150deg,var(--navy),var(--navy-2))}
 .t2{background:linear-gradient(150deg,#123a7a,#0e8d83)}
 .t3{background:radial-gradient(420px 220px at 10% 0,#1a6dff 0,transparent 60%),linear-gradient(150deg,#0f2347,#0b6b61)}
-.thumb .badge{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:800}
+.t4{background:linear-gradient(150deg,#eef4ff,#def6f3);color:var(--ink)}
+.t5{background:radial-gradient(420px 220px at 90% 0,#0e8d83 0,transparent 55%),linear-gradient(150deg,#1a3e7e,#16d6c5)}
+.t6{background:linear-gradient(150deg,#e7f7f4,#eef4ff);color:var(--ink)}
+.t7{background:linear-gradient(150deg,#ffffff,#f0f3f8);color:var(--ink);border-bottom:1px solid var(--line)}
+.t8{background:radial-gradient(420px 220px at 20% 0,#1a6dff 0,transparent 55%),linear-gradient(150deg,#070f1f,#0f2347)}
+.t9{background:linear-gradient(150deg,#0f2347,#1a6dff)}
+.thumb .badge{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:800}
+.thumb.lighttab .badge{background:rgba(16,32,74,.08);border-color:rgba(16,32,74,.14);color:var(--navy)}
 .thumb .mini{display:flex;gap:6px}
-.thumb .mini i{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:15px;font-style:normal}
+.thumb .mini i{width:30px;height:30px;border-radius:9px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:15px;font-style:normal}
+.thumb.lighttab .mini i{background:rgba(16,32,74,.06)}
 .card__body{padding:22px;flex:1;display:flex;flex-direction:column}
-.card__kick{color:var(--brand);font-weight:800;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase}
-.card__body h2{font-size:21px;font-weight:900;letter-spacing:-.5px;margin:6px 0 8px}
-.card__body p{color:var(--soft);font-size:14px;flex:1}
-.card__body .feat{margin:12px 0 16px;display:flex;flex-direction:column;gap:5px}
-.card__body .feat span{font-size:13px;color:#33405a;display:flex;gap:8px;align-items:center}
-.card__body .feat span::before{content:"✓";color:var(--mint);font-weight:900}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:12px;font-weight:800;font-size:15px;height:46px;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;box-shadow:0 8px 20px rgba(26,109,255,.3)}
+.card__kick{color:var(--brand);font-weight:800;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+.card__body h2{font-size:20px;font-weight:900;letter-spacing:-.5px;margin:6px 0 8px}
+.card__body p{color:var(--soft);font-size:13.5px;flex:1}
+.card__body .feat{margin:12px 0 16px;display:flex;flex-wrap:wrap;gap:6px}
+.card__body .feat span{font-size:12px;color:#33405a;background:#f1f5fb;border-radius:8px;padding:4px 9px;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border-radius:12px;font-weight:800;font-size:14.5px;height:44px;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;box-shadow:0 8px 20px rgba(26,109,255,.3)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(26,109,255,.42)}
-.note{text-align:center;color:var(--soft);font-size:13.5px;padding:0 0 50px}
+.note{text-align:center;color:var(--soft);font-size:13.5px;padding:24px 0 60px;max-width:840px;margin:0 auto}
 .note b{color:var(--ink)}
-@media(max-width:900px){.grid{grid-template-columns:1fr;margin-top:-24px}.top h1{font-size:30px}}
+@media(max-width:980px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.grid{grid-template-columns:1fr;margin-top:-30px}.top h1{font-size:30px}}
 </style>
 </head>
 <body>
 <section class="top">
   <div class="wrap">
     <img src="assets/logo-dark.svg" alt="MoneyBox Remit" />
-    <div><span class="eyebrow"><span class="dot"></span>moneyboxremit.com · 개편 시안</span></div>
+    <div><span class="eyebrow"><span class="dot"></span>moneyboxremit.com · 개편 시안 9종</span></div>
     <h1>외국인을 위한 <span class="hl">생활 포털</span> 개편 초안</h1>
-    <p>해외송금 중심에서 한 단계 확장 — 송금·환전·행정사·유심·보험을 아우르는 외국인 포털. 기존 브랜드 톤앤매너를 유지한 3가지 방향입니다.</p>
+    <p>해외송금 중심에서 한 단계 확장 — 송금·환전·행정사·유심·보험을 아우르는 외국인 포털. 기존 브랜드 톤앤매너를 유지한 9가지 방향입니다.</p>
     <div class="svctags"><span>💸 해외송금</span><span>💱 환전</span><span>📋 행정사</span><span>📱 유심</span><span>🛡️ 보험</span></div>
   </div>
 </section>
 
 <div class="wrap">
   <div class="grid">
+
     <a class="card" href="draft1.html">
       <div class="thumb t1"><span class="badge">초안 1</span><div class="mini"><i>💸</i><i>💱</i><i>📋</i><i>📱</i><i>🛡️</i></div></div>
       <div class="card__body">
-        <span class="card__kick">All-in-One Hub</span>
-        <h2>올인원 허브</h2>
-        <p>기존 포털과 가장 가까운 안전한 진화. 네이비 히어로 아래 5개 서비스 그리드를 전면에 배치해 "한곳에서 다 된다"를 즉시 전달합니다.</p>
-        <div class="feat"><span>기존 톤 계승 · 거부감 최소</span><span>서비스 그리드 중심</span><span>한·영 토글</span></div>
+        <span class="card__kick">All-in-One Hub</span><h2>올인원 허브</h2>
+        <p>기존 포털과 가장 가까운 안전한 진화. 네이비 히어로 아래 5개 서비스 그리드를 전면에 배치.</p>
+        <div class="feat"><span>기존 톤 계승</span><span>서비스 그리드</span></div>
         <span class="btn">초안 1 보기 →</span>
       </div>
     </a>
+
     <a class="card" href="draft2.html">
       <div class="thumb t2"><span class="badge">초안 2</span><div class="mini"><i>📱</i><i>💱</i><i>📋</i><i>🛡️</i><i>💸</i></div></div>
       <div class="card__body">
-        <span class="card__kick">Life Journey</span>
-        <h2>라이프 여정</h2>
-        <p>입국 → 정착 → 생활 3단계로 서비스를 엮은 스토리텔링형. 외국인의 실제 생활 흐름에 맞춰 공감과 신뢰를 강조하는 에디토리얼 구성.</p>
-        <div class="feat"><span>여정 기반 스토리텔링</span><span>공감·신뢰 소구</span><span>한·영 토글</span></div>
+        <span class="card__kick">Life Journey</span><h2>라이프 여정</h2>
+        <p>입국 → 정착 → 생활 3단계로 서비스를 엮은 스토리텔링형. 공감과 신뢰를 강조.</p>
+        <div class="feat"><span>여정 스토리텔링</span><span>공감 소구</span></div>
         <span class="btn">초안 2 보기 →</span>
       </div>
     </a>
+
     <a class="card" href="draft3.html">
       <div class="thumb t3"><span class="badge">초안 3</span><div class="mini"><i>💸</i><i>💱</i><i>📋</i><i>📱</i><i>🛡️</i></div></div>
       <div class="card__body">
-        <span class="card__kick">Super-App Launcher</span>
-        <h2>슈퍼앱 런처</h2>
-        <p>가장 볼드한 핀테크 방향. 실시간 환율 티커, 서비스 스위처, 앱 목업, 벤토 그리드로 "외국인 슈퍼앱" 포지셔닝을 강하게 밀어붙입니다.</p>
-        <div class="feat"><span>환율 티커 · 서비스 스위처</span><span>전환 중심 · 앱 다운로드</span><span>한·영 토글</span></div>
+        <span class="card__kick">Super-App Launcher</span><h2>슈퍼앱 런처</h2>
+        <p>실시간 환율 티커·서비스 스위처·앱 목업. "외국인 슈퍼앱" 포지셔닝을 강하게.</p>
+        <div class="feat"><span>환율 티커</span><span>전환 중심</span></div>
         <span class="btn">초안 3 보기 →</span>
       </div>
     </a>
+
+    <a class="card" href="draft4.html">
+      <div class="thumb t4 lighttab"><span class="badge">초안 4</span><div class="mini"><i>💸</i><i>💱</i><i>📋</i><i>📱</i><i>🛡️</i></div></div>
+      <div class="card__body">
+        <span class="card__kick">Bento Mosaic</span><h2>벤토 모자이크</h2>
+        <p>라이트 매거진형 비대칭 벤토 그리드. 크기가 다른 타일로 5서비스를 한눈에.</p>
+        <div class="feat"><span>벤토 그리드</span><span>모던·에어리</span></div>
+        <span class="btn">초안 4 보기 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="draft5.html">
+      <div class="thumb t5"><span class="badge">초안 5</span><div class="mini"><i>🇻🇳</i><i>🇹🇭</i><i>🇳🇵</i><i>🇺🇿</i><i>🇰🇷</i></div></div>
+      <div class="card__body">
+        <span class="card__kick">Global Welcome</span><h2>글로벌 환영</h2>
+        <p>다국어 인사말과 국기로 외국인을 환영하는 따뜻한 무드. 포용·다국어 강조.</p>
+        <div class="feat"><span>다국어 인사</span><span>따뜻한 환영</span></div>
+        <span class="btn">초안 5 보기 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="draft6.html">
+      <div class="thumb t6 lighttab"><span class="badge">초안 6</span><div class="mini"><i>💬</i><i>💸</i><i>📋</i><i>📱</i><i>🛡️</i></div></div>
+      <div class="card__body">
+        <span class="card__kick">Concierge</span><h2>컨시어지</h2>
+        <p>대화형 개인 비서. 채팅 말풍선과 빠른 답변 칩으로 필요한 서비스를 안내.</p>
+        <div class="feat"><span>대화형 챗</span><span>질문 기반</span></div>
+        <span class="btn">초안 6 보기 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="draft7.html">
+      <div class="thumb t7 lighttab"><span class="badge">초안 7</span><div class="mini"><i>01</i><i>02</i><i>03</i><i>04</i><i>05</i></div></div>
+      <div class="card__body">
+        <span class="card__kick">Minimal Premium</span><h2>미니멀 프리미엄</h2>
+        <p>넓은 여백과 큰 타이포 중심의 절제된 고급감. 번호 리스트로 정갈하게.</p>
+        <div class="feat"><span>여백·타이포</span><span>차분한 프리미엄</span></div>
+        <span class="btn">초안 7 보기 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="draft8.html">
+      <div class="thumb t8"><span class="badge">초안 8</span><div class="mini"><i>💸</i><i>💱</i><i>📋</i><i>📱</i><i>🛡️</i></div></div>
+      <div class="card__body">
+        <span class="card__kick">App Showcase</span><h2>앱 쇼케이스 다크</h2>
+        <p>풀 다크 테마에 폰 목업을 나열한 앱스토어 랜딩형. 가장 "앱다운" 방향.</p>
+        <div class="feat"><span>다크 테마</span><span>폰 목업</span></div>
+        <span class="btn">초안 8 보기 →</span>
+      </div>
+    </a>
+
+    <a class="card" href="draft9.html">
+      <div class="thumb t9"><span class="badge">초안 9</span><div class="mini"><i>📊</i><i>💱</i><i>💸</i><i>📋</i><i>🛡️</i></div></div>
+      <div class="card__body">
+        <span class="card__kick">Dashboard</span><h2>대시보드 위젯</h2>
+        <p>개인화 대시보드. 환율·송금 상태·비자 D-day·보험 알림을 위젯 카드로.</p>
+        <div class="feat"><span>위젯 대시보드</span><span>한눈에 보기</span></div>
+        <span class="btn">초안 9 보기 →</span>
+      </div>
+    </a>
+
   </div>
-  <p class="note"><b>안내</b> — 세 시안 모두 기존 머니박스레밋 브랜드 컬러(블루·민트·네이비)와 Pretendard, 한·영 전환을 그대로 사용했습니다. 환율·통계 수치와 일부 링크(환전·행정사·유심·보험)는 자리표시(placeholder)이며, 송금 버튼만 실제 설명서로 연결됩니다.</p>
+  <p class="note"><b>안내</b> — 9개 시안 모두 기존 머니박스레밋 브랜드 컬러(블루·민트·네이비)와 Pretendard, 한·영 전환(우상단 EN 버튼)을 그대로 사용했습니다. 환율·통계 수치와 일부 링크(환전·행정사·유심·보험)는 자리표시(placeholder)이며, 송금 버튼만 실제 설명서로 연결됩니다.</p>
 </div>
 </body>
 </html>

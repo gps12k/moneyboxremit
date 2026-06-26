@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MoneyBox Remit · 외국인 생활 포털</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{
+  --brand:#1a6dff; --brand-d:#0b4ed1; --mint:#16d6c5; --navy:#0a1730; --navy-2:#0f2347;
+  --ink:#101828; --soft:#5b6678; --line:#e7ebf2; --bg:#ffffff; --bg-2:#f6f9fd;
+  --radius:18px; --shadow:0 10px 30px rgba(16,32,74,.08); --shadow-lg:0 24px 60px rgba(10,23,48,.18);
+  --maxw:1140px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;background:var(--bg)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none}
+body.en [data-lang-ko]{display:none}
+body.en [data-lang-en]{display:inline}
+
+/* Header */
+header{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:74px}
+.hd .logo img{height:26px;display:block}
+.nav{display:flex;align-items:center;gap:34px}
+.nav a.menu{font-size:14.5px;color:var(--soft);letter-spacing:.01em;transition:color .2s}
+.nav a.menu:hover{color:var(--ink)}
+.lang{font-size:12.5px;letter-spacing:.06em;font-weight:600;color:var(--ink);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 15px;cursor:pointer;transition:all .2s}
+.lang:hover{border-color:var(--ink)}
+.hd-right{display:flex;align-items:center;gap:18px}
+.cta-mini{font-size:14px;font-weight:600;color:#fff;background:var(--ink);border-radius:999px;padding:10px 20px;transition:background .2s}
+.cta-mini:hover{background:var(--brand)}
+
+/* Hero */
+.hero{padding:118px 0 96px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:600;margin-bottom:34px}
+.eyebrow::before{content:"";width:30px;height:1px;background:var(--ink)}
+.hero h1{font-size:clamp(42px,6.6vw,82px);line-height:1.04;letter-spacing:-.03em;font-weight:700;max-width:14ch}
+.hero h1 .accent{color:var(--brand)}
+.hero .lede{margin-top:38px;font-size:clamp(17px,2.1vw,21px);color:var(--soft);max-width:50ch;line-height:1.65;font-weight:400}
+.hero-actions{margin-top:50px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:11px;font-size:15.5px;font-weight:600;color:#fff;background:var(--brand);border-radius:999px;padding:16px 30px;box-shadow:0 12px 28px rgba(26,109,255,.26);transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(26,109,255,.34)}
+.btn-primary svg{transition:transform .2s}
+.btn-primary:hover svg{transform:translateX(3px)}
+.link-quiet{font-size:15px;font-weight:500;color:var(--ink);display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink);padding-bottom:2px;transition:opacity .2s}
+.link-quiet:hover{opacity:.55}
+
+/* Stats strip */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats .grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:42px 26px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none;padding-left:0}
+.stat .num{font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-.02em;line-height:1}
+.stat .num small{font-size:.5em;font-weight:600;color:var(--brand);margin-left:3px}
+.stat .lab{margin-top:12px;font-size:13.5px;color:var(--soft);letter-spacing:.01em}
+
+/* Section heading */
+.sec{padding:110px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:62px;flex-wrap:wrap}
+.sec-kick{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:700;margin-bottom:18px}
+.sec-head h2{font-size:clamp(30px,4.4vw,52px);line-height:1.08;letter-spacing:-.025em;font-weight:700;max-width:18ch}
+.sec-head .note{font-size:15px;color:var(--soft);max-width:34ch;line-height:1.65}
+
+/* Services — numbered rows */
+.svc-list{border-top:1px solid var(--line)}
+.svc{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:36px;padding:40px 8px;border-bottom:1px solid var(--line);position:relative;transition:padding .25s}
+.svc::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;z-index:1}
+.svc:hover::after{transform:scaleX(1)}
+.svc .no{font-size:14px;font-weight:600;color:var(--soft);font-variant-numeric:tabular-nums;letter-spacing:.04em;min-width:34px}
+.svc-main{min-width:0}
+.svc-main h3{font-size:clamp(24px,3.4vw,38px);font-weight:700;letter-spacing:-.02em;line-height:1.1;display:flex;align-items:center;gap:14px;transition:color .25s}
+.svc-main h3 .ico{font-size:.62em;opacity:.92}
+.svc:hover .svc-main h3{color:var(--brand)}
+.svc-main p{margin-top:11px;font-size:15px;color:var(--soft);max-width:54ch;line-height:1.6}
+.svc-go{display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:999px;border:1px solid var(--line);color:var(--ink);transition:all .25s;flex-shrink:0}
+.svc-go svg{transition:transform .25s}
+.svc:hover .svc-go{background:var(--ink);border-color:var(--ink);color:#fff}
+.svc:hover .svc-go svg{transform:translate(2px,-2px)}
+.svc .badge{position:absolute;top:32px;right:78px;font-size:11px;font-weight:700;letter-spacing:.05em;color:var(--brand);background:rgba(26,109,255,.08);border-radius:999px;padding:5px 11px}
+
+/* Feature band */
+.band{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band-in{padding:104px 0}
+.band-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.band h2{font-size:clamp(28px,3.8vw,46px);line-height:1.12;letter-spacing:-.025em;font-weight:700}
+.band p.sub{margin-top:26px;font-size:17px;color:var(--soft);line-height:1.7;max-width:46ch}
+.feats{display:flex;flex-direction:column;gap:0}
+.feat{display:flex;gap:22px;padding:28px 0;border-top:1px solid var(--line)}
+.feat:last-child{border-bottom:1px solid var(--line)}
+.feat .fno{font-size:13px;font-weight:600;color:var(--brand);font-variant-numeric:tabular-nums;min-width:30px;padding-top:3px}
+.feat h4{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.feat p{margin-top:7px;font-size:14.5px;color:var(--soft);line-height:1.6}
+
+/* CTA */
+.cta-sec{padding:130px 0}
+.cta-box{text-align:center;max-width:760px;margin:0 auto}
+.cta-box h2{font-size:clamp(32px,5vw,60px);line-height:1.08;letter-spacing:-.03em;font-weight:700}
+.cta-box p{margin-top:26px;font-size:18px;color:var(--soft);line-height:1.65}
+.cta-box .btn-primary{margin-top:46px}
+
+/* Footer */
+footer{background:var(--navy);color:#fff;padding:80px 0 40px}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:54px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-brand img{height:26px;display:block;margin-bottom:22px}
+.ft-brand p{font-size:14.5px;color:#9fb0cc;line-height:1.7;max-width:34ch}
+.ft-call{margin-top:26px}
+.ft-call .lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#7d90b0;font-weight:600}
+.ft-call .num{font-size:24px;font-weight:700;letter-spacing:-.01em;margin-top:6px;color:#fff}
+.ft-col h5{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#7d90b0;font-weight:700;margin-bottom:20px}
+.ft-col a{display:block;font-size:14.5px;color:#c5d2e8;padding:8px 0;transition:color .2s}
+.ft-col a:hover{color:#fff}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:30px;gap:20px;flex-wrap:wrap}
+.ft-bot small{font-size:13px;color:#7d90b0}
+.ft-bot .legal{display:flex;gap:24px}
+.ft-bot .legal a{font-size:13px;color:#9fb0cc;transition:color .2s}
+.ft-bot .legal a:hover{color:#fff}
+
+/* Ribbon */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(16,24,40,.92);color:#fff;font-size:12.5px;letter-spacing:.01em;padding:9px 15px;border-radius:999px;box-shadow:var(--shadow);backdrop-filter:blur(8px)}
+.ribbon a{color:var(--mint);font-weight:600}
+.ribbon a:hover{text-decoration:underline}
+
+/* Responsive */
+@media(max-width:920px){
+  .nav{gap:18px}
+  .nav a.menu{display:none}
+  .hero{padding:84px 0 70px}
+  .stats .grid{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none;padding:30px 0}
+  .stat:nth-child(even){border-left:1px solid var(--line);padding-left:26px}
+  .sec{padding:80px 0}
+  .band-in{padding:74px 0}
+  .band-grid{grid-template-columns:1fr;gap:46px}
+  .svc{grid-template-columns:auto 1fr;gap:22px;padding:32px 4px}
+  .svc-go{grid-column:2;justify-self:start;margin-top:6px}
+  .svc .badge{position:static;display:inline-block;margin-top:10px}
+  .cta-sec{padding:90px 0}
+  .ft-top{grid-template-columns:1fr 1fr;gap:36px}
+  .ft-brand{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .wrap{padding:0 18px}
+  .hd-right .cta-mini{display:none}
+  .stats .grid{grid-template-columns:1fr}
+  .stat,.stat:nth-child(even){border-left:none;padding:24px 0;border-top:1px solid var(--line)}
+  .stat:first-child{border-top:none}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:20px}
+  .btn-primary{width:100%;justify-content:center}
+  .ft-top{grid-template-columns:1fr}
+  .ft-bot{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a href="#" class="logo"><img src="assets/logo.svg" alt="MoneyBox Remit" /></a>
+    <nav class="nav">
+      <a href="#services" class="menu"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></a>
+      <a href="#why" class="menu"><span data-lang-ko>왜 우리인가</span><span data-lang-en>Why us</span></a>
+      <a href="#contact" class="menu"><span data-lang-ko>고객센터</span><span data-lang-en>Support</span></a>
+      <div class="hd-right">
+        <button class="lang" type="button" data-lang-toggle>EN</button>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank" class="cta-mini"><span data-lang-ko>송금 시작</span><span data-lang-en>Send money</span></a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span data-lang-ko>외국인 생활 포털</span><span data-lang-en>Life portal for foreigners in Korea</span></span>
+    <h1>
+      <span data-lang-ko>한국 생활의 <span class="accent">모든 순간</span>을 한 곳에서.</span>
+      <span data-lang-en>Every moment of life in Korea, <span class="accent">in one place.</span></span>
+    </h1>
+    <p class="lede">
+      <span data-lang-ko>송금부터 환전, 비자 행정, 통신, 보험까지. 머니박스레밋이 외국인의 한국 생활을 가장 단정하게 연결합니다.</span>
+      <span data-lang-en>From remittance and exchange to visa support, mobile and insurance — MoneyBox Remit connects your life in Korea, simply and clearly.</span>
+    </p>
+    <div class="hero-actions">
+      <a href="https://moneyboxremit.github.io/remit/" target="_blank" class="btn-primary">
+        <span data-lang-ko>해외송금 시작하기</span><span data-lang-en>Start remittance</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="#services" class="link-quiet"><span data-lang-ko>전체 서비스 보기</span><span data-lang-en>View all services</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="wrap">
+    <div class="grid">
+      <div class="stat">
+        <div class="num">32<small>개국</small></div>
+        <div class="lab"><span data-lang-ko>송금 가능 국가</span><span data-lang-en>Countries supported</span></div>
+      </div>
+      <div class="stat">
+        <div class="num">05</div>
+        <div class="lab"><span data-lang-ko>통합 생활 서비스</span><span data-lang-en>Integrated services</span></div>
+      </div>
+      <div class="stat">
+        <div class="num"><small>최저</small>0<small>원~</small></div>
+        <div class="lab"><span data-lang-ko>소액 송금 우대</span><span data-lang-en>Low-amount advantage</span></div>
+      </div>
+      <div class="stat">
+        <div class="num"><small></small>365</div>
+        <div class="lab"><span data-lang-ko>연중 상담 운영</span><span data-lang-en>Support all year</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-kick"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></div>
+        <h2><span data-lang-ko>다섯 가지로 충분합니다.</span><span data-lang-en>Five services, all you need.</span></h2>
+      </div>
+      <p class="note"><span data-lang-ko>흩어진 절차를 하나의 신뢰 위에 모았습니다. 필요한 것을 골라 바로 시작하세요.</span><span data-lang-en>We gathered scattered procedures onto one trusted platform. Pick what you need and start.</span></p>
+    </div>
+
+    <div class="svc-list">
+      <!-- 01 -->
+      <a class="svc" href="https://moneyboxremit.github.io/remit/" target="_blank">
+        <span class="no">01</span>
+        <div class="svc-main">
+          <h3><span class="ico">💸</span><span data-lang-ko>해외송금</span><span data-lang-en>Overseas Remittance</span></h3>
+          <p><span data-lang-ko>라이선스 기반 소액해외송금 · 32개국 · 소액일수록 유리한 수수료 구조.</span><span data-lang-en>Licensed small-amount remittance · 32 countries · the smaller the transfer, the better the rate.</span></p>
+        </div>
+        <span class="badge"><span data-lang-ko>라이선스</span><span data-lang-en>Licensed</span></span>
+        <span class="svc-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+      <!-- 02 -->
+      <a class="svc" href="#">
+        <span class="no">02</span>
+        <div class="svc-main">
+          <h3><span class="ico">💱</span><span data-lang-ko>환전</span><span data-lang-en>Currency Exchange</span></h3>
+          <p><span data-lang-ko>실시간 환율과 투명한 수수료. 숨은 비용 없이 환전하세요.</span><span data-lang-en>Real-time rates and transparent fees — exchange with no hidden costs.</span></p>
+        </div>
+        <span class="svc-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+      <!-- 03 -->
+      <a class="svc" href="#">
+        <span class="no">03</span>
+        <div class="svc-main">
+          <h3><span class="ico">📋</span><span data-lang-ko>행정사</span><span data-lang-en>Administrative (Visa)</span></h3>
+          <p><span data-lang-ko>비자·체류·외국인등록 등 복잡한 행정을 전문가가 대행합니다.</span><span data-lang-en>Visa, residence and alien registration — complex paperwork handled by experts.</span></p>
+        </div>
+        <span class="svc-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+      <!-- 04 -->
+      <a class="svc" href="#">
+        <span class="no">04</span>
+        <div class="svc-main">
+          <h3><span class="ico">📱</span><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></h3>
+          <p><span data-lang-ko>개통 지원과 알뜰 요금제. 도착 첫날부터 끊김 없이 연결됩니다.</span><span data-lang-en>Activation support and budget plans — stay connected from day one.</span></p>
+        </div>
+        <span class="svc-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+      <!-- 05 -->
+      <a class="svc" href="#">
+        <span class="no">05</span>
+        <div class="svc-main">
+          <h3><span class="ico">🛡️</span><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></h3>
+          <p><span data-lang-ko>건강·여행·체류 보험을 한국 생활에 맞춰 안내해 드립니다.</span><span data-lang-en>Health, travel and residence insurance tailored to life in Korea.</span></p>
+        </div>
+        <span class="svc-go"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Why band -->
+<section class="band" id="why">
+  <div class="wrap band-in">
+    <div class="band-grid">
+      <div>
+        <div class="sec-kick"><span data-lang-ko>왜 머니박스레밋인가</span><span data-lang-en>Why MoneyBox Remit</span></div>
+        <h2><span data-lang-ko>신뢰는 디테일에서 시작됩니다.</span><span data-lang-en>Trust begins in the details.</span></h2>
+        <p class="sub"><span data-lang-ko>화려함 대신 정확함을. 라이선스, 투명한 수수료, 그리고 외국인의 입장에서 설계한 절차로 한국 생활의 기준을 만듭니다.</span><span data-lang-en>Precision over flash. Licensing, transparent fees and a process designed from a foreigner's point of view set the standard for living in Korea.</span></p>
+      </div>
+      <div class="feats">
+        <div class="feat">
+          <span class="fno">01</span>
+          <div>
+            <h4><span data-lang-ko>정식 라이선스 송금</span><span data-lang-en>Licensed remittance</span></h4>
+            <p><span data-lang-ko>소액해외송금업 라이선스를 기반으로 안전하게 송금합니다.</span><span data-lang-en>Backed by a small-amount overseas remittance license for safe transfers.</span></p>
+          </div>
+        </div>
+        <div class="feat">
+          <span class="fno">02</span>
+          <div>
+            <h4><span data-lang-ko>투명한 단일 수수료</span><span data-lang-en>Transparent single fee</span></h4>
+            <p><span data-lang-ko>보낼 때 보이는 금액 그대로. 숨은 비용이 없습니다.</span><span data-lang-en>What you see is what you send — no hidden costs.</span></p>
+          </div>
+        </div>
+        <div class="feat">
+          <span class="fno">03</span>
+          <div>
+            <h4><span data-lang-ko>다국어 생활 지원</span><span data-lang-en>Multilingual life support</span></h4>
+            <p><span data-lang-ko>송금을 넘어 비자·통신·보험까지 한 창구에서 안내합니다.</span><span data-lang-en>Beyond remittance — visa, mobile and insurance from one desk.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec" id="contact">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2><span data-lang-ko>지금, 가장 단정하게 시작하세요.</span><span data-lang-en>Start now, the simplest way.</span></h2>
+      <p><span data-lang-ko>첫 송금부터 한국 생활의 모든 절차까지. 전문 상담원이 단계마다 함께합니다.</span><span data-lang-en>From your first transfer to every step of life in Korea — our specialists guide you all the way.</span></p>
+      <a href="https://moneyboxremit.github.io/remit/" target="_blank" class="btn-primary">
+        <span data-lang-ko>해외송금 시작하기</span><span data-lang-en>Start remittance</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="assets/logo-dark.svg" alt="MoneyBox Remit" />
+        <p><span data-lang-ko>외국인의 한국 생활을 가장 단정하게 연결하는 통합 생활 포털.</span><span data-lang-en>An integrated life portal that simply connects foreigners' life in Korea.</span></p>
+        <div class="ft-call">
+          <div class="lab"><span data-lang-ko>고객센터</span><span data-lang-en>Customer center</span></div>
+          <div class="num">02-771-0000</div>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h5><span data-lang-ko>서비스</span><span data-lang-en>Services</span></h5>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a>
+        <a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a>
+        <a href="#"><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Administrative</span></a>
+        <a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a>
+        <a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a>
+      </div>
+      <div class="ft-col">
+        <h5><span data-lang-ko>회사</span><span data-lang-en>Company</span></h5>
+        <a href="#"><span data-lang-ko>회사 소개</span><span data-lang-en>About us</span></a>
+        <a href="#contact"><span data-lang-ko>고객센터</span><span data-lang-en>Support</span></a>
+        <a href="#"><span data-lang-ko>이용약관</span><span data-lang-en>Terms</span></a>
+        <a href="#"><span data-lang-ko>개인정보처리방침</span><span data-lang-en>Privacy</span></a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <small>© 2026 MoneyBox Remit. All rights reserved.</small>
+      <div class="legal">
+        <a href="#"><span data-lang-ko>이용약관</span><span data-lang-en>Terms</span></a>
+        <a href="#"><span data-lang-ko>개인정보처리방침</span><span data-lang-en>Privacy</span></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 7 · 미니멀 프리미엄</span><span data-lang-en>Draft 7 · Minimal Premium</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var en=document.body.classList.toggle('en');
+    document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});
+    document.documentElement.lang=en?'en':'ko';
+  });
+});
+</script>
+</body>
+</html>
