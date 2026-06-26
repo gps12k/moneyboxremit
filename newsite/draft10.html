@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MoneyBox Remit — VOL.1 2026 · 외국인 생활 매거진</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{--brand:#1a6dff;--brand-d:#0b4ed1;--mint:#16d6c5;--navy:#0a1730;--navy-2:#0f2347;--ink:#101828;--soft:#5b6678;--line:#e7ebf2;--bg:#ffffff;--bg-2:#f6f9fd;--radius:18px;--shadow:0 10px 30px rgba(16,32,74,.08);--shadow-lg:0 24px 60px rgba(10,23,48,.18);--maxw:1140px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none}
+body.en [data-lang-ko]{display:none}
+body.en [data-lang-en]{display:inline}
+
+/* ===== Header / Masthead ===== */
+.top{border-bottom:1px solid var(--ink);background:var(--bg)}
+.top-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 22px;font-size:12px;letter-spacing:.04em;color:var(--soft);text-transform:uppercase;border-bottom:1px solid var(--line)}
+.top-bar .meta{display:flex;gap:18px;flex-wrap:wrap}
+.top-bar .meta b{color:var(--ink)}
+.lang{appearance:none;border:1px solid var(--ink);background:transparent;color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.06em;padding:5px 13px;border-radius:999px;cursor:pointer;font-family:inherit;transition:.2s}
+.lang:hover{background:var(--ink);color:#fff}
+
+.masthead{padding:22px 22px 18px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.masthead .brand{display:flex;align-items:center;gap:13px}
+.masthead .brand img{height:26px;display:block}
+.masthead .name{font-size:13px;color:var(--soft);letter-spacing:.04em}
+.masthead .issue{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);font-weight:800}
+nav.sections{display:flex;gap:0;border-top:1px solid var(--ink);border-bottom:3px double var(--ink)}
+nav.sections a{flex:1;text-align:center;padding:11px 6px;font-size:13px;font-weight:700;letter-spacing:.02em;border-right:1px solid var(--line);transition:.18s}
+nav.sections a:last-child{border-right:none}
+nav.sections a:hover{background:var(--brand);color:#fff}
+
+/* ===== Hero feature ===== */
+.feature{padding:44px 0 30px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brand)}
+.kicker::before{content:"";width:26px;height:2px;background:var(--brand)}
+.feat-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:40px;align-items:start;margin-top:18px}
+.feat-head{font-size:clamp(38px,6.4vw,74px);line-height:1.02;font-weight:900;letter-spacing:-.02em}
+.feat-head .hl{background:linear-gradient(120deg,var(--brand),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.feat-sub{margin-top:18px;font-size:18px;color:var(--soft);max-width:46ch;border-left:3px solid var(--mint);padding-left:16px}
+.byline{margin-top:22px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.byline b{color:var(--ink)}
+.feat-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;padding:13px 22px;border-radius:999px;transition:.2s}
+.btn-p{background:var(--brand);color:#fff;box-shadow:var(--shadow)}
+.btn-p:hover{background:var(--brand-d);transform:translateY(-2px)}
+.btn-g{border:1.5px solid var(--ink)}
+.btn-g:hover{background:var(--ink);color:#fff}
+
+.feat-side{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg-2)}
+.feat-side .pic{height:188px;background:linear-gradient(135deg,var(--navy),var(--brand) 70%,var(--mint));position:relative;display:flex;align-items:center;justify-content:center}
+.feat-side .pic .big{font-size:64px}
+.feat-side .pic .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);color:var(--navy);font-size:11px;font-weight:800;letter-spacing:.08em;padding:5px 11px;border-radius:999px;text-transform:uppercase}
+.feat-side .body{padding:18px 18px 20px}
+.feat-side .body h4{font-size:17px;font-weight:800;margin-bottom:6px}
+.feat-side .body p{font-size:14px;color:var(--soft)}
+.stats{display:flex;border-top:1px solid var(--line);margin-top:16px}
+.stats div{flex:1;padding:14px 8px;text-align:center;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:none}
+.stats .n{font-size:24px;font-weight:900;color:var(--brand);letter-spacing:-.02em}
+.stats .l{font-size:11px;color:var(--soft);letter-spacing:.04em}
+
+/* ===== Section rule ===== */
+.rule{border:none;border-top:3px double var(--ink);margin:8px 0 0}
+.sec-label{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:30px 0 8px;border-bottom:1px solid var(--line)}
+.sec-label h2{font-size:13px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+.sec-label span{font-size:12px;color:var(--soft);letter-spacing:.04em}
+
+/* ===== Columns / article cards ===== */
+.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:28px 0 8px}
+.col{padding:0 22px;border-right:1px solid var(--line)}
+.col:first-child{padding-left:0}
+.col:last-child{border-right:none;padding-right:0}
+.col .num{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--brand)}
+.col .em{font-size:30px;margin:8px 0 4px}
+.col h3{font-size:20px;font-weight:900;letter-spacing:-.01em;margin-bottom:8px;line-height:1.2}
+.col h3 small{display:block;font-size:12px;font-weight:700;color:var(--soft);letter-spacing:.02em;margin-top:3px;text-transform:uppercase}
+.col p{font-size:14px;color:var(--soft);margin-bottom:14px}
+.col .more{font-size:13px;font-weight:800;color:var(--brand);display:inline-flex;align-items:center;gap:5px;border-bottom:2px solid transparent;transition:.18s}
+.col .more:hover{border-bottom-color:var(--brand);gap:9px}
+
+/* ===== Editorial pull / brief ===== */
+.brief{display:grid;grid-template-columns:1.1fr 1fr;gap:42px;align-items:center;margin:46px 0 8px;padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.pull{font-size:clamp(24px,3.6vw,38px);font-weight:900;line-height:1.18;letter-spacing:-.02em}
+.pull .mk{color:var(--brand)}
+.brief-list{display:flex;flex-direction:column;gap:0}
+.brief-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px dotted var(--line)}
+.brief-row:last-child{border-bottom:none}
+.brief-row .ico{font-size:22px;flex-shrink:0;width:32px;text-align:center}
+.brief-row b{font-size:15px}
+.brief-row p{font-size:13px;color:var(--soft)}
+
+/* ===== Footer ===== */
+footer{background:var(--navy);color:#cdd7ea;margin-top:50px;padding:48px 0 70px}
+.f-top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:26px}
+.f-brand img{height:26px;display:block;margin-bottom:14px}
+.f-brand p{font-size:14px;max-width:38ch;color:#9fb0cc}
+.f-links{display:flex;gap:48px;flex-wrap:wrap}
+.f-col h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7e90b3;margin-bottom:12px}
+.f-col a{display:block;font-size:14px;padding:5px 0;color:#cdd7ea;transition:.15s}
+.f-col a:hover{color:var(--mint)}
+.f-cs{margin-top:6px}
+.f-cs .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7e90b3}
+.f-cs .num{font-size:26px;font-weight:900;color:var(--mint);letter-spacing:-.01em}
+.f-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:22px;font-size:13px;color:#7e90b3}
+
+/* ===== Ribbon ===== */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(10,23,48,.94);color:#fff;font-size:13px;font-weight:600;padding:9px 15px;border-radius:999px;box-shadow:var(--shadow-lg);backdrop-filter:blur(6px)}
+.ribbon a{color:var(--mint);font-weight:800}
+
+/* ===== Responsive ===== */
+@media(max-width:920px){
+  .feat-grid{grid-template-columns:1fr;gap:26px}
+  nav.sections{flex-wrap:wrap}
+  nav.sections a{flex:1 1 33%}
+  .cols{grid-template-columns:1fr 1fr;gap:0 0}
+  .col{padding:22px 18px;border-bottom:1px solid var(--line)}
+  .col:nth-child(2n){border-right:none}
+  .col:first-child,.col:last-child{padding-left:18px;padding-right:18px}
+  .brief{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:520px){
+  .top-bar{flex-direction:column;align-items:flex-start;gap:8px}
+  nav.sections a{flex:1 1 50%;font-size:12px}
+  .cols{grid-template-columns:1fr}
+  .col{border-right:none}
+  .feat-head{font-size:40px}
+  .f-links{gap:28px}
+  .stats .n{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-bar">
+    <div class="meta">
+      <span class="issue">VOL.1 · 2026</span>
+      <span><b data-lang-ko>외국인 생활 매거진</b><b data-lang-en>Life in Korea, for Foreigners</b></span>
+      <span data-lang-ko>발행 · 머니박스레밋</span><span data-lang-en>Published by MoneyBox Remit</span>
+    </div>
+    <button class="lang" type="button" data-lang-toggle>EN</button>
+  </div>
+  <div class="masthead">
+    <a class="brand" href="#">
+      <img src="assets/logo.svg" alt="MoneyBox Remit" />
+      <span class="name" data-lang-ko>한국 생활, 한 권으로</span><span class="name" data-lang-en>Your Korea, one issue at a time</span>
+    </a>
+    <span class="issue" data-lang-ko>이번 호 · 5개 섹션</span><span class="issue" data-lang-en>This issue · 5 sections</span>
+  </div>
+  <div class="wrap">
+    <nav class="sections">
+      <a href="#feature" data-lang-ko>해외송금</a><a href="#feature" data-lang-en>Remittance</a>
+      <a href="#columns" data-lang-ko>환전</a><a href="#columns" data-lang-en>Exchange</a>
+      <a href="#columns" data-lang-ko>행정·비자</a><a href="#columns" data-lang-en>Visa</a>
+      <a href="#columns" data-lang-ko>유심·통신</a><a href="#columns" data-lang-en>SIM</a>
+      <a href="#columns" data-lang-ko>보험</a><a href="#columns" data-lang-en>Insurance</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- FEATURE -->
+  <section class="feature" id="feature">
+    <span class="kicker"><span data-lang-ko>이번 호 머리기사</span><span data-lang-en>Cover Story</span></span>
+    <div class="feat-grid">
+      <div>
+        <h1 class="feat-head">
+          <span data-lang-ko>고향으로 보내는 돈,<br/><span class="hl">소액일수록 더 유리하게.</span></span>
+          <span data-lang-en>Money home,<br/><span class="hl">cheaper the smaller it is.</span></span>
+        </h1>
+        <p class="feat-sub">
+          <span data-lang-ko>라이선스 기반 소액해외송금으로 전 세계 32개국에 보내요. 작은 금액일수록 수수료가 더 유리하게 설계됐어요.</span>
+          <span data-lang-en>Licensed micro-remittance to 32 countries worldwide. The smaller the amount, the better the rate you get.</span>
+        </p>
+        <p class="byline">
+          <span data-lang-ko>글 · 머니박스레밋 편집부 — </span><span data-lang-en>Words · MoneyBox Editorial — </span>
+          <b>FINANCE</b> · <b>REMITTANCE</b>
+        </p>
+        <div class="feat-cta">
+          <a class="btn btn-p" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener">
+            <span data-lang-ko>지금 송금하기 →</span><span data-lang-en>Send money now →</span>
+          </a>
+          <a class="btn btn-g" href="#columns">
+            <span data-lang-ko>이번 호 전체 보기</span><span data-lang-en>Read the issue</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="feat-side">
+        <div class="pic">
+          <span class="tag">Feature 01</span>
+          <span class="big">💸</span>
+        </div>
+        <div class="body">
+          <h4 data-lang-ko>32개국, 송금 한 번이면 충분해요</h4><h4 data-lang-en>32 countries, one tap to send</h4>
+          <p data-lang-ko>네팔·베트남·필리핀·우즈베키스탄까지. 라이선스 기반으로 안전하고 투명하게 도착해요.</p>
+          <p data-lang-en>Nepal, Vietnam, the Philippines, Uzbekistan and more — licensed, safe, and transparent on arrival.</p>
+          <div class="stats">
+            <div><div class="n">32</div><div class="l" data-lang-ko>송금 국가</div><div class="l" data-lang-en>countries</div></div>
+            <div><div class="n">10<small style="font-size:14px">분</small></div><div class="l" data-lang-ko>평균 도착</div><div class="l" data-lang-en>avg. arrival</div></div>
+            <div><div class="n">24/7</div><div class="l" data-lang-ko>언제든</div><div class="l" data-lang-en>anytime</div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- COLUMNS -->
+  <div class="sec-label" id="columns">
+    <h2 data-lang-ko>이번 호 칼럼</h2><h2 data-lang-en>In This Issue · Columns</h2>
+    <span data-lang-ko>생활에 꼭 필요한 네 가지 이야기</span><span data-lang-en>Four essentials for life in Korea</span>
+  </div>
+
+  <section class="cols">
+    <article class="col">
+      <span class="num">COL. 02</span>
+      <div class="em">💱</div>
+      <h3><span data-lang-ko>환전</span><span data-lang-en>Exchange</span><small>Currency</small></h3>
+      <p data-lang-ko>실시간 환율과 투명한 수수료로 손해 없이 바꿔요. 오늘의 환율을 바로 확인하세요.</p>
+      <p data-lang-en>Real-time rates and transparent fees so you never lose out. Check today's rate instantly.</p>
+      <a class="more" href="#"><span data-lang-ko>자세히 읽기 →</span><span data-lang-en>Read more →</span></a>
+    </article>
+
+    <article class="col">
+      <span class="num">COL. 03</span>
+      <div class="em">📋</div>
+      <h3><span data-lang-ko>행정·비자</span><span data-lang-en>Visa &amp; Admin</span><small>Administrative</small></h3>
+      <p data-lang-ko>비자 연장·체류 변경·외국인등록까지 행정사가 대신 처리해 드려요. 서류 걱정 끝.</p>
+      <p data-lang-en>Visa extensions, status changes, and alien registration — handled by licensed agents. No paperwork stress.</p>
+      <a class="more" href="#"><span data-lang-ko>자세히 읽기 →</span><span data-lang-en>Read more →</span></a>
+    </article>
+
+    <article class="col">
+      <span class="num">COL. 04</span>
+      <div class="em">📱</div>
+      <h3><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span><small>Telecom</small></h3>
+      <p data-lang-ko>개통부터 알뜰 요금제 추천까지. 도착 첫날부터 끊김 없이 연결돼요.</p>
+      <p data-lang-en>From activation to budget plans. Stay connected from your very first day here.</p>
+      <a class="more" href="#"><span data-lang-ko>자세히 읽기 →</span><span data-lang-en>Read more →</span></a>
+    </article>
+
+    <article class="col">
+      <span class="num">COL. 05</span>
+      <div class="em">🛡️</div>
+      <h3><span data-lang-ko>보험</span><span data-lang-en>Insurance</span><small>Coverage</small></h3>
+      <p data-lang-ko>건강·여행·체류 보험을 한곳에서. 갑작스러운 상황에도 든든하게 대비해요.</p>
+      <p data-lang-en>Health, travel, and stay insurance in one place. Be ready for the unexpected.</p>
+      <a class="more" href="#"><span data-lang-ko>자세히 읽기 →</span><span data-lang-en>Read more →</span></a>
+    </article>
+  </section>
+
+  <!-- EDITORIAL BRIEF -->
+  <section class="brief">
+    <p class="pull">
+      <span data-lang-ko>“한국에서의 첫 정착, <span class="mk">돈·서류·통신·건강</span>을 한 권의 매거진처럼 정리했어요.”</span>
+      <span data-lang-en>“Settling in Korea — <span class="mk">money, papers, phone, health</span> — edited like one clean issue.”</span>
+    </p>
+    <div class="brief-list">
+      <div class="brief-row"><span class="ico">🏛️</span><div><b data-lang-ko>라이선스 기반 운영</b><b data-lang-en>Licensed operator</b><p data-lang-ko>제도권 안에서 안전하게 송금 서비스를 제공해요.</p><p data-lang-en>Regulated, compliant remittance you can trust.</p></div></div>
+      <div class="brief-row"><span class="ico">🌏</span><div><b data-lang-ko>다국어 지원</b><b data-lang-en>Multilingual support</b><p data-lang-ko>한국어·영어를 비롯한 모국어 상담으로 편하게.</p><p data-lang-en>Talk in Korean, English, or your own language.</p></div></div>
+      <div class="brief-row"><span class="ico">📞</span><div><b data-lang-ko>전담 고객센터</b><b data-lang-en>Dedicated help center</b><p data-lang-ko>막힐 땐 언제든 02-771-0000으로 연결하세요.</p><p data-lang-en>Stuck? Reach us anytime at 02-771-0000.</p></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <img src="assets/logo-dark.svg" alt="MoneyBox Remit" />
+        <p data-lang-ko>외국인의 한국 생활을 한 권으로 — 송금부터 환전·행정·통신·보험까지, 머니박스레밋이 함께해요.</p>
+        <p data-lang-en>Life in Korea, in one issue — remittance, exchange, admin, SIM, and insurance, all with MoneyBox Remit.</p>
+        <div class="f-cs">
+          <div class="lbl" data-lang-ko>고객센터</div><div class="lbl" data-lang-en>Customer Center</div>
+          <div class="num">02-771-0000</div>
+        </div>
+      </div>
+      <div class="f-links">
+        <div class="f-col">
+          <h5 data-lang-ko>서비스</h5><h5 data-lang-en>Services</h5>
+          <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a>
+          <a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a>
+          <a href="#"><span data-lang-ko>행정·비자</span><span data-lang-en>Visa &amp; Admin</span></a>
+          <a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a>
+          <a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a>
+        </div>
+        <div class="f-col">
+          <h5 data-lang-ko>매거진</h5><h5 data-lang-en>Magazine</h5>
+          <a href="#feature"><span data-lang-ko>머리기사</span><span data-lang-en>Cover Story</span></a>
+          <a href="#columns"><span data-lang-ko>이번 호 칼럼</span><span data-lang-en>Columns</span></a>
+          <a href="#"><span data-lang-ko>지난 호</span><span data-lang-en>Back issues</span></a>
+          <a href="#"><span data-lang-ko>구독 안내</span><span data-lang-en>Subscribe</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 MoneyBox Remit. <span data-lang-ko>모든 권리 보유.</span><span data-lang-en>All rights reserved.</span></span>
+      <span>VOL.1 · 2026 · <span data-lang-ko>외국인 생활 매거진</span><span data-lang-en>Editorial Issue</span></span>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 10 · 에디토리얼 매거진</span><span data-lang-en>Draft 10 · Editorial</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){b.addEventListener('click',function(){var en=document.body.classList.toggle('en');document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});document.documentElement.lang=en?'en':'ko';});});
+</script>
+</body>
+</html>

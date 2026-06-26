@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>머니박스레밋 · 하루의 기록 / A Day in Korea</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{--brand:#1a6dff;--brand-d:#0b4ed1;--mint:#16d6c5;--navy:#0a1730;--navy-2:#0f2347;--ink:#101828;--soft:#5b6678;--line:#e7ebf2;--bg:#ffffff;--bg-2:#f6f9fd;--radius:18px;--shadow:0 10px 30px rgba(16,32,74,.08);--shadow-lg:0 24px 60px rgba(10,23,48,.18);--maxw:1140px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none}
+body.en [data-lang-ko]{display:none}
+body.en [data-lang-en]{display:inline}
+
+/* ===== Header ===== */
+header.site{position:sticky;top:0;z-index:70;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{height:26px;display:block}
+.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links a{font-size:14px;font-weight:600;color:var(--soft);transition:color .2s}
+.nav-links a:hover{color:var(--brand)}
+.lang{appearance:none;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;font-size:13px;padding:7px 14px;border-radius:999px;cursor:pointer;font-family:inherit;transition:.2s}
+.lang:hover{border-color:var(--brand);color:var(--brand)}
+@media(max-width:920px){.nav-links a{display:none}}
+
+/* ===== Hero ===== */
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 55%,#123163 100%);color:#fff;padding:84px 0 96px;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;background:
+ radial-gradient(620px 320px at 18% 8%,rgba(26,109,255,.34),transparent 60%),
+ radial-gradient(560px 300px at 88% 92%,rgba(22,214,197,.26),transparent 60%);pointer-events:none}
+.hero .wrap{position:relative}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.04em;color:#bcd3ff;background:rgba(26,109,255,.16);border:1px solid rgba(26,109,255,.4);padding:7px 15px;border-radius:999px;margin-bottom:22px}
+.hero .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(22,214,197,.22)}
+.hero h1{font-size:clamp(32px,5.4vw,56px);line-height:1.16;font-weight:800;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1 .grad{background:linear-gradient(90deg,#6aa6ff,var(--mint));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(16px,2.2vw,20px);color:#cdd9ee;max-width:620px;margin:0 auto 34px}
+.hero .cta{display:inline-flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;padding:14px 24px;border-radius:999px;transition:.25s;font-family:inherit;cursor:pointer;border:0}
+.btn-primary{background:linear-gradient(90deg,var(--brand),var(--mint));color:#fff;box-shadow:0 12px 30px rgba(26,109,255,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(26,109,255,.5)}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.24)}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.scroll-hint{margin-top:48px;display:inline-flex;flex-direction:column;align-items:center;gap:8px;color:#9fb6db;font-size:13px;font-weight:600}
+.scroll-hint .arrow{width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ===== Timeline / Scrollytelling ===== */
+.story{background:var(--bg);padding:74px 0 40px}
+.story-head{text-align:center;max-width:640px;margin:0 auto 56px}
+.story-head .eyebrow{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+.story-head h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.02em;margin:10px 0 12px}
+.story-head p{color:var(--soft);font-size:16px}
+
+.timeline{position:relative;max-width:880px;margin:0 auto}
+.timeline::before{content:"";position:absolute;left:78px;top:8px;bottom:60px;width:2px;background:linear-gradient(var(--brand),var(--mint));opacity:.32}
+@media(max-width:640px){.timeline::before{left:34px}}
+
+.scene{position:relative;display:grid;grid-template-columns:96px 1fr;gap:26px;padding:18px 0 46px;
+ opacity:0;transform:translateY(38px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.scene.in{opacity:1;transform:none}
+.tl-time{position:relative;text-align:right;padding-top:6px}
+.tl-time .hh{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1}
+.tl-time .ap{font-size:12px;font-weight:700;color:var(--soft);margin-top:3px}
+.tl-time .node{position:absolute;right:-22px;top:7px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--brand);box-shadow:0 0 0 5px rgba(26,109,255,.12)}
+@media(max-width:640px){
+ .scene{grid-template-columns:60px 1fr;gap:16px}
+ .tl-time{text-align:left}
+ .tl-time .hh{font-size:17px}
+ .tl-time .node{right:auto;left:14px;width:13px;height:13px;border-width:2.5px}
+}
+
+.card{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.card .band{height:6px;background:linear-gradient(90deg,var(--brand),var(--mint))}
+.card .body{padding:24px 26px 26px}
+.card .scene-emoji{font-size:34px;line-height:1;margin-bottom:14px;display:block}
+.card .svc-tag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;letter-spacing:.02em;color:var(--brand-d);background:var(--bg-2);border:1px solid var(--line);padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.card h3{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+.card .narr{color:var(--soft);font-size:15px;margin-bottom:16px}
+.card .narr .hl{color:var(--ink);font-weight:700;background:linear-gradient(transparent 62%,rgba(22,214,197,.34) 62%)}
+.svc-box{display:flex;align-items:center;gap:14px;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.svc-box .ico{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:#fff;border:1px solid var(--line)}
+.svc-box .txt{flex:1;min-width:0}
+.svc-box .txt b{display:block;font-size:14px;font-weight:800}
+.svc-box .txt span{display:block;font-size:13px;color:var(--soft)}
+.svc-box .go{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--brand);white-space:nowrap}
+.svc-box .go:hover{color:var(--brand-d)}
+@media(max-width:520px){.svc-box{flex-wrap:wrap}.svc-box .go{width:100%;justify-content:flex-end}}
+
+/* ===== Services recap ===== */
+.recap{background:var(--bg-2);border-top:1px solid var(--line);padding:74px 0}
+.recap-head{text-align:center;max-width:620px;margin:0 auto 44px}
+.recap-head h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.recap-head p{color:var(--soft)}
+.svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+@media(max-width:920px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr}}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;box-shadow:var(--shadow);transition:.28s;display:flex;flex-direction:column}
+.svc-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:rgba(26,109,255,.4)}
+.svc-card .em{font-size:30px;margin-bottom:14px}
+.svc-card h4{font-size:16px;font-weight:800;margin-bottom:6px}
+.svc-card p{font-size:13px;color:var(--soft);flex:1;margin-bottom:14px}
+.svc-card .lk{font-size:13px;font-weight:800;color:var(--brand)}
+.svc-card .lk:hover{color:var(--brand-d)}
+
+/* ===== CTA strip ===== */
+.cta-strip{background:linear-gradient(120deg,var(--navy),var(--navy-2));color:#fff;text-align:center;padding:70px 0}
+.cta-strip h2{font-size:clamp(24px,3.4vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:12px}
+.cta-strip p{color:#cdd9ee;margin-bottom:28px}
+
+/* ===== Footer ===== */
+footer.site{background:var(--navy);color:#c4d0e6;padding:54px 0 40px}
+.foot-grid{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;align-items:flex-start}
+.foot-brand img{height:28px;margin-bottom:14px;display:block}
+.foot-brand p{font-size:14px;color:#9fb0cc;max-width:300px}
+.foot-cs{margin-top:16px;font-size:14px}
+.foot-cs b{color:#fff;font-weight:700}
+.foot-cs .tel{color:var(--mint);font-weight:800;font-size:20px;letter-spacing:.01em}
+.foot-links{display:flex;flex-direction:column;gap:10px}
+.foot-links .lt{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7f93b5;margin-bottom:4px}
+.foot-links a{font-size:14px;color:#c4d0e6;transition:.2s}
+.foot-links a:hover{color:var(--mint)}
+.foot-bottom{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:#7f93b5;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+
+/* ===== Ribbon ===== */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(10,23,48,.92);color:#fff;font-size:13px;font-weight:600;padding:9px 15px;border-radius:999px;box-shadow:var(--shadow-lg);backdrop-filter:blur(6px)}
+.ribbon a{color:var(--mint);font-weight:700}
+.ribbon a:hover{text-decoration:underline}
+@media(max-width:520px){.ribbon{font-size:12px;padding:8px 12px}}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="MoneyBox Remit">
+      <img src="assets/logo.svg" alt="MoneyBox Remit" />
+    </a>
+    <nav class="nav-links">
+      <a href="#story"><span data-lang-ko>하루의 기록</span><span data-lang-en>A Day</span></a>
+      <a href="#services"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></a>
+      <a href="#contact"><span data-lang-ko>문의</span><span data-lang-en>Contact</span></a>
+      <button class="lang" type="button" data-lang-toggle>EN</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker"><span class="dot"></span><span data-lang-ko>초안 12 · 스크롤리텔링</span><span data-lang-en>Draft 12 · Scrollytelling</span></span>
+    <h1>
+      <span data-lang-ko>한국에서의 <span class="grad">하루</span>,<br/>곁에 머니박스레밋이 있어요</span>
+      <span data-lang-en>A <span class="grad">day</span> in Korea,<br/>with MoneyBox by your side</span>
+    </h1>
+    <p class="lead">
+      <span data-lang-ko>아침 출근길부터 밤에 가족에게 보내는 송금까지. 어느 외국인의 하루를 따라가며, 우리가 어떻게 함께하는지 보여드릴게요.</span>
+      <span data-lang-en>From the morning commute to the late-night remittance home. Follow one day in Korea and see how we walk it with you.</span>
+    </p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#story"><span data-lang-ko>하루 따라가기</span><span data-lang-en>Start the day</span> →</a>
+      <a class="btn btn-ghost" href="#services"><span data-lang-ko>서비스 한눈에</span><span data-lang-en>All services</span></a>
+    </div>
+    <div class="scroll-hint">
+      <span class="arrow">↓</span>
+      <span data-lang-ko>스크롤하여 시작</span><span data-lang-en>Scroll to begin</span>
+    </div>
+  </div>
+</section>
+
+<!-- STORY / TIMELINE -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-head">
+      <span class="eyebrow"><span data-lang-ko>하루의 기록</span><span data-lang-en>A Day in Korea</span></span>
+      <h2><span data-lang-ko>민호 씨의 화요일</span><span data-lang-en>Minho's Tuesday</span></h2>
+      <p><span data-lang-ko>서울에 사는 외국인 민호 씨. 평범한 하루지만, 순간순간 머니박스레밋이 함께해요.</span><span data-lang-en>Minho lives in Seoul. An ordinary day — yet MoneyBox is there at every turn.</span></p>
+    </div>
+
+    <div class="timeline">
+
+      <!-- 08:00 SIM -->
+      <article class="scene">
+        <div class="tl-time"><div class="node"></div><div class="hh">08:00</div><div class="ap" data-lang-ko>오전</div><div class="ap" data-lang-en>AM</div></div>
+        <div class="card">
+          <div class="band"></div>
+          <div class="body">
+            <span class="scene-emoji">🚇</span>
+            <span class="svc-tag">📱 <span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></span>
+            <h3><span data-lang-ko>출근길, 데이터로 길을 찾다</span><span data-lang-en>Finding the way to work</span></h3>
+            <p class="narr">
+              <span data-lang-ko>지하철 환승역에서 길이 헷갈렸어요. 하지만 <span class="hl">든든한 데이터</span> 덕에 바로 길찾기 완료. 한국 도착 첫날 개통한 알뜰 요금제가 매일 큰 힘이 돼요.</span>
+              <span data-lang-en>Lost at the transfer station — but with <span class="hl">solid mobile data</span>, navigation kicked in instantly. The budget plan he opened on day one carries him every day.</span>
+            </p>
+            <div class="svc-box">
+              <span class="ico">📱</span>
+              <span class="txt">
+                <b><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></b>
+                <span><span data-lang-ko>개통 지원·알뜰 요금제</span><span data-lang-en>Activation support &amp; budget plans</span></span>
+              </span>
+              <a class="go" href="#"><span data-lang-ko>알아보기</span><span data-lang-en>Learn</span> →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12:30 Exchange -->
+      <article class="scene">
+        <div class="tl-time"><div class="node"></div><div class="hh">12:30</div><div class="ap" data-lang-ko>점심</div><div class="ap" data-lang-en>Noon</div></div>
+        <div class="card">
+          <div class="band"></div>
+          <div class="body">
+            <span class="scene-emoji">🍜</span>
+            <span class="svc-tag">💱 <span data-lang-ko>환전</span><span data-lang-en>Exchange</span></span>
+            <h3><span data-lang-ko>점심시간, 환율을 확인하다</span><span data-lang-en>Checking the rate over lunch</span></h3>
+            <p class="narr">
+              <span data-lang-ko>점심을 먹으며 오늘 환율을 슬쩍 확인했어요. <span class="hl">실시간 환율과 투명한 수수료</span>를 보고, 마음 편히 환전 예약을 걸어뒀죠.</span>
+              <span data-lang-en>Over lunch he glanced at today's rate. Seeing the <span class="hl">live rate and transparent fees</span>, he booked an exchange with peace of mind.</span>
+            </p>
+            <div class="svc-box">
+              <span class="ico">💱</span>
+              <span class="txt">
+                <b><span data-lang-ko>환전</span><span data-lang-en>Currency Exchange</span></b>
+                <span><span data-lang-ko>실시간 환율·투명 수수료</span><span data-lang-en>Live rates &amp; transparent fees</span></span>
+              </span>
+              <a class="go" href="#"><span data-lang-ko>알아보기</span><span data-lang-en>Learn</span> →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 15:00 Admin / Visa -->
+      <article class="scene">
+        <div class="tl-time"><div class="node"></div><div class="hh">15:00</div><div class="ap" data-lang-ko>오후</div><div class="ap" data-lang-en>PM</div></div>
+        <div class="card">
+          <div class="band"></div>
+          <div class="body">
+            <span class="scene-emoji">📑</span>
+            <span class="svc-tag">📋 <span data-lang-ko>행정사</span><span data-lang-en>Visa &amp; Admin</span></span>
+            <h3><span data-lang-ko>비자 만료가 다가와 상담을</span><span data-lang-en>Visa renewal is coming up</span></h3>
+            <p class="narr">
+              <span data-lang-ko>달력을 보니 비자 만료가 한 달 앞. 복잡한 서류에 막막했지만, <span class="hl">행정사 상담 한 번</span>으로 체류 연장 절차가 한결 가벼워졌어요.</span>
+              <span data-lang-en>A month until his visa expires. The paperwork felt overwhelming — until <span class="hl">one consult with an admin agent</span> made the renewal simple.</span>
+            </p>
+            <div class="svc-box">
+              <span class="ico">📋</span>
+              <span class="txt">
+                <b><span data-lang-ko>행정사</span><span data-lang-en>Administrative (Visa)</span></b>
+                <span><span data-lang-ko>비자·체류·외국인등록 대행</span><span data-lang-en>Visa, stay &amp; registration support</span></span>
+              </span>
+              <a class="go" href="#"><span data-lang-ko>알아보기</span><span data-lang-en>Learn</span> →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 19:00 Insurance -->
+      <article class="scene">
+        <div class="tl-time"><div class="node"></div><div class="hh">19:00</div><div class="ap" data-lang-ko>저녁</div><div class="ap" data-lang-en>Eve</div></div>
+        <div class="card">
+          <div class="band"></div>
+          <div class="body">
+            <span class="scene-emoji">🏠</span>
+            <span class="svc-tag">🛡️ <span data-lang-ko>보험</span><span data-lang-en>Insurance</span></span>
+            <h3><span data-lang-ko>저녁, 보험을 점검하다</span><span data-lang-en>Reviewing insurance at home</span></h3>
+            <p class="narr">
+              <span data-lang-ko>집에 돌아와 한숨 돌리며 보험을 점검했어요. 갑작스러운 병원비가 걱정됐는데, <span class="hl">체류 외국인을 위한 건강 보험</span>으로 든든하게 채웠죠.</span>
+              <span data-lang-en>Back home, he reviewed his coverage. Worried about sudden medical bills, he filled the gap with <span class="hl">health insurance for residents</span>.</span>
+            </p>
+            <div class="svc-box">
+              <span class="ico">🛡️</span>
+              <span class="txt">
+                <b><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></b>
+                <span><span data-lang-ko>건강·여행·체류 보험</span><span data-lang-en>Health, travel &amp; residency plans</span></span>
+              </span>
+              <a class="go" href="#"><span data-lang-ko>알아보기</span><span data-lang-en>Learn</span> →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 22:00 Remittance -->
+      <article class="scene">
+        <div class="tl-time"><div class="node"></div><div class="hh">22:00</div><div class="ap" data-lang-ko>밤</div><div class="ap" data-lang-en>Night</div></div>
+        <div class="card">
+          <div class="band"></div>
+          <div class="body">
+            <span class="scene-emoji">🌙</span>
+            <span class="svc-tag">💸 <span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></span>
+            <h3><span data-lang-ko>밤, 고향 가족에게 마음을 보내다</span><span data-lang-en>Sending love home tonight</span></h3>
+            <p class="narr">
+              <span data-lang-ko>하루의 마지막. 고향 가족에게 송금했어요. <span class="hl">라이선스 기반 소액해외송금</span>으로 32개국까지, 소액일수록 더 유리하게. 따뜻한 하루의 마무리예요.</span>
+              <span data-lang-en>The day ends with a transfer home. <span class="hl">Licensed micro-remittance</span> to 32 countries — the smaller the amount, the better the deal. A warm way to close the day.</span>
+            </p>
+            <div class="svc-box">
+              <span class="ico">💸</span>
+              <span class="txt">
+                <b><span data-lang-ko>해외송금</span><span data-lang-en>Overseas Remittance</span></b>
+                <span><span data-lang-ko>라이선스 기반·32개국·소액일수록 유리</span><span data-lang-en>Licensed · 32 countries · better for small amounts</span></span>
+              </span>
+              <a class="go" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금하기</span><span data-lang-en>Send</span> →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES RECAP -->
+<section class="recap" id="services">
+  <div class="wrap">
+    <div class="recap-head">
+      <h2><span data-lang-ko>하루를 함께한 5가지 서비스</span><span data-lang-en>Five services through the day</span></h2>
+      <p><span data-lang-ko>외국인의 한국 생활에 필요한 모든 것, 한곳에서.</span><span data-lang-en>Everything you need for life in Korea, in one place.</span></p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="em">💸</div>
+        <h4><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></h4>
+        <p><span data-lang-ko>라이선스 기반 소액해외송금·32개국·소액일수록 유리</span><span data-lang-en>Licensed micro-remittance · 32 countries · better for small amounts</span></p>
+        <a class="lk" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>송금하기 →</span><span data-lang-en>Send money →</span></a>
+      </div>
+      <div class="svc-card">
+        <div class="em">💱</div>
+        <h4><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></h4>
+        <p><span data-lang-ko>실시간 환율·투명 수수료</span><span data-lang-en>Live rates · transparent fees</span></p>
+        <a class="lk" href="#"><span data-lang-ko>알아보기 →</span><span data-lang-en>Learn more →</span></a>
+      </div>
+      <div class="svc-card">
+        <div class="em">📋</div>
+        <h4><span data-lang-ko>행정사</span><span data-lang-en>Visa &amp; Admin</span></h4>
+        <p><span data-lang-ko>비자·체류·외국인등록 대행</span><span data-lang-en>Visa, stay &amp; registration support</span></p>
+        <a class="lk" href="#"><span data-lang-ko>알아보기 →</span><span data-lang-en>Learn more →</span></a>
+      </div>
+      <div class="svc-card">
+        <div class="em">📱</div>
+        <h4><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></h4>
+        <p><span data-lang-ko>개통 지원·알뜰 요금제</span><span data-lang-en>Activation support · budget plans</span></p>
+        <a class="lk" href="#"><span data-lang-ko>알아보기 →</span><span data-lang-en>Learn more →</span></a>
+      </div>
+      <div class="svc-card">
+        <div class="em">🛡️</div>
+        <h4><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></h4>
+        <p><span data-lang-ko>건강·여행·체류 보험</span><span data-lang-en>Health, travel &amp; residency plans</span></p>
+        <a class="lk" href="#"><span data-lang-ko>알아보기 →</span><span data-lang-en>Learn more →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="cta-strip" id="contact">
+  <div class="wrap">
+    <h2><span data-lang-ko>당신의 한국 하루도, 함께할게요</span><span data-lang-en>Let's walk your day in Korea, together</span></h2>
+    <p><span data-lang-ko>송금부터 비자, 통신, 보험까지. 지금 시작해보세요.</span><span data-lang-en>From remittance to visa, mobile, and insurance. Start now.</span></p>
+    <a class="btn btn-primary" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>해외송금 시작하기</span><span data-lang-en>Start remittance</span> →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-dark.svg" alt="MoneyBox Remit" />
+        <p><span data-lang-ko>외국인의 한국 생활을 더 쉽게. 송금·환전·행정·통신·보험을 한곳에서.</span><span data-lang-en>Making life in Korea easier for foreigners. Remittance, exchange, admin, mobile &amp; insurance — all in one.</span></p>
+        <div class="foot-cs">
+          <b><span data-lang-ko>고객센터</span><span data-lang-en>Customer Center</span></b><br/>
+          <span class="tel">02-771-0000</span>
+        </div>
+      </div>
+      <div class="foot-links">
+        <span class="lt"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></span>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a>
+        <a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a>
+        <a href="#"><span data-lang-ko>행정사</span><span data-lang-en>Visa &amp; Admin</span></a>
+        <a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a>
+        <a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MoneyBox Remit.</span>
+      <span data-lang-ko>외국인 생활 포털</span><span data-lang-en>Life portal for foreigners in Korea</span>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 12 · 하루의 기록</span><span data-lang-en>Draft 12 · A Day in Korea</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){b.addEventListener('click',function(){var en=document.body.classList.toggle('en');document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});document.documentElement.lang=en?'en':'ko';});});
+</script>
+<script>
+(function(){
+  var scenes=document.querySelectorAll('.scene');
+  if(!('IntersectionObserver' in window)){scenes.forEach(function(s){s.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.18,rootMargin:'0px 0px -8% 0px'});
+  scenes.forEach(function(s){io.observe(s);});
+})();
+</script>
+</body>
+</html>

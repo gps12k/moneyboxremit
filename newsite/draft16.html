@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>머니박스레밋 · 외국인 생활 포털</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{--brand:#1a6dff;--brand-d:#0b4ed1;--mint:#16d6c5;--navy:#0a1730;--navy-2:#0f2347;--ink:#101828;--soft:#5b6678;--line:#e7ebf2;--bg:#ffffff;--bg-2:#f6f9fd;--radius:18px;--shadow:0 10px 30px rgba(16,32,74,.08);--shadow-lg:0 24px 60px rgba(10,23,48,.18);--maxw:1140px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none}
+body.en [data-lang-ko]{display:none}
+body.en [data-lang-en]{display:inline}
+
+/* ===== Header ===== */
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:62px}
+.hd .brand{display:flex;align-items:center;gap:10px}
+.hd .brand img{height:26px;display:block}
+.hd nav{display:flex;align-items:center;gap:26px}
+.hd nav a{font-size:14.5px;font-weight:600;color:var(--soft)}
+.hd nav a:hover{color:var(--brand)}
+.lang{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 15px;font-size:13px;font-weight:700;color:var(--ink);cursor:pointer;font-family:inherit;transition:.18s}
+.lang:hover{border-color:var(--brand);color:var(--brand)}
+.hd-actions{display:flex;align-items:center;gap:12px}
+@media(max-width:920px){.hd nav{display:none}}
+
+/* ===== Hero / Intro ===== */
+.intro{padding:48px 0 14px;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,rgba(26,109,255,.1),rgba(22,214,197,.12));color:var(--brand-d);font-weight:800;font-size:12.5px;letter-spacing:.3px;padding:8px 15px;border-radius:999px;margin-bottom:18px}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(22,214,197,.18)}
+.intro h1{font-size:clamp(28px,4.4vw,46px);line-height:1.18;font-weight:900;letter-spacing:-.02em}
+.intro h1 .grad{background:linear-gradient(90deg,var(--brand),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.intro p{margin:16px auto 0;max-width:560px;color:var(--soft);font-size:16.5px}
+.swipe-hint{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--soft);font-size:13px;font-weight:600}
+.swipe-hint svg{animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+
+/* ===== Story Carousel ===== */
+.story-wrap{padding:18px 0 8px}
+.story-stage{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.segbar{display:flex;gap:6px;margin:0 4px 14px}
+.segbar .seg{flex:1;height:4px;border-radius:999px;background:#dfe6f1;overflow:hidden;position:relative;cursor:pointer}
+.segbar .seg i{position:absolute;inset:0;width:0;background:linear-gradient(90deg,var(--brand),var(--mint));border-radius:999px;transition:width .3s ease}
+.segbar .seg.done i{width:100%}
+.segbar .seg.active i{width:100%}
+
+.track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 4px 18px;scrollbar-width:none;-ms-overflow-style:none}
+.track::-webkit-scrollbar{display:none}
+.card{scroll-snap-align:center;flex:0 0 100%;min-width:0;border-radius:26px;position:relative;overflow:hidden;min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;box-shadow:var(--shadow-lg)}
+.card .bg{position:absolute;inset:0;z-index:0}
+.card .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,16,36,.05) 0%,rgba(8,16,36,.18) 42%,rgba(8,16,36,.72) 100%)}
+.card .glow{position:absolute;z-index:0;border-radius:50%;filter:blur(46px);opacity:.55;mix-blend-mode:screen}
+.card .g1{width:280px;height:280px;background:#fff;top:-60px;right:-50px;opacity:.18}
+.card .g2{width:240px;height:240px;background:#fff;bottom:90px;left:-70px;opacity:.14}
+.card .emoji{position:absolute;z-index:1;top:30px;left:30px;font-size:52px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.28));line-height:1}
+.card .num{position:absolute;z-index:1;top:34px;right:32px;font-size:13px;font-weight:800;letter-spacing:.12em;opacity:.8}
+.card .inner{position:relative;z-index:2;padding:34px 34px 38px}
+.card .tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(4px);padding:6px 13px;border-radius:999px;font-size:12.5px;font-weight:800;letter-spacing:.02em;margin-bottom:14px}
+.card h2{font-size:clamp(26px,3.4vw,34px);font-weight:900;letter-spacing:-.02em;line-height:1.2}
+.card .sub{margin-top:11px;font-size:16px;max-width:440px;color:rgba(255,255,255,.92);font-weight:500}
+.card .feats{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.card .feats span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);border-radius:10px;padding:6px 11px;font-size:12.5px;font-weight:700}
+.card .cta{display:inline-flex;align-items:center;gap:9px;margin-top:22px;background:#fff;color:var(--navy);font-weight:800;font-size:14.5px;padding:13px 22px;border-radius:13px;box-shadow:0 10px 24px rgba(0,0,0,.22);transition:.2s}
+.card .cta:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(0,0,0,.3)}
+.card .cta svg{transition:.2s}
+.card .cta:hover svg{transform:translateX(3px)}
+
+/* service gradients */
+.c-remit .bg{background:linear-gradient(135deg,#1a6dff 0%,#0b4ed1 58%,#0a1730 100%)}
+.c-fx .bg{background:linear-gradient(135deg,#16d6c5 0%,#0fb6c9 55%,#0b4ed1 100%)}
+.c-admin .bg{background:linear-gradient(135deg,#6d4bff 0%,#4a32cc 55%,#1a1c52 100%)}
+.c-sim .bg{background:linear-gradient(135deg,#ff7a59 0%,#f0476f 55%,#7a1f5c 100%)}
+.c-ins .bg{background:linear-gradient(135deg,#1bbf7a 0%,#0a9d83 55%,#0a2f4d 100%)}
+
+/* arrows */
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:20;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);transition:.18s}
+.arrow:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.arrow.prev{left:-2px}
+.arrow.next{right:-2px}
+.arrow svg{width:20px;height:20px}
+@media(max-width:920px){.arrow{display:none}}
+
+/* dots */
+.dots{display:flex;justify-content:center;gap:9px;margin-top:18px}
+.dots button{width:9px;height:9px;border-radius:50%;border:none;background:#cdd7e6;cursor:pointer;padding:0;transition:.2s}
+.dots button.on{width:26px;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--mint))}
+
+/* ===== Summary grid ===== */
+.section{padding:64px 0}
+.section.alt{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{text-align:center;margin-bottom:38px}
+.sec-head .eyebrow{color:var(--brand);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.sec-head h3{font-size:clamp(24px,3vw,32px);font-weight:900;letter-spacing:-.02em;margin-top:8px}
+.sec-head p{color:var(--soft);margin-top:10px;max-width:520px;margin-left:auto;margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;text-align:center;transition:.2s}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:transparent}
+.tile .ic{font-size:30px;line-height:1}
+.tile h4{font-size:16px;font-weight:800;margin-top:12px}
+.tile p{font-size:13px;color:var(--soft);margin-top:6px}
+@media(max-width:920px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 18px;text-align:center}
+.stat .n{font-size:30px;font-weight:900;background:linear-gradient(90deg,var(--brand),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .l{font-size:13px;color:var(--soft);margin-top:6px;font-weight:600}
+@media(max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== CTA banner ===== */
+.cta-band{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 60%,#123a8a 100%);border-radius:26px;padding:48px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(22,214,197,.4),transparent 70%);top:-120px;right:-60px}
+.cta-band h3{position:relative;font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.02em}
+.cta-band p{position:relative;color:rgba(255,255,255,.82);margin-top:12px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-band .btns{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:13px;font-weight:800;font-size:15px;transition:.2s}
+.btn.primary{background:#fff;color:var(--navy)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.3)}
+.btn.ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.18)}
+
+/* ===== Footer ===== */
+footer{background:var(--navy);color:#cdd7e6;padding:52px 0 30px}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;align-items:start}
+.ft-brand img{height:28px;margin-bottom:14px}
+.ft-brand p{font-size:14px;color:#9fb0cc;max-width:300px}
+.ft-call{margin-top:16px;font-size:14px;color:#9fb0cc}
+.ft-call b{display:block;font-size:22px;font-weight:900;color:var(--mint);margin-top:3px;letter-spacing:.02em}
+.ft-col h5{font-size:13px;font-weight:800;color:#fff;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.ft-col a{display:block;font-size:14px;color:#9fb0cc;padding:5px 0;transition:.15s}
+.ft-col a:hover{color:var(--mint)}
+.ft-bot{border-top:1px solid rgba(255,255,255,.1);margin-top:34px;padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:#7e90ad}
+@media(max-width:920px){.ft-top{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+@media(max-width:520px){.ft-top{grid-template-columns:1fr}}
+
+/* ===== Ribbon ===== */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(10,23,48,.92);color:#fff;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:9px 16px;font-size:12.5px;font-weight:600;box-shadow:var(--shadow-lg)}
+.ribbon a{color:var(--mint);font-weight:800}
+.ribbon a:hover{text-decoration:underline}
+@media(max-width:520px){.ribbon{left:10px;right:10px;bottom:10px;text-align:center}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt="MoneyBox Remit" /></a>
+    <nav>
+      <a href="#stories"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></a>
+      <a href="#summary"><span data-lang-ko>한눈에 보기</span><span data-lang-en>Overview</span></a>
+      <a href="#start"><span data-lang-ko>시작하기</span><span data-lang-en>Get Started</span></a>
+    </nav>
+    <div class="hd-actions">
+      <button class="lang" type="button" data-lang-toggle>EN</button>
+    </div>
+  </div>
+</header>
+
+<!-- Intro -->
+<section class="intro wrap">
+  <span class="kicker"><span class="dot"></span><span data-lang-ko>한국 사는 외국인을 위한 생활 포털</span><span data-lang-en>Life portal for foreigners in Korea</span></span>
+  <h1>
+    <span data-lang-ko>한국 생활, <span class="grad">스와이프 한 번</span>으로</span>
+    <span data-lang-en>Life in Korea, <span class="grad">one swipe</span> away</span>
+  </h1>
+  <p>
+    <span data-lang-ko>송금부터 환전·행정·유심·보험까지. 스토리를 넘기며 필요한 서비스를 골라보세요.</span>
+    <span data-lang-en>From remittance to exchange, visa, SIM and insurance. Swipe the stories and pick what you need.</span>
+  </p>
+  <div class="swipe-hint">
+    <span data-lang-ko>옆으로 넘겨보세요</span><span data-lang-en>Swipe sideways</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+</section>
+
+<!-- Story Carousel -->
+<section class="story-wrap" id="stories">
+  <div class="story-stage">
+    <div class="segbar" id="segbar"></div>
+
+    <button class="arrow prev" id="prev" aria-label="prev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="arrow next" id="next" aria-label="next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+
+    <div class="track" id="track">
+
+      <!-- 1 Remit -->
+      <article class="card c-remit">
+        <div class="bg"></div><div class="glow g1"></div><div class="glow g2"></div>
+        <div class="emoji">💸</div>
+        <div class="num">01 / 05</div>
+        <div class="inner">
+          <span class="tag"><span data-lang-ko>해외송금</span><span data-lang-en>Overseas Remittance</span></span>
+          <h2><span data-lang-ko>고향으로 보내는 돈,<br>더 똑똑하게</span><span data-lang-en>Send money home,<br>the smart way</span></h2>
+          <p class="sub"><span data-lang-ko>라이선스 기반 소액해외송금. 32개국으로 빠르고 안전하게. 소액일수록 더 유리해요.</span><span data-lang-en>Licensed small-amount remittance to 32 countries. The smaller the amount, the better the rate.</span></p>
+          <div class="feats">
+            <span><span data-lang-ko>🌏 32개국</span><span data-lang-en>🌏 32 countries</span></span>
+            <span><span data-lang-ko>⚡ 당일 도착</span><span data-lang-en>⚡ Same-day</span></span>
+            <span><span data-lang-ko>🔒 정식 라이선스</span><span data-lang-en>🔒 Licensed</span></span>
+          </div>
+          <a class="cta" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener">
+            <span data-lang-ko>송금 시작하기</span><span data-lang-en>Start sending</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 2 FX -->
+      <article class="card c-fx">
+        <div class="bg"></div><div class="glow g1"></div><div class="glow g2"></div>
+        <div class="emoji">💱</div>
+        <div class="num">02 / 05</div>
+        <div class="inner">
+          <span class="tag"><span data-lang-ko>환전</span><span data-lang-en>Currency Exchange</span></span>
+          <h2><span data-lang-ko>실시간 환율로<br>투명하게 환전</span><span data-lang-en>Exchange clearly,<br>at live rates</span></h2>
+          <p class="sub"><span data-lang-ko>숨은 수수료 없이 실시간 환율 그대로. 받을 금액을 미리 확인하고 환전해요.</span><span data-lang-en>Real-time rates with no hidden fees. See exactly what you'll get before you exchange.</span></p>
+          <div class="feats">
+            <span><span data-lang-ko>📈 실시간 환율</span><span data-lang-en>📈 Live rates</span></span>
+            <span><span data-lang-ko>🧾 투명 수수료</span><span data-lang-en>🧾 Clear fees</span></span>
+            <span><span data-lang-ko>👀 사전 확인</span><span data-lang-en>👀 Preview</span></span>
+          </div>
+          <a class="cta" href="#">
+            <span data-lang-ko>환율 보러가기</span><span data-lang-en>Check rates</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 3 Admin -->
+      <article class="card c-admin">
+        <div class="bg"></div><div class="glow g1"></div><div class="glow g2"></div>
+        <div class="emoji">📋</div>
+        <div class="num">03 / 05</div>
+        <div class="inner">
+          <span class="tag"><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Administrative (Visa)</span></span>
+          <h2><span data-lang-ko>비자·체류,<br>복잡한 서류는 맡기세요</span><span data-lang-en>Visa & stay,<br>leave the paperwork to us</span></h2>
+          <p class="sub"><span data-lang-ko>비자 연장·변경, 체류 자격, 외국인등록까지 전문 행정사가 대행해드려요.</span><span data-lang-en>Visa extensions, status changes and alien registration handled by certified agents.</span></p>
+          <div class="feats">
+            <span><span data-lang-ko>📝 비자 대행</span><span data-lang-en>📝 Visa filing</span></span>
+            <span><span data-lang-ko>🏠 체류 자격</span><span data-lang-en>🏠 Residency</span></span>
+            <span><span data-lang-ko>🪪 외국인등록</span><span data-lang-en>🪪 Registration</span></span>
+          </div>
+          <a class="cta" href="#">
+            <span data-lang-ko>상담 신청</span><span data-lang-en>Request consult</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 4 SIM -->
+      <article class="card c-sim">
+        <div class="bg"></div><div class="glow g1"></div><div class="glow g2"></div>
+        <div class="emoji">📱</div>
+        <div class="num">04 / 05</div>
+        <div class="inner">
+          <span class="tag"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></span>
+          <h2><span data-lang-ko>도착 첫날부터<br>바로 개통</span><span data-lang-en>Get connected<br>from day one</span></h2>
+          <p class="sub"><span data-lang-ko>외국인 개통 지원과 알뜰 요금제로 통신비 부담을 줄여드려요.</span><span data-lang-en>Foreigner-friendly activation and budget plans to cut your mobile bill.</span></p>
+          <div class="feats">
+            <span><span data-lang-ko>📶 개통 지원</span><span data-lang-en>📶 Activation</span></span>
+            <span><span data-lang-ko>💰 알뜰 요금제</span><span data-lang-en>💰 Budget plans</span></span>
+            <span><span data-lang-ko>🌐 데이터 무제한</span><span data-lang-en>🌐 Unlimited data</span></span>
+          </div>
+          <a class="cta" href="#">
+            <span data-lang-ko>요금제 보기</span><span data-lang-en>See plans</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 5 Insurance -->
+      <article class="card c-ins">
+        <div class="bg"></div><div class="glow g1"></div><div class="glow g2"></div>
+        <div class="emoji">🛡️</div>
+        <div class="num">05 / 05</div>
+        <div class="inner">
+          <span class="tag"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></span>
+          <h2><span data-lang-ko>아플 때도,<br>여행할 때도 든든하게</span><span data-lang-en>Covered when sick,<br>covered when you travel</span></h2>
+          <p class="sub"><span data-lang-ko>건강·여행·체류 보험을 외국인 상황에 맞게 골라드려요.</span><span data-lang-en>Health, travel and residency insurance tailored to your situation.</span></p>
+          <div class="feats">
+            <span><span data-lang-ko>🏥 건강보험</span><span data-lang-en>🏥 Health</span></span>
+            <span><span data-lang-ko>✈️ 여행보험</span><span data-lang-en>✈️ Travel</span></span>
+            <span><span data-lang-ko>🗓️ 체류보험</span><span data-lang-en>🗓️ Residency</span></span>
+          </div>
+          <a class="cta" href="#">
+            <span data-lang-ko>보험 알아보기</span><span data-lang-en>Explore plans</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- Summary grid -->
+<section class="section" id="summary">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow"><span data-lang-ko>한눈에 보기</span><span data-lang-en>Overview</span></span>
+      <h3><span data-lang-ko>필요한 모든 것을 한곳에</span><span data-lang-en>Everything you need, in one place</span></h3>
+      <p><span data-lang-ko>다섯 가지 생활 서비스를 머니박스레밋 하나로 해결하세요.</span><span data-lang-en>Five life services, all under one MoneyBox Remit.</span></p>
+    </div>
+    <div class="grid">
+      <a class="tile" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener">
+        <div class="ic">💸</div>
+        <h4><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></h4>
+        <p><span data-lang-ko>32개국 · 라이선스 기반</span><span data-lang-en>32 countries · Licensed</span></p>
+      </a>
+      <a class="tile" href="#">
+        <div class="ic">💱</div>
+        <h4><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></h4>
+        <p><span data-lang-ko>실시간 환율 · 투명 수수료</span><span data-lang-en>Live rates · Clear fees</span></p>
+      </a>
+      <a class="tile" href="#">
+        <div class="ic">📋</div>
+        <h4><span data-lang-ko>행정사</span><span data-lang-en>Visa Agent</span></h4>
+        <p><span data-lang-ko>비자 · 체류 · 등록</span><span data-lang-en>Visa · Stay · Register</span></p>
+      </a>
+      <a class="tile" href="#">
+        <div class="ic">📱</div>
+        <h4><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></h4>
+        <p><span data-lang-ko>개통 지원 · 알뜰 요금제</span><span data-lang-en>Activation · Budget plans</span></p>
+      </a>
+      <a class="tile" href="#">
+        <div class="ic">🛡️</div>
+        <h4><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></h4>
+        <p><span data-lang-ko>건강 · 여행 · 체류</span><span data-lang-en>Health · Travel · Stay</span></p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow"><span data-lang-ko>믿을 수 있는 이유</span><span data-lang-en>Why trust us</span></span>
+      <h3><span data-lang-ko>숫자로 보는 머니박스레밋</span><span data-lang-en>MoneyBox Remit by the numbers</span></h3>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">32</div><div class="l"><span data-lang-ko>송금 가능 국가</span><span data-lang-en>Countries served</span></div></div>
+      <div class="stat"><div class="n">5</div><div class="l"><span data-lang-ko>생활 서비스</span><span data-lang-en>Life services</span></div></div>
+      <div class="stat"><div class="n">24/7</div><div class="l"><span data-lang-ko>모바일 이용</span><span data-lang-en>Mobile access</span></div></div>
+      <div class="stat"><div class="n">100%</div><div class="l"><span data-lang-ko>정식 라이선스</span><span data-lang-en>Licensed &amp; legal</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA band -->
+<section class="section" id="start">
+  <div class="wrap">
+    <div class="cta-band">
+      <h3><span data-lang-ko>지금 바로 시작해요</span><span data-lang-en>Get started right now</span></h3>
+      <p><span data-lang-ko>가입 없이 환율부터 확인하고, 필요할 때 송금하세요. 한국 생활이 한결 가벼워져요.</span><span data-lang-en>Check rates without signing up, send when you need to. Life in Korea, made lighter.</span></p>
+      <div class="btns">
+        <a class="btn primary" href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener">
+          <span data-lang-ko>💸 송금 시작</span><span data-lang-en>💸 Start remittance</span>
+        </a>
+        <a class="btn ghost" href="#stories">
+          <span data-lang-ko>서비스 둘러보기</span><span data-lang-en>Browse services</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <img src="assets/logo-dark.svg" alt="MoneyBox Remit" />
+        <p><span data-lang-ko>한국에 사는 외국인을 위한 생활 포털. 송금·환전·행정·통신·보험을 한곳에서.</span><span data-lang-en>A life portal for foreigners in Korea. Remittance, exchange, visa, mobile and insurance in one place.</span></p>
+        <div class="ft-call">
+          <span data-lang-ko>고객센터</span><span data-lang-en>Customer Center</span>
+          <b>02-771-0000</b>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h5><span data-lang-ko>서비스</span><span data-lang-en>Services</span></h5>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank" rel="noopener"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a>
+        <a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a>
+        <a href="#"><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Visa Agent</span></a>
+        <a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a>
+        <a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a>
+      </div>
+      <div class="ft-col">
+        <h5><span data-lang-ko>바로가기</span><span data-lang-en>Quick links</span></h5>
+        <a href="#stories"><span data-lang-ko>스토리</span><span data-lang-en>Stories</span></a>
+        <a href="#summary"><span data-lang-ko>한눈에 보기</span><span data-lang-en>Overview</span></a>
+        <a href="#start"><span data-lang-ko>시작하기</span><span data-lang-en>Get started</span></a>
+        <a href="index.html"><span data-lang-ko>초안 목록</span><span data-lang-en>All drafts</span></a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2026 MoneyBox Remit.</span>
+      <span><span data-lang-ko>한국 생활을 더 가볍게</span><span data-lang-en>Making life in Korea lighter</span></span>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 16 · 스토리 캐러셀</span><span data-lang-en>Draft 16 · Story Carousel</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+/* Language toggle */
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){b.addEventListener('click',function(){var en=document.body.classList.toggle('en');document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});document.documentElement.lang=en?'en':'ko';});});
+
+/* Story carousel */
+(function(){
+  var track=document.getElementById('track');
+  var cards=Array.prototype.slice.call(track.querySelectorAll('.card'));
+  var dotsWrap=document.getElementById('dots');
+  var segWrap=document.getElementById('segbar');
+  var prev=document.getElementById('prev');
+  var next=document.getElementById('next');
+  var cur=0;
+
+  cards.forEach(function(_,i){
+    var d=document.createElement('button');
+    d.setAttribute('aria-label','slide '+(i+1));
+    d.addEventListener('click',function(){go(i);});
+    dotsWrap.appendChild(d);
+
+    var s=document.createElement('div');
+    s.className='seg';
+    s.innerHTML='<i></i>';
+    s.addEventListener('click',function(){go(i);});
+    segWrap.appendChild(s);
+  });
+  var dots=Array.prototype.slice.call(dotsWrap.children);
+  var segs=Array.prototype.slice.call(segWrap.children);
+
+  function render(){
+    dots.forEach(function(d,i){d.classList.toggle('on',i===cur);});
+    segs.forEach(function(s,i){
+      s.classList.toggle('active',i===cur);
+      s.classList.toggle('done',i<cur);
+    });
+  }
+  function go(i){
+    cur=Math.max(0,Math.min(cards.length-1,i));
+    track.scrollTo({left:cards[cur].offsetLeft-track.offsetLeft,behavior:'smooth'});
+    render();
+  }
+  prev.addEventListener('click',function(){go(cur-1);});
+  next.addEventListener('click',function(){go(cur+1);});
+
+  /* sync indicator on manual scroll/swipe */
+  var raf;
+  track.addEventListener('scroll',function(){
+    if(raf)cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(function(){
+      var center=track.scrollLeft+track.clientWidth/2;
+      var best=0,bestDist=Infinity;
+      cards.forEach(function(c,i){
+        var cc=c.offsetLeft-track.offsetLeft+c.clientWidth/2;
+        var dist=Math.abs(cc-center);
+        if(dist<bestDist){bestDist=dist;best=i;}
+      });
+      if(best!==cur){cur=best;render();}
+    });
+  },{passive:true});
+
+  /* keyboard */
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight')go(cur+1);
+    else if(e.key==='ArrowLeft')go(cur-1);
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

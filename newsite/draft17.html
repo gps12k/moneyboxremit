@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>머니박스레밋 도움 센터 · MoneyBox Remit Help Center</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{--brand:#1a6dff;--brand-d:#0b4ed1;--mint:#16d6c5;--navy:#0a1730;--navy-2:#0f2347;--ink:#101828;--soft:#5b6678;--line:#e7ebf2;--bg:#ffffff;--bg-2:#f6f9fd;--radius:18px;--shadow:0 10px 30px rgba(16,32,74,.08);--shadow-lg:0 24px 60px rgba(10,23,48,.18);--maxw:1140px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none} body.en [data-lang-ko]{display:none} body.en [data-lang-en]{display:inline}
+
+/* Header */
+header.hd{position:sticky;top:0;z-index:60;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.06)}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.hd .brand{display:flex;align-items:center;gap:10px}
+.hd .brand img{height:25px;display:block}
+.hd nav{display:flex;align-items:center;gap:26px}
+.hd nav a{color:#cdd8ee;font-size:15px;font-weight:500;transition:color .15s}
+.hd nav a:hover{color:#fff}
+.hd .lang{display:inline-flex;align-items:center;gap:6px}
+.lang{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s}
+.lang:hover{background:rgba(255,255,255,.16)}
+.hd .menu-btn{display:none;background:none;border:0;cursor:pointer;color:#fff;font-size:22px}
+
+/* Hero */
+.hero{background:radial-gradient(1200px 540px at 78% -10%,rgba(22,214,197,.18),transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:78px 0 96px;text-align:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:26px 26px;opacity:.5}
+.hero .wrap{position:relative;z-index:2}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(22,214,197,.14);color:var(--mint);border:1px solid rgba(22,214,197,.3);padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:22px}
+.hero h1{font-size:42px;line-height:1.25;font-weight:800;letter-spacing:-.5px;margin-bottom:14px}
+.hero p.sub{font-size:17px;color:#c3d0ea;margin-bottom:36px}
+.searchbar{background:#fff;border-radius:16px;box-shadow:var(--shadow-lg);max-width:680px;margin:0 auto;display:flex;align-items:center;padding:8px 8px 8px 22px;gap:12px}
+.searchbar svg{flex:0 0 auto;color:var(--soft)}
+.searchbar input{flex:1;border:0;outline:0;font-size:16px;font-family:inherit;color:var(--ink);background:transparent;min-width:0}
+.searchbar input::placeholder{color:#9aa6ba}
+.searchbar button{flex:0 0 auto;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;border:0;border-radius:11px;padding:13px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform .12s,box-shadow .12s}
+.searchbar button:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(26,109,255,.4)}
+.chips{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.chips .lbl{color:#8fa0c2;font-size:13px;align-self:center;margin-right:4px}
+.chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#dde6f7;padding:7px 15px;border-radius:999px;font-size:13.5px;font-weight:500;cursor:pointer;transition:background .15s,border-color .15s}
+.chip:hover{background:rgba(22,214,197,.16);border-color:rgba(22,214,197,.4);color:#fff}
+
+/* Section base */
+section{padding:74px 0}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head .kick{color:var(--brand);font-weight:700;font-size:14px;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px;display:block}
+.sec-head h2{font-size:32px;font-weight:800;letter-spacing:-.4px;margin-bottom:10px}
+.sec-head p{color:var(--soft);font-size:16px}
+
+/* Category cards */
+.cats{background:var(--bg)}
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s,border-color .18s;display:flex;flex-direction:column}
+.cat:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:rgba(26,109,255,.35)}
+.cat .ic{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,rgba(26,109,255,.12),rgba(22,214,197,.14));display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px}
+.cat h3{font-size:19px;font-weight:700;margin-bottom:8px}
+.cat p{color:var(--soft);font-size:14.5px;margin-bottom:18px;flex:1}
+.cat .topics{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.cat .topics li a{display:flex;align-items:center;gap:8px;color:#3a4a63;font-size:14px;font-weight:500;transition:color .15s}
+.cat .topics li a:before{content:"›";color:var(--brand);font-weight:800}
+.cat .topics li a:hover{color:var(--brand)}
+.cat .more{align-self:flex-start;color:var(--brand);font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.cat .more:hover{gap:10px}
+
+/* Popular help / quick links */
+.popular{background:var(--bg-2)}
+.pop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.pop{display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
+.pop:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.pop .num{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:rgba(26,109,255,.1);color:var(--brand);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+.pop .txt strong{display:block;font-size:15.5px;font-weight:700;margin-bottom:3px}
+.pop .txt span.d{color:var(--soft);font-size:13.5px}
+
+/* FAQ accordion */
+.faq{background:var(--bg)}
+.faq-list{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.acc{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;transition:box-shadow .18s,border-color .18s}
+.acc.open{box-shadow:var(--shadow);border-color:rgba(26,109,255,.3)}
+.acc .q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;background:none;border:0;cursor:pointer;font-family:inherit;text-align:left;padding:19px 22px;font-size:16px;font-weight:600;color:var(--ink)}
+.acc .q .qmark{flex:0 0 auto;color:var(--brand);font-weight:800;margin-right:2px}
+.acc .q .ar{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;transition:transform .25s,background .2s;color:var(--soft)}
+.acc.open .q .ar{transform:rotate(180deg);background:var(--brand);color:#fff}
+.acc .a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:var(--soft)}
+.acc .a .inner{padding:0 22px 20px 42px;font-size:14.8px}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;text-align:center}
+.cta h2{font-size:30px;font-weight:800;margin-bottom:12px}
+.cta p{color:#c3d0ea;font-size:16px;margin-bottom:28px}
+.cta .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--mint),#0fb9aa);color:var(--navy);border-radius:12px;padding:15px 30px;font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:8px;transition:transform .12s}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:12px;padding:15px 30px;font-weight:600;font-size:16px;transition:background .15s}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+
+/* Footer */
+footer{background:var(--navy);color:#aeb9cf;padding:54px 0 30px}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-top img{height:25px;margin-bottom:16px}
+.foot-top .tag{font-size:14px;color:#9aa7c0;line-height:1.7;max-width:320px}
+.foot-col h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:14px;letter-spacing:.3px}
+.foot-col a{display:block;color:#aeb9cf;font-size:14px;margin-bottom:9px;transition:color .15s}
+.foot-col a:hover{color:var(--mint)}
+.foot-cs{font-size:14px;line-height:1.8}
+.foot-cs .ph{color:var(--mint);font-weight:800;font-size:20px;display:block;margin-top:4px}
+.foot-bottom{padding-top:22px;font-size:13px;color:#7c889f;text-align:center}
+
+/* Ribbon */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(10,23,48,.94);color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:9px 18px;font-size:13px;font-weight:500;box-shadow:var(--shadow-lg);backdrop-filter:blur(6px)}
+.ribbon a{color:var(--mint);font-weight:600}
+
+@media (max-width:920px){
+  .hero h1{font-size:32px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .pop-grid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px}
+  .hd nav a:not(.lang){display:none}
+}
+@media (max-width:520px){
+  .hero{padding:58px 0 70px}
+  .hero h1{font-size:26px}
+  .searchbar{flex-wrap:wrap;padding:14px}
+  .searchbar input{width:100%;padding:6px 4px}
+  .searchbar button{width:100%;justify-content:center}
+  .cat-grid{grid-template-columns:1fr}
+  .sec-head h2{font-size:25px}
+  .foot-top{grid-template-columns:1fr}
+  .ribbon{font-size:11.5px;padding:8px 13px;left:8px;bottom:8px}
+}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo-dark.svg" alt="MoneyBox Remit" /></a>
+    <nav>
+      <a href="#cats"><span data-lang-ko>도움말</span><span data-lang-en>Help</span></a>
+      <a href="#popular"><span data-lang-ko>인기 글</span><span data-lang-en>Popular</span></a>
+      <a href="#faq"><span data-lang-ko>자주 묻는 질문</span><span data-lang-en>FAQ</span></a>
+      <a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>송금하기</span><span data-lang-en>Send Money</span></a>
+      <button class="lang" type="button" data-lang-toggle>EN</button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO with search -->
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow">
+      <span data-lang-ko>🔎 외국인 생활 도움 센터</span>
+      <span data-lang-en>🔎 Help Center for Foreigners in Korea</span>
+    </span>
+    <h1>
+      <span data-lang-ko>무엇을 도와드릴까요?</span>
+      <span data-lang-en>How can we help you?</span>
+    </h1>
+    <p class="sub">
+      <span data-lang-ko>송금·환전·비자·유심·보험까지, 궁금한 것을 검색해 보세요.</span>
+      <span data-lang-en>Remittance, exchange, visa, SIM, insurance — just search what you need.</span>
+    </p>
+
+    <form class="searchbar" onsubmit="return false;" role="search">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" data-lang-ko placeholder="예: 비자 연장, 송금 한도, 유심 개통" aria-label="검색" />
+      <input type="text" data-lang-en placeholder="e.g. visa extension, transfer limit, SIM activation" aria-label="Search" />
+      <button type="submit"><span data-lang-ko>검색</span><span data-lang-en>Search</span></button>
+    </form>
+
+    <div class="chips">
+      <span class="lbl"><span data-lang-ko>인기 검색어</span><span data-lang-en>Popular</span></span>
+      <span class="chip"><span data-lang-ko>송금 한도</span><span data-lang-en>Transfer limit</span></span>
+      <span class="chip"><span data-lang-ko>비자 연장</span><span data-lang-en>Visa extension</span></span>
+      <span class="chip"><span data-lang-ko>외국인등록증</span><span data-lang-en>ARC card</span></span>
+      <span class="chip"><span data-lang-ko>유심 개통</span><span data-lang-en>SIM activation</span></span>
+      <span class="chip"><span data-lang-ko>환율 적용 시점</span><span data-lang-en>Exchange rate</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY CARDS -->
+<section class="cats" id="cats">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick"><span data-lang-ko>카테고리</span><span data-lang-en>Categories</span></span>
+      <h2><span data-lang-ko>주제별 도움말</span><span data-lang-en>Browse by topic</span></h2>
+      <p><span data-lang-ko>5가지 생활 서비스, 필요한 분야를 골라보세요.</span><span data-lang-en>Five everyday services — pick what you need.</span></p>
+    </div>
+
+    <div class="cat-grid">
+      <!-- Remittance -->
+      <div class="cat">
+        <div class="ic">💸</div>
+        <h3><span data-lang-ko>해외송금</span><span data-lang-en>Overseas Remittance</span></h3>
+        <p><span data-lang-ko>라이선스 기반 소액해외송금 · 32개국 · 소액일수록 유리해요.</span><span data-lang-en>Licensed small-amount remittance · 32 countries · better for small sums.</span></p>
+        <ul class="topics">
+          <li><a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>송금 시작하기</span><span data-lang-en>Start a transfer</span></a></li>
+          <li><a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>송금 한도 안내</span><span data-lang-en>Transfer limits</span></a></li>
+          <li><a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>수수료·환율</span><span data-lang-en>Fees &amp; rates</span></a></li>
+        </ul>
+        <a class="more" href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>전체 보기 →</span><span data-lang-en>See all →</span></a>
+      </div>
+
+      <!-- Exchange -->
+      <div class="cat">
+        <div class="ic">💱</div>
+        <h3><span data-lang-ko>환전</span><span data-lang-en>Currency Exchange</span></h3>
+        <p><span data-lang-ko>실시간 환율 · 투명한 수수료로 안심하고 환전해요.</span><span data-lang-en>Real-time rates · transparent fees you can trust.</span></p>
+        <ul class="topics">
+          <li><a href="#"><span data-lang-ko>오늘의 환율</span><span data-lang-en>Today's rates</span></a></li>
+          <li><a href="#"><span data-lang-ko>환전 신청 방법</span><span data-lang-en>How to exchange</span></a></li>
+          <li><a href="#"><span data-lang-ko>수수료 계산</span><span data-lang-en>Fee calculator</span></a></li>
+        </ul>
+        <a class="more" href="#"><span data-lang-ko>전체 보기 →</span><span data-lang-en>See all →</span></a>
+      </div>
+
+      <!-- Administrative -->
+      <div class="cat">
+        <div class="ic">📋</div>
+        <h3><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Administrative (Visa)</span></h3>
+        <p><span data-lang-ko>비자·체류·외국인등록 대행으로 복잡한 행정을 도와드려요.</span><span data-lang-en>Visa, stay &amp; ARC support — we handle the paperwork.</span></p>
+        <ul class="topics">
+          <li><a href="#"><span data-lang-ko>비자 연장 절차</span><span data-lang-en>Visa extension</span></a></li>
+          <li><a href="#"><span data-lang-ko>외국인등록증 발급</span><span data-lang-en>ARC issuance</span></a></li>
+          <li><a href="#"><span data-lang-ko>체류 자격 변경</span><span data-lang-en>Status change</span></a></li>
+        </ul>
+        <a class="more" href="#"><span data-lang-ko>전체 보기 →</span><span data-lang-en>See all →</span></a>
+      </div>
+
+      <!-- SIM -->
+      <div class="cat">
+        <div class="ic">📱</div>
+        <h3><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></h3>
+        <p><span data-lang-ko>개통 지원 · 알뜰 요금제로 통신비를 아껴요.</span><span data-lang-en>Activation support · budget plans to save on bills.</span></p>
+        <ul class="topics">
+          <li><a href="#"><span data-lang-ko>유심 개통 방법</span><span data-lang-en>SIM activation</span></a></li>
+          <li><a href="#"><span data-lang-ko>요금제 비교</span><span data-lang-en>Compare plans</span></a></li>
+          <li><a href="#"><span data-lang-ko>번호 이동</span><span data-lang-en>Number porting</span></a></li>
+        </ul>
+        <a class="more" href="#"><span data-lang-ko>전체 보기 →</span><span data-lang-en>See all →</span></a>
+      </div>
+
+      <!-- Insurance -->
+      <div class="cat">
+        <div class="ic">🛡️</div>
+        <h3><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></h3>
+        <p><span data-lang-ko>건강·여행·체류 보험으로 든든하게 대비해요.</span><span data-lang-en>Health, travel &amp; stay insurance for peace of mind.</span></p>
+        <ul class="topics">
+          <li><a href="#"><span data-lang-ko>건강보험 가입</span><span data-lang-en>Health insurance</span></a></li>
+          <li><a href="#"><span data-lang-ko>여행자 보험</span><span data-lang-en>Travel insurance</span></a></li>
+          <li><a href="#"><span data-lang-ko>체류 보험 안내</span><span data-lang-en>Stay insurance</span></a></li>
+        </ul>
+        <a class="more" href="#"><span data-lang-ko>전체 보기 →</span><span data-lang-en>See all →</span></a>
+      </div>
+
+      <!-- Contact card -->
+      <div class="cat">
+        <div class="ic">💬</div>
+        <h3><span data-lang-ko>상담·문의</span><span data-lang-en>Support &amp; Contact</span></h3>
+        <p><span data-lang-ko>원하는 답을 못 찾으셨나요? 상담원이 직접 도와드려요.</span><span data-lang-en>Can't find your answer? A real person can help.</span></p>
+        <ul class="topics">
+          <li><a href="#"><span data-lang-ko>전화 상담 02-771-0000</span><span data-lang-en>Call 02-771-0000</span></a></li>
+          <li><a href="#"><span data-lang-ko>1:1 문의하기</span><span data-lang-en>1:1 inquiry</span></a></li>
+          <li><a href="#"><span data-lang-ko>지점 찾기</span><span data-lang-en>Find a branch</span></a></li>
+        </ul>
+        <a class="more" href="#"><span data-lang-ko>문의하기 →</span><span data-lang-en>Contact us →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR HELP -->
+<section class="popular" id="popular">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick"><span data-lang-ko>인기 도움말</span><span data-lang-en>Popular Articles</span></span>
+      <h2><span data-lang-ko>지금 많이 찾는 글</span><span data-lang-en>Most viewed right now</span></h2>
+      <p><span data-lang-ko>다른 분들이 가장 궁금해한 주제예요.</span><span data-lang-en>What other people are looking up most.</span></p>
+    </div>
+
+    <div class="pop-grid">
+      <a class="pop" href="https://moneyboxremit.github.io/remit/" target="_blank">
+        <span class="num">1</span>
+        <span class="txt"><strong><span data-lang-ko>처음 해외송금하는 방법 (단계별)</span><span data-lang-en>How to send money abroad (step by step)</span></strong>
+        <span class="d"><span data-lang-ko>가입부터 첫 송금까지 5분이면 끝나요.</span><span data-lang-en>From sign-up to first transfer in 5 minutes.</span></span></span>
+      </a>
+      <a class="pop" href="#">
+        <span class="num">2</span>
+        <span class="txt"><strong><span data-lang-ko>비자 연장, 무엇을 준비해야 하나요?</span><span data-lang-en>Visa extension: what to prepare</span></strong>
+        <span class="d"><span data-lang-ko>필요 서류와 신청 시기를 정리했어요.</span><span data-lang-en>Required documents and timing explained.</span></span></span>
+      </a>
+      <a class="pop" href="#">
+        <span class="num">3</span>
+        <span class="txt"><strong><span data-lang-ko>외국인 유심 개통 완벽 가이드</span><span data-lang-en>Complete guide to SIM activation</span></strong>
+        <span class="d"><span data-lang-ko>외국인등록증 없이도 가능한 방법까지.</span><span data-lang-en>Including options without an ARC card.</span></span></span>
+      </a>
+      <a class="pop" href="#">
+        <span class="num">4</span>
+        <span class="txt"><strong><span data-lang-ko>환율이 언제 적용되는지 알아보기</span><span data-lang-en>When the exchange rate is applied</span></strong>
+        <span class="d"><span data-lang-ko>신청 시점과 확정 환율의 차이를 설명해요.</span><span data-lang-en>Difference between request and final rate.</span></span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kick"><span data-lang-ko>FAQ</span><span data-lang-en>FAQ</span></span>
+      <h2><span data-lang-ko>자주 묻는 질문</span><span data-lang-en>Frequently asked questions</span></h2>
+      <p><span data-lang-ko>궁금한 항목을 눌러 답변을 확인하세요.</span><span data-lang-en>Tap a question to see the answer.</span></p>
+    </div>
+
+    <div class="faq-list">
+      <div class="acc">
+        <button class="q" type="button" data-acc>
+          <span><span class="qmark">Q.</span><span data-lang-ko>송금 한도가 어떻게 되나요?</span><span data-lang-en>What is the transfer limit?</span></span>
+          <span class="ar">▾</span>
+        </button>
+        <div class="a"><div class="inner">
+          <span data-lang-ko>소액해외송금업 라이선스 기준에 따라 건당·연간 한도가 적용돼요. 본인 인증을 마치면 건당 한도와 연간 누적 한도가 안내되며, 소액일수록 수수료가 유리합니다.</span>
+          <span data-lang-en>Per-transaction and annual limits apply under our small-amount remittance license. After verification you'll see your per-transfer and yearly limits, and smaller amounts get better fee rates.</span>
+        </div></div>
+      </div>
+
+      <div class="acc">
+        <button class="q" type="button" data-acc>
+          <span><span class="qmark">Q.</span><span data-lang-ko>비자 연장은 며칠 걸리나요?</span><span data-lang-en>How long does a visa extension take?</span></span>
+          <span class="ar">▾</span>
+        </button>
+        <div class="a"><div class="inner">
+          <span data-lang-ko>비자 종류와 출입국 사무소 일정에 따라 보통 1~3주가 걸려요. 만료 4개월 전부터 신청할 수 있으니 여유 있게 준비하시는 걸 추천드려요. 행정사 대행 시 서류 검토부터 도와드립니다.</span>
+          <span data-lang-en>It usually takes 1–3 weeks depending on visa type and immigration office schedules. You can apply up to 4 months before expiry, so we recommend starting early. Our administrative service helps from document review.</span>
+        </div></div>
+      </div>
+
+      <div class="acc">
+        <button class="q" type="button" data-acc>
+          <span><span class="qmark">Q.</span><span data-lang-ko>외국인도 유심 개통이 가능한가요?</span><span data-lang-en>Can foreigners activate a SIM card?</span></span>
+          <span class="ar">▾</span>
+        </button>
+        <div class="a"><div class="inner">
+          <span data-lang-ko>네, 가능해요. 외국인등록증(ARC)과 여권이 있으면 바로 개통할 수 있고, 등록증 발급 전이라면 선불 유심으로 먼저 이용할 수 있어요. 알뜰 요금제 안내도 함께 도와드립니다.</span>
+          <span data-lang-en>Yes. With your ARC card and passport you can activate right away, and before your ARC is issued you can start with a prepaid SIM. We also help you find budget plans.</span>
+        </div></div>
+      </div>
+
+      <div class="acc">
+        <button class="q" type="button" data-acc>
+          <span><span class="qmark">Q.</span><span data-lang-ko>환율은 언제 적용되나요?</span><span data-lang-en>When is the exchange rate applied?</span></span>
+          <span class="ar">▾</span>
+        </button>
+        <div class="a"><div class="inner">
+          <span data-lang-ko>환율은 송금 신청을 확정하는 순간의 실시간 환율로 고정돼요. 신청 화면에서 적용 환율과 수령 금액을 미리 확인할 수 있어, 받는 분이 받을 금액을 투명하게 알 수 있습니다.</span>
+          <span data-lang-en>The rate is locked at the real-time rate when you confirm your transfer. You can preview the applied rate and payout amount on the request screen, so the recipient's amount is fully transparent.</span>
+        </div></div>
+      </div>
+
+      <div class="acc">
+        <button class="q" type="button" data-acc>
+          <span><span class="qmark">Q.</span><span data-lang-ko>보험은 어떤 걸 들 수 있나요?</span><span data-lang-en>What insurance can I sign up for?</span></span>
+          <span class="ar">▾</span>
+        </button>
+        <div class="a"><div class="inner">
+          <span data-lang-ko>건강보험, 여행자 보험, 체류(거주) 보험 등 외국인 생활에 맞춘 상품을 안내해 드려요. 체류 기간과 목적에 따라 가장 알맞은 보장을 추천하고 가입까지 도와드립니다.</span>
+          <span data-lang-en>We offer health, travel, and stay (residence) insurance tailored to life in Korea. Based on your stay period and purpose, we recommend the best coverage and help you sign up.</span>
+        </div></div>
+      </div>
+
+      <div class="acc">
+        <button class="q" type="button" data-acc>
+          <span><span class="qmark">Q.</span><span data-lang-ko>수수료는 얼마인가요?</span><span data-lang-en>How much are the fees?</span></span>
+          <span class="ar">▾</span>
+        </button>
+        <div class="a"><div class="inner">
+          <span data-lang-ko>수수료는 송금 금액과 국가에 따라 달라지며, 신청 전에 항상 투명하게 표시돼요. 특히 소액 송금일수록 유리한 구조라, 자주 보내시는 분께 부담이 적습니다.</span>
+          <span data-lang-en>Fees depend on the amount and destination, and are always shown transparently before you confirm. Small transfers are especially favorable, so frequent senders pay less overall.</span>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2><span data-lang-ko>찾는 답이 없으신가요?</span><span data-lang-en>Still can't find your answer?</span></h2>
+    <p><span data-lang-ko>송금부터 시작해 보거나, 상담원에게 바로 물어보세요.</span><span data-lang-en>Start with a transfer, or ask a real agent right away.</span></p>
+    <div class="btns">
+      <a class="btn-primary" href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>지금 송금하기</span><span data-lang-en>Send money now</span></a>
+      <a class="btn-ghost" href="#"><span data-lang-ko>1:1 문의하기</span><span data-lang-en>Contact support</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img src="assets/logo-dark.svg" alt="MoneyBox Remit" />
+        <p class="tag"><span data-lang-ko>외국인의 한국 생활을 더 쉽게. 송금·환전·행정·유심·보험을 한곳에서 도와드려요.</span><span data-lang-en>Making life in Korea easier for foreigners — remittance, exchange, visa, SIM and insurance, all in one place.</span></p>
+      </div>
+      <div class="foot-col">
+        <h4><span data-lang-ko>서비스</span><span data-lang-en>Services</span></h4>
+        <a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a>
+        <a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a>
+        <a href="#"><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Administrative</span></a>
+        <a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a>
+        <a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a>
+      </div>
+      <div class="foot-col">
+        <h4><span data-lang-ko>고객센터</span><span data-lang-en>Customer Center</span></h4>
+        <p class="foot-cs">
+          <span data-lang-ko>평일 09:00 – 18:00</span><span data-lang-en>Weekdays 09:00 – 18:00</span>
+          <span class="ph">02-771-0000</span>
+        </p>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 MoneyBox Remit. <span data-lang-ko>모든 권리 보유.</span><span data-lang-en>All rights reserved.</span></div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 17 · 헬프 센터</span><span data-lang-en>Draft 17 · Help Center</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){b.addEventListener('click',function(){var en=document.body.classList.toggle('en');document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});document.documentElement.lang=en?'en':'ko';});});
+
+document.querySelectorAll('.acc [data-acc]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var acc=btn.closest('.acc');
+    var panel=acc.querySelector('.a');
+    var isOpen=acc.classList.contains('open');
+    document.querySelectorAll('.acc.open').forEach(function(o){
+      o.classList.remove('open');
+      o.querySelector('.a').style.maxHeight=null;
+    });
+    if(!isOpen){
+      acc.classList.add('open');
+      panel.style.maxHeight=panel.scrollHeight+'px';
+    }
+  });
+});
+
+document.querySelectorAll('.chip').forEach(function(c){
+  c.addEventListener('click',function(){
+    var input=document.querySelector('.searchbar input'+(document.body.classList.contains('en')?'[data-lang-en]':'[data-lang-ko]'));
+    if(input){input.value=c.textContent.trim();input.focus();}
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>머니박스레밋 · 송금 계산기 | MoneyBox Remit</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="icon" type="image/svg+xml" href="assets/symbol.svg" />
+<style>
+:root{--brand:#1a6dff;--brand-d:#0b4ed1;--mint:#16d6c5;--navy:#0a1730;--navy-2:#0f2347;--ink:#101828;--soft:#5b6678;--line:#e7ebf2;--bg:#ffffff;--bg-2:#f6f9fd;--radius:18px;--shadow:0 10px 30px rgba(16,32,74,.08);--shadow-lg:0 24px 60px rgba(10,23,48,.18);--maxw:1140px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Pretendard','Apple SD Gothic Neo',sans-serif;color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+[data-lang-en]{display:none}
+body.en [data-lang-ko]{display:none}
+body.en [data-lang-en]{display:inline}
+
+/* Header */
+header{position:sticky;top:0;z-index:70;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+.nav .brand{display:flex;align-items:center;gap:10px}
+.nav .brand img{height:26px;display:block}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{color:#cdd7ea;font-size:15px;font-weight:500}
+.nav-links a:hover{color:#fff}
+.lang{background:transparent;border:1px solid rgba(255,255,255,.28);color:#fff;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
+.lang:hover{background:rgba(255,255,255,.12)}
+
+/* Hero */
+.hero{background:radial-gradient(1200px 600px at 80% -10%,rgba(22,214,197,.18),transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:64px 0 90px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 460px;gap:48px;align-items:center}
+.hero-copy .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(22,214,197,.14);color:var(--mint);font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;letter-spacing:.2px}
+.hero-copy h1{font-size:46px;line-height:1.18;font-weight:800;margin:20px 0 16px;letter-spacing:-.5px}
+.hero-copy h1 .hl{background:linear-gradient(90deg,var(--brand),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-copy p{color:#bcc8df;font-size:18px;max-width:460px}
+.hero-stats{display:flex;gap:28px;margin-top:30px}
+.hero-stats .s b{display:block;font-size:26px;font-weight:800;color:#fff}
+.hero-stats .s span{font-size:13px;color:#93a2c0}
+
+/* Calculator card */
+.calc{background:#fff;color:var(--ink);border-radius:22px;box-shadow:var(--shadow-lg);padding:26px 26px 22px;position:relative}
+.calc h2{font-size:19px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.calc .sub{font-size:13px;color:var(--soft);margin-bottom:18px}
+.calc label{display:block;font-size:13px;font-weight:700;color:var(--soft);margin:14px 0 7px}
+.field{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:0 14px;background:var(--bg-2);transition:border-color .15s,box-shadow .15s}
+.field:focus-within{border-color:var(--brand);box-shadow:0 0 0 4px rgba(26,109,255,.12);background:#fff}
+.field input{flex:1;border:0;background:transparent;font-size:22px;font-weight:700;padding:14px 0;outline:none;font-family:inherit;color:var(--ink);min-width:0}
+.field .cur{font-size:14px;font-weight:700;color:var(--soft);white-space:nowrap}
+.field select{border:0;background:transparent;font-size:16px;font-weight:700;padding:14px 0;outline:none;font-family:inherit;color:var(--ink);cursor:pointer;width:100%}
+.quick{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.quick button{flex:1;min-width:0;border:1px solid var(--line);background:#fff;color:var(--brand);font-weight:700;font-size:13px;padding:8px 4px;border-radius:10px;cursor:pointer;font-family:inherit;transition:.12s}
+.quick button:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+
+.result{margin-top:20px;background:linear-gradient(135deg,#eef4ff,#e8fbf8);border:1px solid #d7e6ff;border-radius:16px;padding:18px}
+.result .recv-label{font-size:13px;color:var(--soft);font-weight:600}
+.result .recv{font-size:34px;font-weight:800;color:var(--navy);line-height:1.2;letter-spacing:-.5px;margin-top:2px}
+.result .recv small{font-size:16px;font-weight:700;color:var(--brand);margin-left:4px}
+.result-rows{display:flex;gap:10px;margin-top:14px;border-top:1px dashed #c8dcf6;padding-top:14px}
+.result-rows .r{flex:1;text-align:center}
+.result-rows .r span{display:block;font-size:12px;color:var(--soft);font-weight:600}
+.result-rows .r b{display:block;font-size:15px;font-weight:800;color:var(--ink);margin-top:2px}
+.calc .disclaimer{font-size:11px;color:var(--soft);margin-top:12px;line-height:1.5}
+.calc .cta{display:block;width:100%;text-align:center;margin-top:16px;background:linear-gradient(90deg,var(--brand),var(--brand-d));color:#fff;font-weight:800;font-size:16px;padding:15px;border-radius:14px;box-shadow:0 8px 20px rgba(26,109,255,.32)}
+.calc .cta:hover{filter:brightness(1.05)}
+
+/* Section common */
+section.block{padding:78px 0}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 46px}
+.sec-head .tag{color:var(--brand);font-weight:800;font-size:14px;letter-spacing:1px;text-transform:uppercase}
+.sec-head h2{font-size:34px;font-weight:800;margin:10px 0 12px;letter-spacing:-.5px}
+.sec-head p{color:var(--soft);font-size:17px}
+
+/* Services */
+.services{background:var(--bg-2)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
+.svc:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.svc .ico{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,#eaf1ff,#e4fbf7);display:flex;align-items:center;justify-content:center;font-size:27px;margin-bottom:16px}
+.svc h3{font-size:19px;font-weight:800;margin-bottom:7px}
+.svc p{color:var(--soft);font-size:15px;flex:1}
+.svc .go{margin-top:16px;color:var(--brand);font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.svc .go::after{content:"→";transition:transform .15s}
+.svc:hover .go::after{transform:translateX(4px)}
+.svc.feat{grid-column:span 1;background:linear-gradient(160deg,var(--navy),var(--navy-2));color:#fff;border:0}
+.svc.feat h3{color:#fff}.svc.feat p{color:#bcc8df}
+.svc.feat .ico{background:rgba(22,214,197,.18)}
+.svc.feat .go{color:var(--mint)}
+
+/* Trust strip */
+.trust{background:var(--navy);color:#fff;padding:56px 0}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.trust-grid .t b{display:block;font-size:30px;font-weight:800;background:linear-gradient(90deg,var(--brand),var(--mint));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.trust-grid .t span{font-size:14px;color:#aab8d4;margin-top:4px;display:block}
+
+/* Footer */
+footer{background:var(--navy);color:#aeb9d0;padding:54px 0 30px;border-top:1px solid rgba(255,255,255,.08)}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:34px}
+footer .brand img{height:24px;margin-bottom:14px}
+footer .tagline{font-size:15px;color:#9aa7c2;max-width:300px}
+footer .cs{margin-top:16px}
+footer .cs span{font-size:13px;color:#7e8cab;display:block}
+footer .cs b{font-size:22px;font-weight:800;color:var(--mint);letter-spacing:.3px}
+footer h4{color:#fff;font-size:14px;font-weight:700;margin-bottom:14px;letter-spacing:.3px}
+footer ul{list-style:none}
+footer ul li{margin-bottom:10px}
+footer ul li a{font-size:14px;color:#9aa7c2}
+footer ul li a:hover{color:#fff}
+.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;font-size:13px;color:#7e8cab;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* Ribbon */
+.ribbon{position:fixed;left:14px;bottom:14px;z-index:80;background:rgba(10,23,48,.92);color:#fff;font-size:13px;font-weight:600;padding:9px 15px;border-radius:999px;box-shadow:var(--shadow-lg);backdrop-filter:blur(8px)}
+.ribbon a{color:var(--mint);font-weight:700}
+
+/* Responsive */
+@media(max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;gap:34px}
+  .hero-copy h1{font-size:36px}
+  .hero-copy p{max-width:none}
+  .nav-links{display:none}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .trust-grid{grid-template-columns:repeat(2,1fr);gap:30px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .sec-head h2{font-size:28px}
+}
+@media(max-width:520px){
+  .hero{padding:46px 0 64px}
+  .hero-copy h1{font-size:30px}
+  .hero-stats{gap:18px;flex-wrap:wrap}
+  .calc{padding:22px 18px}
+  .result .recv{font-size:28px}
+  .svc-grid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  section.block{padding:56px 0}
+  .ribbon{font-size:12px;padding:8px 12px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><img src="assets/logo-dark.svg" alt="MoneyBox Remit" /></a>
+    <nav class="nav-links">
+      <a href="#calc"><span data-lang-ko>송금 계산기</span><span data-lang-en>Calculator</span></a>
+      <a href="#services"><span data-lang-ko>서비스</span><span data-lang-en>Services</span></a>
+      <a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a>
+      <a href="#contact"><span data-lang-ko>고객센터</span><span data-lang-en>Support</span></a>
+    </nav>
+    <button class="lang" type="button" data-lang-toggle>EN</button>
+  </div>
+</header>
+
+<!-- HERO + CALCULATOR -->
+<section class="hero" id="calc">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow">💸 <span data-lang-ko>실시간 송금 계산기</span><span data-lang-en>Live remittance calculator</span></span>
+      <h1>
+        <span data-lang-ko>얼마 보내면<br><span class="hl">얼마 받아요?</span></span>
+        <span data-lang-en>How much will they<br><span class="hl">actually get?</span></span>
+      </h1>
+      <p>
+        <span data-lang-ko>금액만 입력하면 받는 금액·수수료·도착 시간까지 바로 계산해 드려요. 한국 사는 외국인을 위한 생활 포털, 머니박스레밋.</span>
+        <span data-lang-en>Just type the amount — we instantly show the received amount, fee, and arrival time. The life portal for foreigners living in Korea.</span>
+      </p>
+      <div class="hero-stats">
+        <div class="s"><b>32+</b><span data-lang-ko>송금 가능 국가</span><span data-lang-en>countries</span></div>
+        <div class="s"><b>~3min</b><span data-lang-ko>평균 도착 시간</span><span data-lang-en>avg. arrival</span></div>
+        <div class="s"><b>5</b><span data-lang-ko>생활 서비스</span><span data-lang-en>life services</span></div>
+      </div>
+    </div>
+
+    <!-- Calculator widget -->
+    <div class="calc">
+      <h2>🧮 <span data-lang-ko>송금 계산기</span><span data-lang-en>Remittance Calculator</span></h2>
+      <div class="sub"><span data-lang-ko>예시 환율로 즉시 계산</span><span data-lang-en>Instant estimate at sample rates</span></div>
+
+      <label for="sendAmt"><span data-lang-ko>보내는 금액</span><span data-lang-en>You send</span></label>
+      <div class="field">
+        <input type="text" id="sendAmt" inputmode="numeric" value="500,000" autocomplete="off" />
+        <span class="cur">KRW</span>
+      </div>
+      <div class="quick">
+        <button type="button" data-amt="100000">10만</button>
+        <button type="button" data-amt="300000">30만</button>
+        <button type="button" data-amt="500000">50만</button>
+        <button type="button" data-amt="1000000">100만</button>
+      </div>
+
+      <label for="recvCur"><span data-lang-ko>받는 통화 / 국가</span><span data-lang-en>Recipient currency</span></label>
+      <div class="field">
+        <select id="recvCur">
+          <option value="VND">🇻🇳 VND · <span>베트남 동</span></option>
+          <option value="THB">🇹🇭 THB · 태국 바트</option>
+          <option value="PHP">🇵🇭 PHP · 필리핀 페소</option>
+          <option value="USD">🇺🇸 USD · 미국 달러</option>
+          <option value="UZS">🇺🇿 UZS · 우즈벡 숨</option>
+          <option value="NPR">🇳🇵 NPR · 네팔 루피</option>
+          <option value="IDR">🇮🇩 IDR · 인니 루피아</option>
+        </select>
+      </div>
+
+      <div class="result">
+        <div class="recv-label"><span data-lang-ko>받는 사람이 받는 금액</span><span data-lang-en>Recipient gets</span></div>
+        <div class="recv"><span id="recvAmt">0</span><small id="recvCurLbl">VND</small></div>
+        <div class="result-rows">
+          <div class="r"><span data-lang-ko>적용 환율</span><span data-lang-en>Rate</span><b id="rateLbl">–</b></div>
+          <div class="r"><span data-lang-ko>송금 수수료</span><span data-lang-en>Fee</span><b id="feeLbl">–</b></div>
+          <div class="r"><span data-lang-ko>도착 예상</span><span data-lang-en>Arrives</span><b id="etaLbl">–</b></div>
+        </div>
+      </div>
+
+      <a class="cta" href="https://moneyboxremit.github.io/remit/" target="_blank">
+        <span data-lang-ko>지금 송금하기 →</span><span data-lang-en>Send money now →</span>
+      </a>
+      <p class="disclaimer">
+        <span data-lang-ko>* 위 환율·수수료는 이해를 돕기 위한 예시값이며 실제 거래 환율과 다를 수 있어요. 실시간 환율은 송금 화면에서 확인하세요.</span>
+        <span data-lang-en>* Rates and fees shown are sample values for illustration only and may differ from actual transaction rates. See live rates on the send page.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap trust-grid">
+    <div class="t"><b>32+</b><span data-lang-ko>송금 가능 국가</span><span data-lang-en>Countries supported</span></div>
+    <div class="t"><b>100%</b><span data-lang-ko>라이선스 기반 합법 송금</span><span data-lang-en>Licensed & compliant</span></div>
+    <div class="t"><b>2개국어</b><span data-lang-ko>한국어·영어 안내</span><span data-lang-en>Korean & English</span></div>
+    <div class="t"><b>1:1</b><span data-lang-ko>외국인 전담 상담</span><span data-lang-en>Dedicated support</span></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="block services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="tag">All-in-one</div>
+      <h2><span data-lang-ko>한국 생활, 하나로 끝내요</span><span data-lang-en>Your life in Korea, sorted</span></h2>
+      <p><span data-lang-ko>송금부터 비자·통신·보험까지. 외국인에게 꼭 필요한 5가지 서비스를 한곳에서.</span><span data-lang-en>From remittance to visa, mobile, and insurance — five essential services in one place.</span></p>
+    </div>
+
+    <div class="svc-grid">
+      <a class="svc feat" href="https://moneyboxremit.github.io/remit/" target="_blank">
+        <div class="ico">💸</div>
+        <h3><span data-lang-ko>해외송금</span><span data-lang-en>Overseas Remittance</span></h3>
+        <p><span data-lang-ko>라이선스 기반 소액해외송금 · 32개국 · 소액일수록 유리해요.</span><span data-lang-en>Licensed small-amount remittance · 32 countries · better rates for smaller amounts.</span></p>
+        <span class="go"><span data-lang-ko>송금 시작하기</span><span data-lang-en>Start sending</span></span>
+      </a>
+
+      <a class="svc" href="#">
+        <div class="ico">💱</div>
+        <h3><span data-lang-ko>환전</span><span data-lang-en>Currency Exchange</span></h3>
+        <p><span data-lang-ko>실시간 환율 · 투명한 수수료로 안심하고 환전해요.</span><span data-lang-en>Real-time rates with transparent, no-surprise fees.</span></p>
+        <span class="go"><span data-lang-ko>자세히 보기</span><span data-lang-en>Learn more</span></span>
+      </a>
+
+      <a class="svc" href="#">
+        <div class="ico">📋</div>
+        <h3><span data-lang-ko>행정사</span><span data-lang-en>Administrative (Visa)</span></h3>
+        <p><span data-lang-ko>비자 · 체류 · 외국인등록 대행을 전문가가 도와드려요.</span><span data-lang-en>Visa, stay extension & foreigner registration handled by experts.</span></p>
+        <span class="go"><span data-lang-ko>자세히 보기</span><span data-lang-en>Learn more</span></span>
+      </a>
+
+      <a class="svc" href="#">
+        <div class="ico">📱</div>
+        <h3><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></h3>
+        <p><span data-lang-ko>개통 지원 · 알뜰 요금제로 통신비를 아껴요.</span><span data-lang-en>Activation support and budget mobile plans to save you money.</span></p>
+        <span class="go"><span data-lang-ko>자세히 보기</span><span data-lang-en>Learn more</span></span>
+      </a>
+
+      <a class="svc" href="#">
+        <div class="ico">🛡️</div>
+        <h3><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></h3>
+        <p><span data-lang-ko>건강 · 여행 · 체류 보험으로 한국 생활을 든든하게.</span><span data-lang-en>Health, travel & stay insurance for peace of mind in Korea.</span></p>
+        <span class="go"><span data-lang-ko>자세히 보기</span><span data-lang-en>Learn more</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="brand"><img src="assets/logo-dark.svg" alt="MoneyBox Remit" /></div>
+        <p class="tagline"><span data-lang-ko>한국 사는 외국인을 위한 생활 포털. 송금부터 비자·통신·보험까지 한곳에서.</span><span data-lang-en>The life portal for foreigners in Korea — remittance, visa, mobile & insurance in one place.</span></p>
+        <div class="cs">
+          <span data-lang-ko>고객센터 (한국어·영어)</span><span data-lang-en>Customer Center (KR·EN)</span>
+          <b>02-771-0000</b>
+        </div>
+      </div>
+      <div>
+        <h4><span data-lang-ko>서비스</span><span data-lang-en>Services</span></h4>
+        <ul>
+          <li><a href="https://moneyboxremit.github.io/remit/" target="_blank"><span data-lang-ko>해외송금</span><span data-lang-en>Remittance</span></a></li>
+          <li><a href="#"><span data-lang-ko>환전</span><span data-lang-en>Exchange</span></a></li>
+          <li><a href="#"><span data-lang-ko>행정사 (비자)</span><span data-lang-en>Visa</span></a></li>
+          <li><a href="#"><span data-lang-ko>유심·통신</span><span data-lang-en>SIM &amp; Mobile</span></a></li>
+          <li><a href="#"><span data-lang-ko>보험</span><span data-lang-en>Insurance</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4><span data-lang-ko>바로가기</span><span data-lang-en>Quick links</span></h4>
+        <ul>
+          <li><a href="#calc"><span data-lang-ko>송금 계산기</span><span data-lang-en>Calculator</span></a></li>
+          <li><a href="#services"><span data-lang-ko>전체 서비스</span><span data-lang-en>All services</span></a></li>
+          <li><a href="#contact"><span data-lang-ko>고객센터</span><span data-lang-en>Support</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 MoneyBox Remit.</span>
+      <span data-lang-ko>예시 환율은 실제 거래 환율과 다를 수 있습니다.</span>
+      <span data-lang-en>Sample rates may differ from actual transaction rates.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="ribbon"><span data-lang-ko>초안 14 · 송금 계산기</span><span data-lang-en>Draft 14 · Calculator</span> &nbsp;·&nbsp; <a href="index.html"><span data-lang-ko>← 초안 목록</span><span data-lang-en>← All drafts</span></a></div>
+
+<script>
+/* 언어 토글 */
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){b.addEventListener('click',function(){var en=document.body.classList.toggle('en');document.querySelectorAll('[data-lang-toggle]').forEach(function(x){x.textContent=en?'한국어':'EN';});document.documentElement.lang=en?'en':'ko';});});
+
+/* ===== 송금 계산기 (예시 환율 상수) ===== */
+// 1 KRW 당 받는 통화 금액 (예시값)
+var RATES = {
+  VND: { rate: 18.42,   label: '동',   eta: '~3분',  etaEn: '~3 min',  fee: 3000 },
+  THB: { rate: 0.0243,  label: '바트', eta: '~5분',  etaEn: '~5 min',  fee: 3000 },
+  PHP: { rate: 0.0418,  label: '페소', eta: '~10분', etaEn: '~10 min', fee: 4000 },
+  USD: { rate: 0.00072, label: '달러', eta: '~30분', etaEn: '~30 min', fee: 5000 },
+  UZS: { rate: 9.05,    label: '숨',   eta: '~1시간', etaEn: '~1 hr',  fee: 5000 },
+  NPR: { rate: 0.0972,  label: '루피', eta: '~10분', etaEn: '~10 min', fee: 4000 },
+  IDR: { rate: 11.78,   label: '루피아', eta: '~15분', etaEn: '~15 min', fee: 4000 }
+};
+
+var sendEl  = document.getElementById('sendAmt');
+var curEl   = document.getElementById('recvCur');
+var recvEl  = document.getElementById('recvAmt');
+var curLbl  = document.getElementById('recvCurLbl');
+var rateLbl = document.getElementById('rateLbl');
+var feeLbl  = document.getElementById('feeLbl');
+var etaLbl  = document.getElementById('etaLbl');
+
+function parseAmt(v){ var n = parseInt(String(v).replace(/[^0-9]/g,''),10); return isNaN(n)?0:n; }
+function fmt(n){ return n.toLocaleString('en-US'); }
+function fmtRecv(n){ return (Math.round(n)).toLocaleString('en-US'); }
+
+function calc(){
+  var krw = parseAmt(sendEl.value);
+  var cur = curEl.value;
+  var info = RATES[cur];
+  // 수수료를 보내는 금액에서 차감 후 환전 (보내는 금액 >= 수수료일 때)
+  var net = Math.max(krw - info.fee, 0);
+  var recv = net * info.rate;
+
+  recvEl.textContent = fmtRecv(recv);
+  curLbl.textContent = cur;
+  rateLbl.textContent = '1₩=' + info.rate + ' ' + cur;
+  feeLbl.textContent = fmt(info.fee) + '원';
+  etaLbl.textContent = document.body.classList.contains('en') ? info.etaEn : info.eta;
+}
+
+// 입력 천단위 콤마 유지
+sendEl.addEventListener('input', function(){
+  var caretEnd = (sendEl.selectionStart === sendEl.value.length);
+  var n = parseAmt(sendEl.value);
+  sendEl.value = n ? fmt(n) : '';
+  calc();
+});
+curEl.addEventListener('change', calc);
+
+document.querySelectorAll('.quick button').forEach(function(b){
+  b.addEventListener('click', function(){
+    sendEl.value = fmt(parseInt(b.getAttribute('data-amt'),10));
+    calc();
+  });
+});
+
+// 언어 토글 시 도착시간 텍스트도 갱신
+document.querySelectorAll('[data-lang-toggle]').forEach(function(b){ b.addEventListener('click', calc); });
+
+calc();
+</script>
+</body>
+</html>
